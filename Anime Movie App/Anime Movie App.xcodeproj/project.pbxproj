@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		198577532AD3E0550025F615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577522AD3E0550025F615 /* AppDelegate.swift */; };
-		198577572AD3E0550025F615 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577562AD3E0550025F615 /* ViewController.swift */; };
 		1985775C2AD3E0570025F615 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1985775B2AD3E0570025F615 /* Assets.xcassets */; };
 		1985775F2AD3E0570025F615 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1985775D2AD3E0570025F615 /* LaunchScreen.storyboard */; };
 		1985776A2AD3E0580025F615 /* Anime_Movie_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577692AD3E0580025F615 /* Anime_Movie_AppTests.swift */; };
@@ -39,7 +38,6 @@
 /* Begin PBXFileReference section */
 		1985774F2AD3E0550025F615 /* Anime Movie App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anime Movie App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		198577522AD3E0550025F615 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		198577562AD3E0550025F615 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1985775B2AD3E0570025F615 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1985775E2AD3E0570025F615 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		198577602AD3E0570025F615 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 				198577832AD3E1890025F615 /* Views */,
 				198577822AD3E17B0025F615 /* ViewModels */,
 				198577522AD3E0550025F615 /* AppDelegate.swift */,
-				198577562AD3E0550025F615 /* ViewController.swift */,
 				1985775B2AD3E0570025F615 /* Assets.xcassets */,
 				1985775D2AD3E0570025F615 /* LaunchScreen.storyboard */,
 				198577602AD3E0570025F615 /* Info.plist */,
@@ -285,7 +282,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				198577572AD3E0550025F615 /* ViewController.swift in Sources */,
 				198577532AD3E0550025F615 /* AppDelegate.swift in Sources */,
 				1985778A2AD3EA2F0025F615 /* MainNavigationController.swift in Sources */,
 				198577872AD3E3AA0025F615 /* HomeViewController.swift in Sources */,
