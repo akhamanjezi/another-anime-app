@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		198577532AD3E0550025F615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577522AD3E0550025F615 /* AppDelegate.swift */; };
-		198577552AD3E0550025F615 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577542AD3E0550025F615 /* SceneDelegate.swift */; };
 		198577572AD3E0550025F615 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577562AD3E0550025F615 /* ViewController.swift */; };
-		1985775A2AD3E0550025F615 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198577582AD3E0550025F615 /* Main.storyboard */; };
 		1985775C2AD3E0570025F615 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1985775B2AD3E0570025F615 /* Assets.xcassets */; };
 		1985775F2AD3E0570025F615 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1985775D2AD3E0570025F615 /* LaunchScreen.storyboard */; };
 		1985776A2AD3E0580025F615 /* Anime_Movie_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577692AD3E0580025F615 /* Anime_Movie_AppTests.swift */; };
 		198577742AD3E0580025F615 /* Anime_Movie_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577732AD3E0580025F615 /* Anime_Movie_AppUITests.swift */; };
 		198577762AD3E0580025F615 /* Anime_Movie_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577752AD3E0580025F615 /* Anime_Movie_AppUITestsLaunchTests.swift */; };
+		198577872AD3E3AA0025F615 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577852AD3E3AA0025F615 /* HomeViewController.swift */; };
+		198577882AD3E3AA0025F615 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198577862AD3E3AA0025F615 /* HomeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,9 +38,7 @@
 /* Begin PBXFileReference section */
 		1985774F2AD3E0550025F615 /* Anime Movie App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anime Movie App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		198577522AD3E0550025F615 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		198577542AD3E0550025F615 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		198577562AD3E0550025F615 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		198577592AD3E0550025F615 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1985775B2AD3E0570025F615 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1985775E2AD3E0570025F615 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		198577602AD3E0570025F615 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +47,8 @@
 		1985776F2AD3E0580025F615 /* Anime Movie AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Anime Movie AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		198577732AD3E0580025F615 /* Anime_Movie_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anime_Movie_AppUITests.swift; sourceTree = "<group>"; };
 		198577752AD3E0580025F615 /* Anime_Movie_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anime_Movie_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		198577852AD3E3AA0025F615 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		198577862AD3E3AA0025F615 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +103,7 @@
 				198577832AD3E1890025F615 /* Views */,
 				198577822AD3E17B0025F615 /* ViewModels */,
 				198577522AD3E0550025F615 /* AppDelegate.swift */,
-				198577542AD3E0550025F615 /* SceneDelegate.swift */,
 				198577562AD3E0550025F615 /* ViewController.swift */,
-				198577582AD3E0550025F615 /* Main.storyboard */,
 				1985775B2AD3E0570025F615 /* Assets.xcassets */,
 				1985775D2AD3E0570025F615 /* LaunchScreen.storyboard */,
 				198577602AD3E0570025F615 /* Info.plist */,
@@ -140,6 +138,8 @@
 		198577832AD3E1890025F615 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				198577852AD3E3AA0025F615 /* HomeViewController.swift */,
+				198577862AD3E3AA0025F615 /* HomeViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -257,7 +257,7 @@
 			files = (
 				1985775F2AD3E0570025F615 /* LaunchScreen.storyboard in Resources */,
 				1985775C2AD3E0570025F615 /* Assets.xcassets in Resources */,
-				1985775A2AD3E0550025F615 /* Main.storyboard in Resources */,
+				198577882AD3E3AA0025F615 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +284,7 @@
 			files = (
 				198577572AD3E0550025F615 /* ViewController.swift in Sources */,
 				198577532AD3E0550025F615 /* AppDelegate.swift in Sources */,
-				198577552AD3E0550025F615 /* SceneDelegate.swift in Sources */,
+				198577872AD3E3AA0025F615 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,14 +321,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		198577582AD3E0550025F615 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				198577592AD3E0550025F615 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1985775D2AD3E0570025F615 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -471,9 +463,9 @@
 				INFOPLIST_FILE = "Anime Movie App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
