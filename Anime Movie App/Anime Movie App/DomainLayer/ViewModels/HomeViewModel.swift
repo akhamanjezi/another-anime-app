@@ -1,7 +1,7 @@
 import Foundation
 
 class HomeViewModel {
-    let animeRepository: AnimeRepository
+    private let animeRepository: AnimeRepository
     var animeSearchResults: Observable<[Anime]> = Observable([])
     var isSearching: Observable<Bool> = Observable(false)
     
