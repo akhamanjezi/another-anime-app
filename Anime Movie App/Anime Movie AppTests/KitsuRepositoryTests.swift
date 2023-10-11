@@ -8,7 +8,7 @@ final class KitsuRepositoryTests: XCTestCase {
         return KitsuRespository(dataProvider: mockDP)
     }
     
-    func testSuccessfullCallWithNotNullData() throws {
+    func testSuccessfulCallWithNotNullData() throws {
         let kitsuRepository = getRepositoryWith(file: "spirited_away")
         
         kitsuRepository.getSearchResults(for: "") { result in
@@ -21,7 +21,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfullCallWithNullData() throws {
+    func testSuccessfulCallWithNullData() throws {
         let kitsuRepository = getRepositoryWith(file: "null")
                 
         kitsuRepository.getSearchResults(for: "") { result in
@@ -48,7 +48,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testUnSuccessfullCall() throws {
+    func testUnSuccessfulCall() throws {
         let kitsuRepository = getRepositoryWith(file: "")
                 
         kitsuRepository.getSearchResults(for: "") { result in
