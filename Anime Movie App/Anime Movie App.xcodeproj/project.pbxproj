@@ -23,7 +23,6 @@
 		19ADAD6D2AD490A700663A6E /* KitsuExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD6C2AD490A700663A6E /* KitsuExtras.swift */; };
 		19ADAD6F2AD491AA00663A6E /* JSONSchemaSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD6E2AD491AA00663A6E /* JSONSchemaSupport.swift */; };
 		19ADAD712AD51C0E00663A6E /* LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD702AD51C0E00663A6E /* LocalizedError.swift */; };
-		19ADAD722AD524FC00663A6E /* KitsuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */; };
 		19ADAD732AD5250000663A6E /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5C2AD4281600663A6E /* DataProvider.swift */; };
 		19ADAD742AD5250300663A6E /* LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD702AD51C0E00663A6E /* LocalizedError.swift */; };
 		19ADAD752AD5250600663A6E /* KitsuResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD582AD426E500663A6E /* KitsuResponse.swift */; };
@@ -42,9 +41,14 @@
 		19ADAD8C2AD5564000663A6E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD882AD5507300663A6E /* HomeViewModel.swift */; };
 		19ADAD8D2AD5567200663A6E /* Anime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD7D2AD53FAD00663A6E /* Anime.swift */; };
 		19ADAD8F2AD5569800663A6E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD862AD547E400663A6E /* String+Extension.swift */; };
-		19ADAD922AD560AF00663A6E /* KitsuGenreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD912AD560AF00663A6E /* KitsuGenreResponse.swift */; };
 		19ADAD942AD56DE500663A6E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD932AD56DE500663A6E /* Observable.swift */; };
 		19ADAD952AD56DE500663A6E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD932AD56DE500663A6E /* Observable.swift */; };
+		19ADAD9E2AD66DCF00663A6E /* KitsuRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD9D2AD66DCF00663A6E /* KitsuRepositoryTests.swift */; };
+		19ADAD9F2AD66DED00663A6E /* KitsuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */; };
+		19ADADA12AD674D100663A6E /* spirited_away.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADA02AD674D100663A6E /* spirited_away.json */; };
+		19ADADA42AD6896E00663A6E /* null.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADA22AD6862E00663A6E /* null.json */; };
+		19ADADA62AD69EFC00663A6E /* Anime+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA52AD69EFC00663A6E /* Anime+Extension.swift */; };
+		19ADADA82AD69F8800663A6E /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA72AD69F8800663A6E /* MockDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,8 +86,12 @@
 		19ADAD832AD5447600663A6E /* KitsuRespository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuRespository.swift; sourceTree = "<group>"; };
 		19ADAD862AD547E400663A6E /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		19ADAD882AD5507300663A6E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		19ADAD912AD560AF00663A6E /* KitsuGenreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuGenreResponse.swift; sourceTree = "<group>"; };
 		19ADAD932AD56DE500663A6E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		19ADAD9D2AD66DCF00663A6E /* KitsuRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuRepositoryTests.swift; sourceTree = "<group>"; };
+		19ADADA02AD674D100663A6E /* spirited_away.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spirited_away.json; sourceTree = "<group>"; };
+		19ADADA22AD6862E00663A6E /* null.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = null.json; sourceTree = "<group>"; };
+		19ADADA52AD69EFC00663A6E /* Anime+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anime+Extension.swift"; sourceTree = "<group>"; };
+		19ADADA72AD69F8800663A6E /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +149,11 @@
 		198577682AD3E0580025F615 /* Anime Movie AppTests */ = {
 			isa = PBXGroup;
 			children = (
+				19ADADA32AD6872600663A6E /* Responses */,
 				198577692AD3E0580025F615 /* Anime_Movie_AppTests.swift */,
+				19ADAD9D2AD66DCF00663A6E /* KitsuRepositoryTests.swift */,
+				19ADADA52AD69EFC00663A6E /* Anime+Extension.swift */,
+				19ADADA72AD69F8800663A6E /* MockDataProvider.swift */,
 			);
 			path = "Anime Movie AppTests";
 			sourceTree = "<group>";
@@ -183,7 +195,6 @@
 				19ADAD622AD48C2A00663A6E /* KitsuAttributes.swift */,
 				19ADAD6A2AD48DE600663A6E /* KitsuImage.swift */,
 				19ADAD6C2AD490A700663A6E /* KitsuExtras.swift */,
-				19ADAD902AD5609300663A6E /* KitsuGenre */,
 			);
 			path = Kitsu;
 			sourceTree = "<group>";
@@ -215,14 +226,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		19ADAD902AD5609300663A6E /* KitsuGenre */ = {
-			isa = PBXGroup;
-			children = (
-				19ADAD912AD560AF00663A6E /* KitsuGenreResponse.swift */,
-			);
-			path = KitsuGenre;
-			sourceTree = "<group>";
-		};
 		19ADAD992AD5E87F00663A6E /* DomainLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +249,15 @@
 				19ADAD832AD5447600663A6E /* KitsuRespository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		19ADADA32AD6872600663A6E /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				19ADADA02AD674D100663A6E /* spirited_away.json */,
+				19ADADA22AD6862E00663A6E /* null.json */,
+			);
+			path = Responses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +351,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19ADADA42AD6896E00663A6E /* null.json in Resources */,
+				19ADADA12AD674D100663A6E /* spirited_away.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +369,6 @@
 				19ADAD712AD51C0E00663A6E /* LocalizedError.swift in Sources */,
 				19ADAD5F2AD4296800663A6E /* KitsuProvider.swift in Sources */,
 				19ADAD7E2AD53FAD00663A6E /* Anime.swift in Sources */,
-				19ADAD922AD560AF00663A6E /* KitsuGenreResponse.swift in Sources */,
 				19ADAD5D2AD4281600663A6E /* DataProvider.swift in Sources */,
 				198577532AD3E0550025F615 /* AppDelegate.swift in Sources */,
 				19ADAD6B2AD48DE600663A6E /* KitsuImage.swift in Sources */,
@@ -376,21 +389,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				19ADAD952AD56DE500663A6E /* Observable.swift in Sources */,
+				19ADAD9E2AD66DCF00663A6E /* KitsuRepositoryTests.swift in Sources */,
 				19ADAD7A2AD5255800663A6E /* JSONSchemaSupport.swift in Sources */,
 				19ADAD742AD5250300663A6E /* LocalizedError.swift in Sources */,
+				19ADAD9F2AD66DED00663A6E /* KitsuProvider.swift in Sources */,
 				19ADAD762AD5254E00663A6E /* KitsuResult.swift in Sources */,
 				19ADAD792AD5255600663A6E /* KitsuExtras.swift in Sources */,
 				19ADAD732AD5250000663A6E /* DataProvider.swift in Sources */,
 				19ADAD8A2AD555C900663A6E /* KitsuRespository.swift in Sources */,
 				19ADAD752AD5250600663A6E /* KitsuResponse.swift in Sources */,
 				19ADAD772AD5255000663A6E /* KitsuAttributes.swift in Sources */,
+				19ADADA82AD69F8800663A6E /* MockDataProvider.swift in Sources */,
 				19ADAD8C2AD5564000663A6E /* HomeViewModel.swift in Sources */,
 				1985776A2AD3E0580025F615 /* Anime_Movie_AppTests.swift in Sources */,
 				19ADAD8D2AD5567200663A6E /* Anime.swift in Sources */,
+				19ADADA62AD69EFC00663A6E /* Anime+Extension.swift in Sources */,
 				19ADAD782AD5255300663A6E /* KitsuImage.swift in Sources */,
 				19ADAD8B2AD5563200663A6E /* AnimeRepository.swift in Sources */,
 				19ADAD8F2AD5569800663A6E /* String+Extension.swift in Sources */,
-				19ADAD722AD524FC00663A6E /* KitsuProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
