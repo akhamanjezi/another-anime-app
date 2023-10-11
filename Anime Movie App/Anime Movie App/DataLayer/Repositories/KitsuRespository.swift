@@ -8,7 +8,7 @@ class KitsuRespository: AnimeRepository {
     }
     
     func getSearchResults(for searchTerm: String, completion: @escaping ([Anime]?) -> ()) {
-        dataProvider.search(for: searchTerm) { (result: Result<Data, Error>) in
+        dataProvider.search(for: searchTerm) { result in
             switch result {
             case .success(let dataResponse):
                 if let kitsuResponse = try? JSONDecoder().decode(KitsuResponse.self, from: dataResponse) {

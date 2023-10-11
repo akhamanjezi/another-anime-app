@@ -16,9 +16,9 @@ class KitsuProvider: DataProvider {
         }
     }
     
-    func search(for term: String, completion: @escaping (Result<Data, Error>) -> ()) {
+    func search(for term: String, completion: @escaping (Result<Data, LocalizedError>) -> ()) {
         guard let url = URL(string: baseURL + searchEndpoint + term) else {
-            completion(.failure(LocalizedError.invalidRequest))
+            completion(.failure(.invalidRequest))
             return
         }
         
@@ -27,13 +27,13 @@ class KitsuProvider: DataProvider {
         let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             
             if error != nil {
-                completion(.failure(LocalizedError.invalidResponse))
+                completion(.failure(.invalidResponse))
                 // TODO: retry failed request
             } else if let data = data, let response = response as? HTTPURLResponse {
                 if response.statusCode == 200 {
                     completion(.success(data))
                 } else {
-                    completion(.failure(LocalizedError.invalidResponse))
+                    completion(.failure(.invalidResponse))
                     // TODO: retry failed request
                 }
             }

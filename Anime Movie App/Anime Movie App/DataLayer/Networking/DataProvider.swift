@@ -10,5 +10,5 @@ protocol DataProvider {
         get
     }
     
-    func search(for term: String, completion: @escaping (Result<Data, Error>) -> ())
+    func search(for term: String, completion: @escaping (Result<Data, LocalizedError>) -> ())
 }
