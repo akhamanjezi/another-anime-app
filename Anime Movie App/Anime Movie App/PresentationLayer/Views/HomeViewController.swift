@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
     func bindWithViewModel() {
         viewModel.animeSearchResults.bind { anime in
             DispatchQueue.main.async {
-                self.resultCountLabel.text = "\(anime.count)"
+                self.resultCountLabel.text = "\(anime.count) search results"
             }
         }
         
