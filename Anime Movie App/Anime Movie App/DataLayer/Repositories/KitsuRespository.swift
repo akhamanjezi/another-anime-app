@@ -39,8 +39,9 @@ class KitsuRespository: AnimeRepository {
         
         return Anime(title: attributes.canonicalTitle,
                      genres: nil,
-                     releaseDate: attributes.createdAt?.toDate(),
-                     averageRating: attributes.averageRating,
+                     releaseDate: attributes.startDate?.toDate(),
+                     synopsis: attributes.synopsis,
+                     averageRating: attributes.averageRating != nil ? Double(attributes.averageRating!) : nil,
                      ageRating: attributes.ageRating,
                      imageURL: attributes.posterImage?.original,
                      thumnail: nil,

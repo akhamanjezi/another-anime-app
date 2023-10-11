@@ -1,11 +1,11 @@
 import Foundation
 
-struct Anime {
+struct Anime: Equatable {
     var title: String?
     var genres: [String]?
     var releaseDate: Date?
     var synopsis: String?
-    var averageRating: String?
+    var averageRating: Double?
     var ageRating: String?
     var imageURL: String?
     var thumnail: Data?
