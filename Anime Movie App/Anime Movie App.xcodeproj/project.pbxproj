@@ -49,6 +49,7 @@
 		19ADADA42AD6896E00663A6E /* null.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADA22AD6862E00663A6E /* null.json */; };
 		19ADADA62AD69EFC00663A6E /* Anime+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA52AD69EFC00663A6E /* Anime+Extension.swift */; };
 		19ADADA82AD69F8800663A6E /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA72AD69F8800663A6E /* MockDataProvider.swift */; };
+		19ADADAA2AD6A23A00663A6E /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA92AD6A23A00663A6E /* HomeViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		19ADADA22AD6862E00663A6E /* null.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = null.json; sourceTree = "<group>"; };
 		19ADADA52AD69EFC00663A6E /* Anime+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anime+Extension.swift"; sourceTree = "<group>"; };
 		19ADADA72AD69F8800663A6E /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
+		19ADADA92AD6A23A00663A6E /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				19ADADA32AD6872600663A6E /* Responses */,
 				198577692AD3E0580025F615 /* Anime_Movie_AppTests.swift */,
 				19ADAD9D2AD66DCF00663A6E /* KitsuRepositoryTests.swift */,
+				19ADADA92AD6A23A00663A6E /* HomeViewModelTests.swift */,
 				19ADADA52AD69EFC00663A6E /* Anime+Extension.swift */,
 				19ADADA72AD69F8800663A6E /* MockDataProvider.swift */,
 			);
@@ -404,6 +407,7 @@
 				1985776A2AD3E0580025F615 /* Anime_Movie_AppTests.swift in Sources */,
 				19ADAD8D2AD5567200663A6E /* Anime.swift in Sources */,
 				19ADADA62AD69EFC00663A6E /* Anime+Extension.swift in Sources */,
+				19ADADAA2AD6A23A00663A6E /* HomeViewModelTests.swift in Sources */,
 				19ADAD782AD5255300663A6E /* KitsuImage.swift in Sources */,
 				19ADAD8B2AD5563200663A6E /* AnimeRepository.swift in Sources */,
 				19ADAD8F2AD5569800663A6E /* String+Extension.swift in Sources */,
