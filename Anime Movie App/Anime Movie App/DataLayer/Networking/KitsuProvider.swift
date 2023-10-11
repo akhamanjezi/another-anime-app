@@ -1,6 +1,6 @@
 import Foundation
 
-class KitsuProvider: DataProvider {
+class KitsuProvider: DataProviding {
     var baseURL: String {
         get {
             "https://kitsu.io/api/edge"

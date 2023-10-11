@@ -1,10 +1,10 @@
 import Foundation
 
 class KitsuRespository: AnimeRepository {
-    private let dataProvider: DataProvider
+    private let dataProvider: DataProviding
     private let responseToAnimeMapper: ResponseToAnimeMapper<KitsuResult>
     
-    init(dataProvider: DataProvider, responseToAnimeMapper: ResponseToAnimeMapper<KitsuResult>) {
+    init(dataProvider: DataProviding, responseToAnimeMapper: ResponseToAnimeMapper<KitsuResult>) {
         self.dataProvider = dataProvider
         self.responseToAnimeMapper = responseToAnimeMapper
     }

@@ -21,7 +21,7 @@
 		198577882AD3E3AA0025F615 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198577862AD3E3AA0025F615 /* HomeViewController.xib */; };
 		1985778A2AD3EA2F0025F615 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577892AD3EA2F0025F615 /* MainNavigationController.swift */; };
 		19ADAD592AD426E500663A6E /* KitsuResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD582AD426E500663A6E /* KitsuResponse.swift */; };
-		19ADAD5D2AD4281600663A6E /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5C2AD4281600663A6E /* DataProvider.swift */; };
+		19ADAD5D2AD4281600663A6E /* DataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5C2AD4281600663A6E /* DataProviding.swift */; };
 		19ADAD5F2AD4296800663A6E /* KitsuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */; };
 		19ADAD612AD48BE700663A6E /* KitsuResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD602AD48BE700663A6E /* KitsuResult.swift */; };
 		19ADAD632AD48C2A00663A6E /* KitsuAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD622AD48C2A00663A6E /* KitsuAttributes.swift */; };
@@ -29,7 +29,7 @@
 		19ADAD6D2AD490A700663A6E /* KitsuExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD6C2AD490A700663A6E /* KitsuExtras.swift */; };
 		19ADAD6F2AD491AA00663A6E /* JSONSchemaSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD6E2AD491AA00663A6E /* JSONSchemaSupport.swift */; };
 		19ADAD712AD51C0E00663A6E /* LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD702AD51C0E00663A6E /* LocalizedError.swift */; };
-		19ADAD732AD5250000663A6E /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5C2AD4281600663A6E /* DataProvider.swift */; };
+		19ADAD732AD5250000663A6E /* DataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5C2AD4281600663A6E /* DataProviding.swift */; };
 		19ADAD742AD5250300663A6E /* LocalizedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD702AD51C0E00663A6E /* LocalizedError.swift */; };
 		19ADAD752AD5250600663A6E /* KitsuResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD582AD426E500663A6E /* KitsuResponse.swift */; };
 		19ADAD762AD5254E00663A6E /* KitsuResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD602AD48BE700663A6E /* KitsuResult.swift */; };
@@ -85,7 +85,7 @@
 		198577862AD3E3AA0025F615 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		198577892AD3EA2F0025F615 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		19ADAD582AD426E500663A6E /* KitsuResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuResponse.swift; sourceTree = "<group>"; };
-		19ADAD5C2AD4281600663A6E /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		19ADAD5C2AD4281600663A6E /* DataProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviding.swift; sourceTree = "<group>"; };
 		19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuProvider.swift; sourceTree = "<group>"; };
 		19ADAD602AD48BE700663A6E /* KitsuResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuResult.swift; sourceTree = "<group>"; };
 		19ADAD622AD48C2A00663A6E /* KitsuAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuAttributes.swift; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 		19ADAD5B2AD427EE00663A6E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				19ADAD5C2AD4281600663A6E /* DataProvider.swift */,
+				19ADAD5C2AD4281600663A6E /* DataProviding.swift */,
 				19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */,
 				19ADAD702AD51C0E00663A6E /* LocalizedError.swift */,
 			);
@@ -415,7 +415,7 @@
 				19ADAD712AD51C0E00663A6E /* LocalizedError.swift in Sources */,
 				19ADAD5F2AD4296800663A6E /* KitsuProvider.swift in Sources */,
 				19ADAD7E2AD53FAD00663A6E /* Anime.swift in Sources */,
-				19ADAD5D2AD4281600663A6E /* DataProvider.swift in Sources */,
+				19ADAD5D2AD4281600663A6E /* DataProviding.swift in Sources */,
 				198577532AD3E0550025F615 /* AppDelegate.swift in Sources */,
 				19ADAD6B2AD48DE600663A6E /* KitsuImage.swift in Sources */,
 				19ADAD592AD426E500663A6E /* KitsuResponse.swift in Sources */,
@@ -443,7 +443,7 @@
 				19ADAD762AD5254E00663A6E /* KitsuResult.swift in Sources */,
 				19ADAD792AD5255600663A6E /* KitsuExtras.swift in Sources */,
 				191774092AD73E5200AF1FAD /* ResponseToAnimeMapper.swift in Sources */,
-				19ADAD732AD5250000663A6E /* DataProvider.swift in Sources */,
+				19ADAD732AD5250000663A6E /* DataProviding.swift in Sources */,
 				19ADAD8A2AD555C900663A6E /* KitsuRespository.swift in Sources */,
 				19ADAD752AD5250600663A6E /* KitsuResponse.swift in Sources */,
 				19ADAD772AD5255000663A6E /* KitsuAttributes.swift in Sources */,
