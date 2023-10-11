@@ -1,14 +1,14 @@
 import Foundation
 
 class KitsuRespository: AnimeRepository {
-    let dataProvider: DataProvider
+    private let dataProvider: DataProvider
     
     init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
     }
     
-    func getSearchResults(for searchTerm: String, completion: @escaping ([Anime]?) -> ()) {
-        dataProvider.search(for: searchTerm) { result in
+    func getSearchResults(for term: String, completion: @escaping ([Anime]?) -> ()) {
+        dataProvider.search(for: term) { result in
             switch result {
             case .success(let dataResponse):
                 if let kitsuResponse = try? JSONDecoder().decode(KitsuResponse.self, from: dataResponse) {
@@ -23,15 +23,15 @@ class KitsuRespository: AnimeRepository {
         }
     }
     
-    func convertToAnime(from response: KitsuResponse) -> [Anime] {
-        let converted = (response.data ?? []).compactMap { result in
-            getAnime(from: result)
+    private func convertToAnime(from response: KitsuResponse) -> [Anime] {
+        let converted = (response.data ?? []).compactMap { kitsuResult in
+            getAnime(from: kitsuResult)
         }
         
         return converted
     }
     
-    func getAnime(from kitsu: KitsuResult) -> Anime? {
+    private func getAnime(from kitsu: KitsuResult) -> Anime? {
         
         guard let attributes = kitsu.attributes else {
             return nil
