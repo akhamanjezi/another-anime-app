@@ -11,9 +11,18 @@ class HomeViewModel {
     
     func search(for searchTerm: String) {
         isSearching.value = true
-        animeRepository.getSearchResults(for: searchTerm) { anime in
-            self.animeSearchResults.value = anime ?? []
-            self.isSearching.value = false
+        animeRepository.getSearchResults(for: searchTerm) { result in
+            switch result {
+            case .success(let anime):
+                self.updateSearchResults(with: anime)
+            case .failure(_):
+                self.updateSearchResults(with: [])
+            }
         }
+    }
+    
+    private func updateSearchResults(with anime: [Anime]) {
+        self.animeSearchResults.value = anime
+        self.isSearching.value = false
     }
 }
