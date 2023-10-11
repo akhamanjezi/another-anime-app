@@ -32,7 +32,7 @@ class KitsuRespository: AnimeRepository {
     }
     
     private func getAnime(from kitsu: KitsuResult) -> Anime? {
-        
+        //TODO: Move conversion to anime to own mapper class
         guard let attributes = kitsu.attributes else {
             return nil
         }
