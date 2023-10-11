@@ -2,9 +2,11 @@ import Foundation
 
 class KitsuRespository: AnimeRepository {
     private let dataProvider: DataProvider
+    private let responseToAnimeMapper: ResponseToAnimeMapper<KitsuResult>
     
-    init(dataProvider: DataProvider) {
+    init(dataProvider: DataProvider, responseToAnimeMapper: ResponseToAnimeMapper<KitsuResult>) {
         self.dataProvider = dataProvider
+        self.responseToAnimeMapper = responseToAnimeMapper
     }
     
     func getSearchResults(for term: String, completion: @escaping (Result<[Anime], LocalizedError>) -> ()) {
@@ -25,29 +27,9 @@ class KitsuRespository: AnimeRepository {
     
     private func convertToAnime(from response: KitsuResponse) -> [Anime] {
         let converted = (response.data ?? []).compactMap { kitsuResult in
-            getAnime(from: kitsuResult)
+            responseToAnimeMapper.mapToAnime(from: kitsuResult)
         }
         
         return converted
-    }
-    
-    private func getAnime(from kitsu: KitsuResult) -> Anime? {
-        //TODO: Move conversion to anime to own mapper class
-        guard let attributes = kitsu.attributes else {
-            return nil
-        }
-        
-        return Anime(title: attributes.canonicalTitle,
-                     genres: nil,
-                     releaseDate: attributes.startDate?.toDate(),
-                     synopsis: attributes.synopsis,
-                     averageRating: attributes.averageRating != nil ? Double(attributes.averageRating!) : nil,
-                     ageRating: attributes.ageRating,
-                     imageURL: attributes.posterImage?.original,
-                     thumnail: nil,
-                     duration: .seconds(60) * (attributes.totalLength ?? 0),
-                     externalID: kitsu.id,
-                     source: .kitsu
-        )
     }
 }
