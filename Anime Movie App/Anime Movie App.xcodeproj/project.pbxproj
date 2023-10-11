@@ -141,7 +141,6 @@
 				19ADAD9A2AD5E88A00663A6E /* PresentationLayer */,
 				19ADAD992AD5E87F00663A6E /* DomainLayer */,
 				19ADAD7F2AD542C000663A6E /* DataLayer */,
-				198577842AD3E1960025F615 /* Models */,
 				198577522AD3E0550025F615 /* AppDelegate.swift */,
 				1985775B2AD3E0570025F615 /* Assets.xcassets */,
 				1985775D2AD3E0570025F615 /* LaunchScreen.storyboard */,
@@ -186,8 +185,6 @@
 			children = (
 				19ADAD5A2AD426EA00663A6E /* Kitsu */,
 				19ADAD6E2AD491AA00663A6E /* JSONSchemaSupport.swift */,
-				19ADAD7D2AD53FAD00663A6E /* Anime.swift */,
-				19ADAD932AD56DE500663A6E /* Observable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -219,6 +216,7 @@
 			children = (
 				19ADAD9C2AD5E8B200663A6E /* Repositories */,
 				19ADAD5B2AD427EE00663A6E /* Networking */,
+				198577842AD3E1960025F615 /* Models */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -234,7 +232,7 @@
 		19ADAD992AD5E87F00663A6E /* DomainLayer */ = {
 			isa = PBXGroup;
 			children = (
-				198577822AD3E17B0025F615 /* ViewModels */,
+				19ADADAD2AD6B2E700663A6E /* Entities */,
 			);
 			path = DomainLayer;
 			sourceTree = "<group>";
@@ -242,6 +240,7 @@
 		19ADAD9A2AD5E88A00663A6E /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				198577822AD3E17B0025F615 /* ViewModels */,
 				198577832AD3E1890025F615 /* Views */,
 			);
 			path = PresentationLayer;
@@ -264,6 +263,15 @@
 				19ADADA22AD6862E00663A6E /* null.json */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		19ADADAD2AD6B2E700663A6E /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				19ADAD932AD56DE500663A6E /* Observable.swift */,
+				19ADAD7D2AD53FAD00663A6E /* Anime.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
