@@ -48,6 +48,19 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
+    func testSuccessfulAnimeReturnNoResults() throws {
+        let kitsuRepository = getRepositoryWith(file: "not_an_anime")
+        
+        kitsuRepository.getSearchResults(for: "") { result in
+            switch result {
+            case .success(let data):
+                XCTAssertEqual(data.count, 0)
+            case .failure(_):
+                XCTFail("Unexpected unsuccessful call")
+            }
+        }
+    }
+    
     func testUnSuccessfulCall() throws {
         let kitsuRepository = getRepositoryWith(file: "")
                 

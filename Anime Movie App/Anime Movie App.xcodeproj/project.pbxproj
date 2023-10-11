@@ -50,6 +50,7 @@
 		19ADADA62AD69EFC00663A6E /* Anime+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA52AD69EFC00663A6E /* Anime+Extension.swift */; };
 		19ADADA82AD69F8800663A6E /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA72AD69F8800663A6E /* MockDataProvider.swift */; };
 		19ADADAA2AD6A23A00663A6E /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA92AD6A23A00663A6E /* HomeViewModelTests.swift */; };
+		19ADADAC2AD6AF7E00663A6E /* not_an_anime.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADAB2AD6AE7300663A6E /* not_an_anime.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		19ADADA52AD69EFC00663A6E /* Anime+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anime+Extension.swift"; sourceTree = "<group>"; };
 		19ADADA72AD69F8800663A6E /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
 		19ADADA92AD6A23A00663A6E /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		19ADADAB2AD6AE7300663A6E /* not_an_anime.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = not_an_anime.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				19ADADA02AD674D100663A6E /* spirited_away.json */,
+				19ADADAB2AD6AE7300663A6E /* not_an_anime.json */,
 				19ADADA22AD6862E00663A6E /* null.json */,
 			);
 			path = Responses;
@@ -354,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19ADADAC2AD6AF7E00663A6E /* not_an_anime.json in Resources */,
 				19ADADA42AD6896E00663A6E /* null.json in Resources */,
 				19ADADA12AD674D100663A6E /* spirited_away.json in Resources */,
 			);

@@ -41,6 +41,13 @@ final class HomeViewModelTests: XCTestCase {
         }
     }
     
+    func testSuccessfulAnimeReturnNoResults() throws {
+        let (animeSearchResults, searchingError) = searchHomeViewModelWith(repositoryFile: "not_an_anime")
+        
+        XCTAssertNil(searchingError)
+        XCTAssertEqual(animeSearchResults.count, 0)
+    }
+    
     func testUnsuccessfulCall() throws {
         let (animeSearchResults, searchingError) = searchHomeViewModelWith(repositoryFile: "")
         
