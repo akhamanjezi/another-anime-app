@@ -1,9 +1,6 @@
 import Foundation
 
 class KitsuProvider: DataProvider {
-    
-    static var shared = KitsuProvider()
-    
     var baseURL: String {
         get {
             "https://kitsu.io/api/edge"
