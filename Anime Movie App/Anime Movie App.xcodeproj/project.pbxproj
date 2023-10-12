@@ -58,6 +58,8 @@
 		19B811CF2AD813F900F3DACE /* KitsuTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811CE2AD813F900F3DACE /* KitsuTitles.swift */; };
 		19B811D02AD8140B00F3DACE /* KitsuTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811CE2AD813F900F3DACE /* KitsuTitles.swift */; };
 		19B811D32AD816E300F3DACE /* AnimeTestDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811D22AD816E300F3DACE /* AnimeTestDataProvider.swift */; };
+		19B811D72AD81CE400F3DACE /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811D62AD81CE400F3DACE /* DateFormatter+Extension.swift */; };
+		19B811D82AD81F1A00F3DACE /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811D62AD81CE400F3DACE /* DateFormatter+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,7 @@
 		19ADADAB2AD6AE7300663A6E /* not_an_anime.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = not_an_anime.json; sourceTree = "<group>"; };
 		19B811CE2AD813F900F3DACE /* KitsuTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuTitles.swift; sourceTree = "<group>"; };
 		19B811D22AD816E300F3DACE /* AnimeTestDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeTestDataProvider.swift; sourceTree = "<group>"; };
+		19B811D62AD81CE400F3DACE /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				19ADAD862AD547E400663A6E /* String+Extension.swift */,
+				19B811D62AD81CE400F3DACE /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -425,6 +429,7 @@
 				19ADAD6F2AD491AA00663A6E /* JSONNull.swift in Sources */,
 				19ADAD612AD48BE700663A6E /* KitsuResultTypes.swift in Sources */,
 				1985778A2AD3EA2F0025F615 /* MainNavigationController.swift in Sources */,
+				19B811D72AD81CE400F3DACE /* DateFormatter+Extension.swift in Sources */,
 				198577872AD3E3AA0025F615 /* HomeViewController.swift in Sources */,
 				19ADAD632AD48C2A00663A6E /* KitsuAttributes.swift in Sources */,
 				19B811CF2AD813F900F3DACE /* KitsuTitles.swift in Sources */,
@@ -455,6 +460,7 @@
 				19ADAD8D2AD5567200663A6E /* Anime.swift in Sources */,
 				19B811D02AD8140B00F3DACE /* KitsuTitles.swift in Sources */,
 				19B811D32AD816E300F3DACE /* AnimeTestDataProvider.swift in Sources */,
+				19B811D82AD81F1A00F3DACE /* DateFormatter+Extension.swift in Sources */,
 				191774002AD7352E00AF1FAD /* KitsuResultToAnimeMapper.swift in Sources */,
 				19ADADAA2AD6A23A00663A6E /* HomeViewModelTests.swift in Sources */,
 				19ADAD782AD5255300663A6E /* KitsuImageTypes.swift in Sources */,
