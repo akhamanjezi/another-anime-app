@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
         viewModel.search(for: searchTextField.text ?? "")
     }
     
-    let viewModel = HomeViewModel(animeRepository: KitsuRepository(dataProvider: KitsuProvider(), responseToAnimeMapper: KitsuResultToAnimeMapper()))
+    let viewModel = HomeViewModel(animeRepository: KitsuRepository())
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -4,7 +4,7 @@ class KitsuRepository: AnimeRepository {
     private let dataProvider: DataProviding
     private let responseToAnimeMapper: ResponseToAnimeMapper<KitsuResult>
     
-    init(dataProvider: DataProviding, responseToAnimeMapper: ResponseToAnimeMapper<KitsuResult>) {
+    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: ResponseToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper()) {
         self.dataProvider = dataProvider
         self.responseToAnimeMapper = responseToAnimeMapper
     }

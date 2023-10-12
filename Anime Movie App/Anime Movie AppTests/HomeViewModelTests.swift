@@ -5,8 +5,7 @@ final class HomeViewModelTests: XCTestCase {
         let filePath = Bundle(for: Anime_Movie_AppTests.self).url(forResource: named, withExtension: "json")?.path(percentEncoded: false) ?? ""
 
         let mockDP = MockDataProvider(resourcePath: filePath)
-        let kitsuMapper = KitsuResultToAnimeMapper()
-        let kitsuRepo = KitsuRepository(dataProvider: mockDP, responseToAnimeMapper: kitsuMapper)
+        let kitsuRepo = KitsuRepository(dataProvider: mockDP)
         let homeViewModel = HomeViewModel(animeRepository: kitsuRepo)
         
         homeViewModel.search(for: "")
