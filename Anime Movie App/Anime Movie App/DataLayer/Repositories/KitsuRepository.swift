@@ -10,19 +10,27 @@ class KitsuRepository: AnimeRepository {
     }
     
     func searchResults(for term: String, completion: @escaping (Result<[Anime], LocalizedError>) -> ()) {
-        dataProvider.search(for: term) { result in
+        dataProvider.search(for: term) { [weak self] result in
             switch result {
             case .success(let dataResponse):
-                if let kitsuResponse = try? JSONDecoder().decode(KitsuResponse.self, from: dataResponse) {
-                    let anime = self.convertToAnime(from: kitsuResponse)
-                    completion(.success(anime))
-                } else {
+                guard let anime = self?.decodeAndConvertResponse(for: dataResponse) else {
                     completion(.failure(.invalidResponse))
+                    return
                 }
+                
+                completion(.success(anime))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
+    }
+    
+    private func decodeAndConvertResponse(for dataResponse: Data) -> [Anime]? {
+        guard let kitsuResponse = try? JSONDecoder().decode(KitsuResponse.self, from: dataResponse) else {
+            return nil
+        }
+        
+        return convertToAnime(from: kitsuResponse)
     }
     
     private func convertToAnime(from response: KitsuResponse) -> [Anime] {
