@@ -32,7 +32,7 @@ final class HomeViewModelTests: XCTestCase {
         
         XCTAssertNil(searchingError)
         
-        let testData = Anime.testData()[0]
+        let testData = AnimeTestDataProvider.validAnimeInstance
 
         if animeSearchResults.count > 0 {
             XCTAssertEqual(animeSearchResults[0], testData)

@@ -41,7 +41,7 @@ final class KitsuRepositoryTests: XCTestCase {
         kitsuRepository.searchResults(for: "") { result in
             switch result {
             case .success(let data):
-                let testData = Anime.testData()[0]
+                let testData = AnimeTestDataProvider.validAnimeInstance
                 XCTAssertEqual(data[0], testData)
             case .failure(_):
                 XCTFail("Unexpected unsuccessful call")
