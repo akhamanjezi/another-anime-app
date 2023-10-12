@@ -1,40 +1,41 @@
 import Foundation
 
 class KitsuProvider: DataProviding {
-    var baseURL: String {
-        get {
-            "https://kitsu.io/api/edge"
+    private let baseURL = "https://kitsu.io/api/edge"
+    private let baseSearchEndpoint = "/anime?filter[subtype]=movie&filter[text]="
+    
+    private func urlRequest(for endpoint: String) -> URLRequest? {
+        guard let url = URL(string: baseURL + endpoint) else {
+            return nil
         }
+        
+        return URLRequest(url: url, cachePolicy: .reloadRevalidatingCacheData)
     }
     
-    var searchEndpoint: String {
-        get {
-            "/anime?filter[subtype]=movie&filter[text]="
+    private func dataTask(for request: URLRequest, completion: @escaping (Result<Data, LocalizedError>) -> ()) -> URLSessionDataTask {
+        return URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+            guard error == nil,
+                  let data = data,
+                  let response = response as? HTTPURLResponse,
+                  response.statusCode == 200 else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+            
+            completion(.success(data))
         }
     }
     
     func search(for term: String, completion: @escaping (Result<Data, LocalizedError>) -> ()) {
-        guard let url = URL(string: baseURL + searchEndpoint + term) else {
+        guard let searchRequest = urlRequest(for: baseSearchEndpoint + term) else {
             completion(.failure(.invalidRequest))
             return
         }
         
-        let request = URLRequest(url: url, cachePolicy: .reloadRevalidatingCacheData)
-
-        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
-            
-            if error != nil {
-                completion(.failure(.invalidResponse))
-                // TODO: retry failed request
-            } else if let data = data, let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
-                    completion(.success(data))
-                } else {
-                    completion(.failure(.invalidResponse))
-                    // TODO: retry failed request
-                }
-            }
+        let searchDataTask = dataTask(for: searchRequest) { result in
+            completion(result)
         }
-        task.resume()
+        
+        searchDataTask.resume()
     }
 }
