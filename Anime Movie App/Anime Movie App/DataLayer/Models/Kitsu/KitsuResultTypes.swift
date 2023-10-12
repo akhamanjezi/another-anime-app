@@ -14,3 +14,15 @@ class KitsuResult: Codable {
         self.relationships = relationships
     }
 }
+
+class KitsuResultLinks: Codable {
+    let linksSelf: String?
+
+    enum CodingKeys: String, CodingKey {
+        case linksSelf = "self"
+    }
+
+    init(linksSelf: String?) {
+        self.linksSelf = linksSelf
+    }
+}

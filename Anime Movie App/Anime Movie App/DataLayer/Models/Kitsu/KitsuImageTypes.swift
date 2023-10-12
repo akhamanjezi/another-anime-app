@@ -1,13 +1,12 @@
 import Foundation
 
-// MARK: - KitsuImage
 class KitsuImage: Codable {
     let tiny, large, small: String?
     let medium: String?
     let original: String?
-    let meta: KitsuCoverImageMeta?
+    let meta: KitsuImageMeta?
 
-    init(tiny: String?, large: String?, small: String?, medium: String?, original: String?, meta: KitsuCoverImageMeta?) {
+    init(tiny: String?, large: String?, small: String?, medium: String?, original: String?, meta: KitsuImageMeta?) {
         self.tiny = tiny
         self.large = large
         self.small = small
@@ -17,20 +16,18 @@ class KitsuImage: Codable {
     }
 }
 
-// MARK: - KitsuCoverImageMeta
-class KitsuCoverImageMeta: Codable {
-    let dimensions: KitsuDimensions?
+class KitsuImageMeta: Codable {
+    let dimensions: KitsuImageDimensions?
 
-    init(dimensions: KitsuDimensions?) {
+    init(dimensions: KitsuImageDimensions?) {
         self.dimensions = dimensions
     }
 }
 
-// MARK: - KitsuDimensions
-class KitsuDimensions: Codable {
-    let tiny, large, small, medium: Kitsu2D?
+class KitsuImageDimensions: Codable {
+    let tiny, large, small, medium: KitsuImage2D?
 
-    init(tiny: Kitsu2D?, large: Kitsu2D?, small: Kitsu2D?, medium: Kitsu2D?) {
+    init(tiny: KitsuImage2D?, large: KitsuImage2D?, small: KitsuImage2D?, medium: KitsuImage2D?) {
         self.tiny = tiny
         self.large = large
         self.small = small
@@ -38,8 +35,7 @@ class KitsuDimensions: Codable {
     }
 }
 
-// MARK: - Kitsu2D
-class Kitsu2D: Codable {
+class KitsuImage2D: Codable {
     let width, height: Int?
 
     init(width: Int?, height: Int?) {
