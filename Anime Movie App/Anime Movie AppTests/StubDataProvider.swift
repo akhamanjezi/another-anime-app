@@ -1,7 +1,7 @@
 import Foundation
 
 class StubDataProvider: DataProviding {
-    let resourcePath: String
+    private let resourcePath: String
     
     init(resourcePath: String) {
         self.resourcePath = resourcePath
