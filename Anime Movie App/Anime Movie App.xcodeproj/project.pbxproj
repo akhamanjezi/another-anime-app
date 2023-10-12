@@ -177,10 +177,10 @@
 			children = (
 				19B811D12AD815F200F3DACE /* TestDataProviders */,
 				19ADADA32AD6872600663A6E /* Responses */,
+				19ADADA72AD69F8800663A6E /* StubDataProvider.swift */,
 				198577692AD3E0580025F615 /* Anime_Movie_AppTests.swift */,
 				19ADAD9D2AD66DCF00663A6E /* KitsuRepositoryTests.swift */,
 				19ADADA92AD6A23A00663A6E /* HomeViewModelTests.swift */,
-				19ADADA72AD69F8800663A6E /* StubDataProvider.swift */,
 				191774072AD739B400AF1FAD /* KitsuResultToAnimeMapperTests.swift */,
 			);
 			path = "Anime Movie AppTests";

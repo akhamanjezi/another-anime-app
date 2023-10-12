@@ -1,57 +1,73 @@
 import XCTest
 
 final class HomeViewModelTests: XCTestCase {
-    private func searchHomeViewModelWith(repositoryFile named: String) -> ([Anime], LocalizedError?) {
-        let filePath = Bundle(for: Anime_Movie_AppTests.self).url(forResource: named, withExtension: "json")?.path(percentEncoded: false) ?? ""
-
-        let stubDP = StubDataProvider(resourcePath: filePath)
-        let kitsuRepo = KitsuRepository(dataProvider: stubDP)
-        let homeViewModel = HomeViewModel(animeRepository: kitsuRepo)
+    private var systemUnderTest: HomeViewModel? = nil
+    
+    override func tearDown() {
+        systemUnderTest = nil
+        super.tearDown()
+    }
+    
+    private func initSystemUnderTest(dataProvider: DataProviding) {
+        let kitsuRepo = KitsuRepository(dataProvider: dataProvider)
+        systemUnderTest = HomeViewModel(animeRepository: kitsuRepo)
+        XCTAssertNotNil(systemUnderTest)
+    }
+    
+    private func searchHomeViewModelWith(dataProvider: DataProviding) -> ([Anime], LocalizedError?) {
+        initSystemUnderTest(dataProvider: dataProvider)
+        systemUnderTest!.search(for: "")
         
-        homeViewModel.search(for: "")
-        
-        return (homeViewModel.animeSearchResults.value, homeViewModel.searchingError.value)
+        return (systemUnderTest!.animeSearchResults.value, systemUnderTest!.searchingError.value)
     }
     
     func testSuccessfulCallWithNotNullData() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(repositoryFile: "spirited_away")
+        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = 3
+        let actual = animeSearchResults.count
         
         XCTAssertNil(searchingError)
-        XCTAssertEqual(animeSearchResults.count, 3)
+        XCTAssertEqual(actual, expected)
     }
     
     func testSuccessfulCallWithNullData() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(repositoryFile: "null")
+        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.nullKitsuSearchDataProvider)
+        let expected = 0
+        let actual = animeSearchResults.count
 
         XCTAssertNotNil(searchingError)
-        XCTAssertEqual(animeSearchResults.count, 0)
+        XCTAssertEqual(expected, actual)
     }
     
     func testSuccessfulAnimeReturn() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(repositoryFile: "spirited_away")
+        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.validAnimeInstance
         
         XCTAssertNil(searchingError)
         
-        let testData = AnimeTestDataProvider.validAnimeInstance
-
         if animeSearchResults.count > 0 {
-            XCTAssertEqual(animeSearchResults[0], testData)
+            let actual = animeSearchResults[0]
+            XCTAssertEqual(expected, actual)
         } else {
             XCTFail("Unexpected empty anime result")
         }
     }
     
     func testSuccessfulAnimeReturnNoResults() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(repositoryFile: "not_an_anime")
+        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
+        let expected = 0
+        let actual = animeSearchResults.count
         
         XCTAssertNil(searchingError)
-        XCTAssertEqual(animeSearchResults.count, 0)
+        XCTAssertEqual(expected, actual)
     }
     
     func testUnsuccessfulCall() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(repositoryFile: "")
+        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuSearchDataProvider)
+        let expected = 0
+        let actual = animeSearchResults.count
         
         XCTAssertNotNil(searchingError)
-        XCTAssertEqual(animeSearchResults.count, 0)
+        XCTAssertEqual(expected, actual)
     }
 }

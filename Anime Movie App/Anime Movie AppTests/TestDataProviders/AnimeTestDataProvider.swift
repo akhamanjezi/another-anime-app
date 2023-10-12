@@ -59,4 +59,12 @@ class AnimeTestDataProvider {
                                                 links: nil,
                                                 attributes: nil,
                                                 relationships: nil)
+    
+    static let successfulKitsuSearchDataProvider = StubDataProvider(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "spirited_away", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    
+    static let nullKitsuSearchDataProvider = StubDataProvider(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "null", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    
+    static let successfulNoResultKitsuSearchDataProvider = StubDataProvider(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "not_an_anime", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    
+    static let unsuccessfulKitsuSearchDataProvider = StubDataProvider(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "", withExtension: "json")?.path(percentEncoded: false) ?? "")
 }

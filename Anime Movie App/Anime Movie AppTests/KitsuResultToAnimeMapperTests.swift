@@ -3,14 +3,6 @@ import XCTest
 final class KitsuResultToAnimeMapperTests: XCTestCase {
     private let systemUnderTest = KitsuResultToAnimeMapper()
     
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     func testSuccessfulKitsuMapToAnime() throws {
         let expected = AnimeTestDataProvider.validAnimeInstance
         let actual = systemUnderTest.mapToAnime(from: AnimeTestDataProvider.validKitsuResult)

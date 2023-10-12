@@ -1,21 +1,25 @@
 import XCTest
 
 final class KitsuRepositoryTests: XCTestCase {
-    private func getRepositoryWith(file named: String) -> AnimeRepository {
-        let filePath = Bundle(for: Anime_Movie_AppTests.self).url(forResource: named, withExtension: "json")?.path(percentEncoded: false) ?? ""
-
-        let stubDP = StubDataProvider(resourcePath: filePath)
-        let kitsuMapper = KitsuResultToAnimeMapper()
-        return KitsuRepository(dataProvider: stubDP, responseToAnimeMapper: kitsuMapper)
+    private var systemUnderTest: KitsuRepository? = nil
+        
+    override func tearDown() {
+        systemUnderTest = nil
+        super.tearDown()
+    }
+    
+    private func initSystemUnderTest(dataProvider: DataProviding) {
+        systemUnderTest = KitsuRepository(dataProvider: dataProvider)
+        XCTAssertNotNil(systemUnderTest)
     }
     
     func testSuccessfulCallWithNotNullData() throws {
-        let kitsuRepository = getRepositoryWith(file: "spirited_away")
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         
-        kitsuRepository.searchResults(for: "") { result in
+        systemUnderTest?.searchResults(for: "") { result in
             switch result {
-            case .success(let data):
-                XCTAssertNotNil(data)
+            case .success(let actual):
+                XCTAssertNotNil(actual)
             case .failure(_):
                 XCTFail("Unexpected unsuccessful call")
             }
@@ -23,26 +27,30 @@ final class KitsuRepositoryTests: XCTestCase {
     }
     
     func testSuccessfulCallWithNullData() throws {
-        let kitsuRepository = getRepositoryWith(file: "null")
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.nullKitsuSearchDataProvider)
+        
+        let expected = LocalizedError.invalidResponse
                 
-        kitsuRepository.searchResults(for: "") { result in
+        systemUnderTest?.searchResults(for: "") { result in
             switch result {
             case .success(_):
                 XCTFail("Unexpected successful call")
-            case .failure(let error):
-                XCTAssert(error == .invalidResponse)
+            case .failure(let actual):
+                XCTAssertEqual(expected, actual)
             }
         }
     }
     
     func testSuccessfulAnimeReturn() throws {
-        let kitsuRepository = getRepositoryWith(file: "spirited_away")
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         
-        kitsuRepository.searchResults(for: "") { result in
+        let expected = AnimeTestDataProvider.validAnimeInstance
+        
+        systemUnderTest?.searchResults(for: "") { result in
             switch result {
             case .success(let data):
-                let testData = AnimeTestDataProvider.validAnimeInstance
-                XCTAssertEqual(data[0], testData)
+                let actual = data[0]
+                XCTAssertEqual(expected, actual)
             case .failure(_):
                 XCTFail("Unexpected unsuccessful call")
             }
@@ -50,12 +58,15 @@ final class KitsuRepositoryTests: XCTestCase {
     }
     
     func testSuccessfulAnimeReturnNoResults() throws {
-        let kitsuRepository = getRepositoryWith(file: "not_an_anime")
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
         
-        kitsuRepository.searchResults(for: "") { result in
+        let expected = 0
+        
+        systemUnderTest?.searchResults(for: "") { result in
             switch result {
             case .success(let data):
-                XCTAssertEqual(data.count, 0)
+                let actual = data.count
+                XCTAssertEqual(expected, actual)
             case .failure(_):
                 XCTFail("Unexpected unsuccessful call")
             }
@@ -63,14 +74,16 @@ final class KitsuRepositoryTests: XCTestCase {
     }
     
     func testUnSuccessfulCall() throws {
-        let kitsuRepository = getRepositoryWith(file: "")
-                
-        kitsuRepository.searchResults(for: "") { result in
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuSearchDataProvider)
+        
+        let expected = LocalizedError.invalidRequest
+        
+        systemUnderTest?.searchResults(for: "") { result in
             switch result {
             case .success(_):
                 XCTFail("Unexpected successful call")
-            case .failure(let error):
-                XCTAssert(error == .invalidRequest)
+            case .failure(let actual):
+                XCTAssertEqual(expected, actual)
             }
         }
     }
