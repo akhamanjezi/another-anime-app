@@ -52,7 +52,7 @@
 		19ADAD9F2AD66DED00663A6E /* KitsuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */; };
 		19ADADA12AD674D100663A6E /* spirited_away.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADA02AD674D100663A6E /* spirited_away.json */; };
 		19ADADA42AD6896E00663A6E /* null.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADA22AD6862E00663A6E /* null.json */; };
-		19ADADA82AD69F8800663A6E /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA72AD69F8800663A6E /* MockDataProvider.swift */; };
+		19ADADA82AD69F8800663A6E /* StubDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA72AD69F8800663A6E /* StubDataProvider.swift */; };
 		19ADADAA2AD6A23A00663A6E /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA92AD6A23A00663A6E /* HomeViewModelTests.swift */; };
 		19ADADAC2AD6AF7E00663A6E /* not_an_anime.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADAB2AD6AE7300663A6E /* not_an_anime.json */; };
 		19B811CF2AD813F900F3DACE /* KitsuTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811CE2AD813F900F3DACE /* KitsuTitles.swift */; };
@@ -102,7 +102,7 @@
 		19ADAD9D2AD66DCF00663A6E /* KitsuRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuRepositoryTests.swift; sourceTree = "<group>"; };
 		19ADADA02AD674D100663A6E /* spirited_away.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spirited_away.json; sourceTree = "<group>"; };
 		19ADADA22AD6862E00663A6E /* null.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = null.json; sourceTree = "<group>"; };
-		19ADADA72AD69F8800663A6E /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
+		19ADADA72AD69F8800663A6E /* StubDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubDataProvider.swift; sourceTree = "<group>"; };
 		19ADADA92AD6A23A00663A6E /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		19ADADAB2AD6AE7300663A6E /* not_an_anime.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = not_an_anime.json; sourceTree = "<group>"; };
 		19B811CE2AD813F900F3DACE /* KitsuTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuTitles.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				198577692AD3E0580025F615 /* Anime_Movie_AppTests.swift */,
 				19ADAD9D2AD66DCF00663A6E /* KitsuRepositoryTests.swift */,
 				19ADADA92AD6A23A00663A6E /* HomeViewModelTests.swift */,
-				19ADADA72AD69F8800663A6E /* MockDataProvider.swift */,
+				19ADADA72AD69F8800663A6E /* StubDataProvider.swift */,
 				191774072AD739B400AF1FAD /* KitsuResultToAnimeMapperTests.swift */,
 			);
 			path = "Anime Movie AppTests";
@@ -449,7 +449,7 @@
 				19ADAD8A2AD555C900663A6E /* KitsuRepository.swift in Sources */,
 				19ADAD752AD5250600663A6E /* KitsuResponseTypes.swift in Sources */,
 				19ADAD772AD5255000663A6E /* KitsuAttributes.swift in Sources */,
-				19ADADA82AD69F8800663A6E /* MockDataProvider.swift in Sources */,
+				19ADADA82AD69F8800663A6E /* StubDataProvider.swift in Sources */,
 				19ADAD8C2AD5564000663A6E /* HomeViewModel.swift in Sources */,
 				1985776A2AD3E0580025F615 /* Anime_Movie_AppTests.swift in Sources */,
 				19ADAD8D2AD5567200663A6E /* Anime.swift in Sources */,

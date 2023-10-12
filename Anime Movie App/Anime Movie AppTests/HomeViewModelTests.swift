@@ -4,8 +4,8 @@ final class HomeViewModelTests: XCTestCase {
     private func searchHomeViewModelWith(repositoryFile named: String) -> ([Anime], LocalizedError?) {
         let filePath = Bundle(for: Anime_Movie_AppTests.self).url(forResource: named, withExtension: "json")?.path(percentEncoded: false) ?? ""
 
-        let mockDP = MockDataProvider(resourcePath: filePath)
-        let kitsuRepo = KitsuRepository(dataProvider: mockDP)
+        let stubDP = StubDataProvider(resourcePath: filePath)
+        let kitsuRepo = KitsuRepository(dataProvider: stubDP)
         let homeViewModel = HomeViewModel(animeRepository: kitsuRepo)
         
         homeViewModel.search(for: "")

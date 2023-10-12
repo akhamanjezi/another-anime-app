@@ -4,9 +4,9 @@ final class KitsuRepositoryTests: XCTestCase {
     private func getRepositoryWith(file named: String) -> AnimeRepository {
         let filePath = Bundle(for: Anime_Movie_AppTests.self).url(forResource: named, withExtension: "json")?.path(percentEncoded: false) ?? ""
 
-        let mockDP = MockDataProvider(resourcePath: filePath)
+        let stubDP = StubDataProvider(resourcePath: filePath)
         let kitsuMapper = KitsuResultToAnimeMapper()
-        return KitsuRepository(dataProvider: mockDP, responseToAnimeMapper: kitsuMapper)
+        return KitsuRepository(dataProvider: stubDP, responseToAnimeMapper: kitsuMapper)
     }
     
     func testSuccessfulCallWithNotNullData() throws {

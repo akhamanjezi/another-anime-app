@@ -1,6 +1,6 @@
 import Foundation
 
-class MockDataProvider: DataProviding {
+class StubDataProvider: DataProviding {
     let resourcePath: String
     
     init(resourcePath: String) {
