@@ -1,6 +1,6 @@
 import Foundation
 
-class KitsuRespository: AnimeRepository {
+class KitsuRepository: AnimeRepository {
     private let dataProvider: DataProviding
     private let responseToAnimeMapper: ResponseToAnimeMapper<KitsuResult>
     

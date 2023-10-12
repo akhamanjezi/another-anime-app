@@ -6,7 +6,7 @@ final class HomeViewModelTests: XCTestCase {
 
         let mockDP = MockDataProvider(resourcePath: filePath)
         let kitsuMapper = KitsuResultToAnimeMapper()
-        let kitsuRepo = KitsuRespository(dataProvider: mockDP, responseToAnimeMapper: kitsuMapper)
+        let kitsuRepo = KitsuRepository(dataProvider: mockDP, responseToAnimeMapper: kitsuMapper)
         let homeViewModel = HomeViewModel(animeRepository: kitsuRepo)
         
         homeViewModel.search(for: "")

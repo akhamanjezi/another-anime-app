@@ -6,7 +6,7 @@ final class KitsuRepositoryTests: XCTestCase {
 
         let mockDP = MockDataProvider(resourcePath: filePath)
         let kitsuMapper = KitsuResultToAnimeMapper()
-        return KitsuRespository(dataProvider: mockDP, responseToAnimeMapper: kitsuMapper)
+        return KitsuRepository(dataProvider: mockDP, responseToAnimeMapper: kitsuMapper)
     }
     
     func testSuccessfulCallWithNotNullData() throws {
