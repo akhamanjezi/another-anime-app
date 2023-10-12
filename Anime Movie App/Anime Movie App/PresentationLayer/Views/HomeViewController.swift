@@ -9,11 +9,12 @@ class HomeViewController: UIViewController {
     @IBOutlet private weak var resultCountLabel: UILabel!
     
     @IBAction private func tappedSearchButton(_ sender: Any) {
-        if (searchTextField.text ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+        let searchTerm = (searchTextField.text ?? "")
+        if searchTerm.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             return
         }
         
-        viewModel.search(for: searchTextField.text ?? "")
+        viewModel.search(for: searchTerm)
     }
     
     private let viewModel = HomeViewModel(animeRepository: KitsuRepository())
