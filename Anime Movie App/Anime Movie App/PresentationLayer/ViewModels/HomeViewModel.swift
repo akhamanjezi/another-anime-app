@@ -14,7 +14,7 @@ class HomeViewModel {
         isSearching.value = true
         searchingError.value = nil
         
-        animeRepository.getSearchResults(for: searchTerm) { result in
+        animeRepository.searchResults(for: searchTerm) { result in
             switch result {
             case .success(let anime):
                 self.updateSearchResults(with: anime)

@@ -1,5 +1,5 @@
 import Foundation
 
 protocol AnimeRepository {
-    func getSearchResults(for searchTerm: String, completion: @escaping ((Result<[Anime], LocalizedError>)) -> ())
+    func searchResults(for searchTerm: String, completion: @escaping ((Result<[Anime], LocalizedError>)) -> ())
 }

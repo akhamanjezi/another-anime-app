@@ -9,7 +9,7 @@ class KitsuRespository: AnimeRepository {
         self.responseToAnimeMapper = responseToAnimeMapper
     }
     
-    func getSearchResults(for term: String, completion: @escaping (Result<[Anime], LocalizedError>) -> ()) {
+    func searchResults(for term: String, completion: @escaping (Result<[Anime], LocalizedError>) -> ()) {
         dataProvider.search(for: term) { result in
             switch result {
             case .success(let dataResponse):

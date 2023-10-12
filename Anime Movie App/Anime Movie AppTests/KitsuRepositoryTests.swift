@@ -12,7 +12,7 @@ final class KitsuRepositoryTests: XCTestCase {
     func testSuccessfulCallWithNotNullData() throws {
         let kitsuRepository = getRepositoryWith(file: "spirited_away")
         
-        kitsuRepository.getSearchResults(for: "") { result in
+        kitsuRepository.searchResults(for: "") { result in
             switch result {
             case .success(let data):
                 XCTAssertNotNil(data)
@@ -25,7 +25,7 @@ final class KitsuRepositoryTests: XCTestCase {
     func testSuccessfulCallWithNullData() throws {
         let kitsuRepository = getRepositoryWith(file: "null")
                 
-        kitsuRepository.getSearchResults(for: "") { result in
+        kitsuRepository.searchResults(for: "") { result in
             switch result {
             case .success(_):
                 XCTFail("Unexpected successful call")
@@ -38,7 +38,7 @@ final class KitsuRepositoryTests: XCTestCase {
     func testSuccessfulAnimeReturn() throws {
         let kitsuRepository = getRepositoryWith(file: "spirited_away")
         
-        kitsuRepository.getSearchResults(for: "") { result in
+        kitsuRepository.searchResults(for: "") { result in
             switch result {
             case .success(let data):
                 let testData = Anime.testData()[0]
@@ -52,7 +52,7 @@ final class KitsuRepositoryTests: XCTestCase {
     func testSuccessfulAnimeReturnNoResults() throws {
         let kitsuRepository = getRepositoryWith(file: "not_an_anime")
         
-        kitsuRepository.getSearchResults(for: "") { result in
+        kitsuRepository.searchResults(for: "") { result in
             switch result {
             case .success(let data):
                 XCTAssertEqual(data.count, 0)
@@ -65,7 +65,7 @@ final class KitsuRepositoryTests: XCTestCase {
     func testUnSuccessfulCall() throws {
         let kitsuRepository = getRepositoryWith(file: "")
                 
-        kitsuRepository.getSearchResults(for: "") { result in
+        kitsuRepository.searchResults(for: "") { result in
             switch result {
             case .success(_):
                 XCTFail("Unexpected successful call")
