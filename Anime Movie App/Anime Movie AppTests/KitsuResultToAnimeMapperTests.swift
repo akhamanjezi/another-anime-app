@@ -1,26 +1,26 @@
 import XCTest
 
 final class KitsuResultToAnimeMapperTests: XCTestCase {
-    func getMappedAnimeFromTestKitsuResult(at idx: Int) -> Anime? {
-        let animeMapper = KitsuResultToAnimeMapper()
-        let testKitsuResultData = KitsuResult.testData()[idx]
-        
-        return animeMapper.mapToAnime(from: testKitsuResultData)
+    private let systemUnderTest = KitsuResultToAnimeMapper()
+    
+    override func setUp() {
+        super.setUp()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
     }
     
     func testSuccessfulKitsuMapToAnime() throws {
-        let testKitsuResultData = KitsuResult.testData()[0]
-        let testAnimeData = Anime.testData()[0]
+        let expected = AnimeTestDataProvider.validAnimeInstance
+        let actual = systemUnderTest.mapToAnime(from: AnimeTestDataProvider.validKitsuResult)
         
-        let mappedKitsu = getMappedAnimeFromTestKitsuResult(at: 0)
-        
-        XCTAssert(type(of: testKitsuResultData) != type(of: testAnimeData))
-        XCTAssertEqual(mappedKitsu, testAnimeData)
+        XCTAssertEqual(expected, actual)
     }
     
     func testUnsccessfulKitsuMapToAnime() throws {
-        let mappedKitsu = getMappedAnimeFromTestKitsuResult(at: 1)
+        let actual = systemUnderTest.mapToAnime(from: AnimeTestDataProvider.invalidKitsuResult)
         
-        XCTAssertNil(mappedKitsu)
+        XCTAssertNil(actual)
     }
 }
