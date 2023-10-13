@@ -1,7 +1,7 @@
 import XCTest
 
 final class HomeViewModelTests: XCTestCase {
-    private var systemUnderTest: HomeViewModel? = nil
+    private var systemUnderTest: SearchTableViewModel? = nil
     
     override func tearDown() {
         systemUnderTest = nil
@@ -60,7 +60,7 @@ final class HomeViewModelTests: XCTestCase {
     
     private func initSystemUnderTest(dataProvider: DataProviding) {
         let kitsuRepo = KitsuRepository(dataProvider: dataProvider)
-        systemUnderTest = HomeViewModel(animeRepository: kitsuRepo)
+        systemUnderTest = SearchTableViewModel(animeRepository: kitsuRepo)
         XCTAssertNotNil(systemUnderTest)
     }
     
