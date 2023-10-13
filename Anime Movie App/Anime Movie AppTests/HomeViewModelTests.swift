@@ -8,19 +8,6 @@ final class HomeViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    private func initSystemUnderTest(dataProvider: DataProviding) {
-        let kitsuRepo = KitsuRepository(dataProvider: dataProvider)
-        systemUnderTest = HomeViewModel(animeRepository: kitsuRepo)
-        XCTAssertNotNil(systemUnderTest)
-    }
-    
-    private func searchHomeViewModelWith(dataProvider: DataProviding) -> ([Anime], LocalizedError?) {
-        initSystemUnderTest(dataProvider: dataProvider)
-        systemUnderTest!.search(for: "")
-        
-        return (systemUnderTest!.animeSearchResults.value, systemUnderTest!.searchingError.value)
-    }
-    
     func testSuccessfulCallWithNotNullData() throws {
         let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         let expected = 3
@@ -69,5 +56,18 @@ final class HomeViewModelTests: XCTestCase {
         
         XCTAssertNotNil(searchingError)
         XCTAssertEqual(expected, actual)
+    }
+    
+    private func initSystemUnderTest(dataProvider: DataProviding) {
+        let kitsuRepo = KitsuRepository(dataProvider: dataProvider)
+        systemUnderTest = HomeViewModel(animeRepository: kitsuRepo)
+        XCTAssertNotNil(systemUnderTest)
+    }
+    
+    private func searchHomeViewModelWith(dataProvider: DataProviding) -> ([Anime], LocalizedError?) {
+        initSystemUnderTest(dataProvider: dataProvider)
+        systemUnderTest!.search(for: "")
+        
+        return (systemUnderTest!.animeSearchResults.value, systemUnderTest!.searchingError.value)
     }
 }

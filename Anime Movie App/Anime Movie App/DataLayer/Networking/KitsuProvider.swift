@@ -4,6 +4,19 @@ class KitsuProvider: DataProviding {
     private let baseURL = "https://kitsu.io/api/edge"
     private let baseSearchEndpoint = "/anime?filter[subtype]=movie&filter[text]="
     
+    func search(for term: String, completion: @escaping (Result<Data, LocalizedError>) -> ()) {
+        guard let searchRequest = urlRequest(for: baseSearchEndpoint + term) else {
+            completion(.failure(.invalidRequest))
+            return
+        }
+        
+        let searchDataTask = dataTask(for: searchRequest) { result in
+            completion(result)
+        }
+        
+        searchDataTask.resume()
+    }
+    
     private func urlRequest(for endpoint: String) -> URLRequest? {
         guard let url = URL(string: baseURL + endpoint) else {
             return nil
@@ -24,18 +37,5 @@ class KitsuProvider: DataProviding {
             
             completion(.success(data))
         }
-    }
-    
-    func search(for term: String, completion: @escaping (Result<Data, LocalizedError>) -> ()) {
-        guard let searchRequest = urlRequest(for: baseSearchEndpoint + term) else {
-            completion(.failure(.invalidRequest))
-            return
-        }
-        
-        let searchDataTask = dataTask(for: searchRequest) { result in
-            completion(result)
-        }
-        
-        searchDataTask.resume()
     }
 }
