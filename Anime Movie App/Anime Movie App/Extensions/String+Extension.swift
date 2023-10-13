@@ -6,8 +6,6 @@ extension String {
         dateFormatter.calendar = Calendar(identifier: .gregorian)
         dateFormatter.dateFormat = format
         
-        let date = dateFormatter.date(from: self)
-
-        return date
+        return dateFormatter.date(from: self)
     }
 }
