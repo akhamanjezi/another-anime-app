@@ -1,6 +1,6 @@
 import Foundation
 
-class StubDataProvider: DataProviding {
+class DataProviderStub: DataProviding {
     private let resourcePath: String
     
     init(resourcePath: String) {
