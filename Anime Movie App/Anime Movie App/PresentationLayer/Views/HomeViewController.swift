@@ -1,6 +1,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    private let viewModel = HomeViewModel(animeRepository: KitsuRepository())
     
     @IBOutlet private weak var searchButton: UIButton!
     
@@ -8,22 +9,15 @@ class HomeViewController: UIViewController {
     
     @IBOutlet private weak var resultCountLabel: UILabel!
     
-    @IBAction private func tappedSearchButton(_ sender: Any) {
-        let searchTerm = (searchTextField.text ?? "")
-        if searchTerm.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            return
-        }
-        
-        viewModel.search(for: searchTerm)
-    }
-    
-    private let viewModel = HomeViewModel(animeRepository: KitsuRepository())
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         bindWithViewModel()
+    }
+    
+    private func setupView() {
+        self.title = "Animovie"
     }
     
     private func bindWithViewModel() {
@@ -40,7 +34,12 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func setupView() {
-        self.title = "Animovie"
+    @IBAction private func tappedSearchButton(_ sender: Any) {
+        let searchTerm = (searchTextField.text ?? "")
+        if searchTerm.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return
+        }
+        
+        viewModel.search(for: searchTerm)
     }
 }
