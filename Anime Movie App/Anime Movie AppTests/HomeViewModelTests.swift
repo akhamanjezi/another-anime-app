@@ -14,7 +14,7 @@ final class HomeViewModelTests: XCTestCase {
         let actual = animeSearchResults.count
         
         XCTAssertNil(searchingError)
-        XCTAssertEqual(actual, expected)
+        XCTAssertEqual(expected, actual)
     }
     
     func testSuccessfulCallWithNullData() throws {
