@@ -12,6 +12,10 @@ struct Anime: Equatable {
     var duration: Duration?
     var externalID: String?
     var source: AnimeSources?
+    
+    var styledReleaseDate: String? {
+        releaseDate?.toStringAnimeDateStyle()
+    }
 }
 
 enum AnimeSources {

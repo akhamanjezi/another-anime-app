@@ -48,11 +48,11 @@ class SearchTableViewController: UITableViewController {
 fileprivate extension SearchTableViewCell {
     func configureCell(for anime: Anime) {
         self.titleLabel.text = anime.title
-        guard let releaseDate = anime.releaseDate else {
+        guard let displayReleaseDate = anime.styledReleaseDate else {
             return
         }
         
-        self.releaseDateLabel.text = releaseDate.toStringAnimeDateStyle()
+        self.releaseDateLabel.text = displayReleaseDate
     }
 }
 
