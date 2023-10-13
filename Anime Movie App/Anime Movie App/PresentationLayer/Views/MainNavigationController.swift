@@ -1,14 +1,17 @@
 import UIKit
 
 class MainNavigationController: UINavigationController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
     }
     
     func setupView() {
-        self.navigationBar.prefersLargeTitles = true
+        navigationBar.prefersLargeTitles = true
+        navigationBar.largeTitleTextAttributes = [
+            .font: UIFont.roundedLargeTitle
+        ]
     }
 }
