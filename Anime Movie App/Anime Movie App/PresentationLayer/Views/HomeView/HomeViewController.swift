@@ -6,6 +6,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet private weak var featureImageView: UIImageView!
     @IBOutlet private weak var favouritesLabel: UILabel!
     @IBOutlet private weak var featureLabel: UILabel!
+    @IBOutlet weak var reloadButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,12 +15,14 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         registerNib()
         setupSearchResultsController()
         bindWithViewModel()
+        configureReloadButton()
         updateFeatureAnime()
     }
     
     private func setupView() {
         self.title = "Animovie"
         featureImageView.layer.cornerRadius = 8
+        reloadButton.layer.cornerRadius = 8
         favouritesLabel.font = .sectionTitle
         featureLabel.font = .featureTitle
     }
@@ -46,36 +49,60 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         viewModel.featureAnime.bind { [weak self] anime in
             self?.updateFeatureAnimeDisplay(with: anime ?? Anime.placeholder)
         }
+        
+        viewModel.isFetching.bind { [weak self] fetching in
+            self?.toggleFetching(fetching)
+        }
+    }
     
     private func updateFeatureAnimeDisplay(with anime: Anime) {
         DispatchQueue.main.async {
             self.featureLabel.text = "\(anime.title ?? "") - \(anime.styledReleaseDate ?? "")"
         }
     }
+    
+    private func toggleFetching(_ fetching: Bool) {
+        DispatchQueue.main.async {
+            self.reloadButton.isEnabled = !fetching
+            self.reloadButton.updateConfiguration()
+        }
+    }
+    
+    private func configureReloadButton() {
+        let reloadButtonConfigHandler: UIButton.ConfigurationUpdateHandler = { button in
+            var reloadButtonConfig = UIButton.Configuration.tinted()
+            
+            if self.viewModel.isFetching.value {
+                reloadButtonConfig.showsActivityIndicator = true
+            } else {
+                reloadButtonConfig.image = UIImage(systemName: "arrow.clockwise")
+            }
+            
+            button.configuration = reloadButtonConfig
+        }
+        reloadButton.configurationUpdateHandler = reloadButtonConfigHandler
+    }
+    
     private func updateFeatureAnime() {
         viewModel.newFeatureAnime()
     }
+    
+    
+    @IBAction func refreshAnime(_ sender: Any) {
+        updateFeatureAnime()
     }
 }
 
+// MARK: UITableViewDataSource
+
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        6
+        viewModel.favourites.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath) as! SearchTableViewCell
-        cell.configureCell(for: Anime(title: "Spirited Away",
-                                      genres: nil,
-                                      releaseDate: "2001-07-20".toDate(),
-                                      synopsis: "Stubborn, spoiled, and naïve, 10-year-old Chihiro Ogino is less than pleased when she and her parents discover an abandoned amusement park on the way to their new house. Cautiously venturing inside, she realizes that there is more to this place than meets the eye, as strange things begin to happen once dusk falls. Ghostly apparitions and food that turns her parents into pigs are just the start—Chihiro has unwittingly crossed over into the spirit world. Now trapped, she must summon the courage to live and work amongst spirits, with the help of the enigmatic Haku and the cast of unique characters she meets along the way.\nVivid and intriguing, Sen to Chihiro no Kamikakushi tells the story of Chihiro's journey through an unfamiliar world as she strives to save her parents and return home.\n[Written by MAL Rewrite]",
-                                      averageRating: 82.59,
-                                      ageRating: "G",
-                                      imageURL: "https://media.kitsu.io/anime/poster_images/176/original.jpg",
-                                      thumnail: nil,
-                                      duration: .seconds(60) * 125,
-                                      externalID: "176",
-                                      source: .kitsu))
+        cell.configureCell(for: viewModel.favourites.value[indexPath.row])
         return cell
     }
     
@@ -87,6 +114,8 @@ extension HomeViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: SearchTableViewCell+Extension
 
 fileprivate extension SearchTableViewCell {
     func configureCell(for anime: Anime) {

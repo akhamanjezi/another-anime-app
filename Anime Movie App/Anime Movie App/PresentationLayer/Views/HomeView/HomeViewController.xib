@@ -14,6 +14,7 @@
                 <outlet property="favouritesTableView" destination="Anf-7f-OKk" id="Xh9-6l-qqD"/>
                 <outlet property="featureImageView" destination="M7K-6u-P3h" id="UcA-Xa-MLS"/>
                 <outlet property="featureLabel" destination="cQq-ko-PM7" id="ZOR-kR-5gS"/>
+                <outlet property="reloadButton" destination="dZP-7I-Usd" id="24v-tZ-M4x"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -48,11 +49,25 @@
                                         <constraint firstAttribute="width" secondItem="M7K-6u-P3h" secondAttribute="height" multiplier="1500:844" id="gka-Or-vyl"/>
                                     </constraints>
                                 </imageView>
+                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZP-7I-Usd">
+                                    <rect key="frame" x="327" y="168.66666666666666" width="16" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="16" id="SX9-cu-nRl"/>
+                                        <constraint firstAttribute="width" secondItem="dZP-7I-Usd" secondAttribute="height" multiplier="1:1" id="SrQ-8J-L7k"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="tinted" image="arrow.clockwise" catalog="system"/>
+                                    <connections>
+                                        <action selector="refreshAnime:" destination="-1" eventType="touchUpInside" id="WCn-Ac-sGV"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="M7K-6u-P3h" firstAttribute="top" secondItem="ZoQ-dD-hqN" secondAttribute="top" constant="1" id="0vp-On-hSb"/>
+                                <constraint firstItem="M7K-6u-P3h" firstAttribute="bottom" secondItem="dZP-7I-Usd" secondAttribute="bottom" constant="15" id="SBR-tE-C4W"/>
                                 <constraint firstItem="qDK-dZ-Wky" firstAttribute="top" secondItem="M7K-6u-P3h" secondAttribute="bottom" constant="10" id="Sxd-K8-R6O"/>
+                                <constraint firstItem="M7K-6u-P3h" firstAttribute="trailing" secondItem="dZP-7I-Usd" secondAttribute="trailing" constant="10" id="Zo3-ca-kAo"/>
                                 <constraint firstItem="qDK-dZ-Wky" firstAttribute="leading" secondItem="M7K-6u-P3h" secondAttribute="leading" id="gfU-zC-x5X"/>
                                 <constraint firstAttribute="bottom" secondItem="qDK-dZ-Wky" secondAttribute="bottom" constant="10" id="h1i-77-tkr"/>
                                 <constraint firstAttribute="trailing" secondItem="M7K-6u-P3h" secondAttribute="trailing" id="mlQ-rD-8m5"/>
@@ -105,6 +120,7 @@
         </view>
     </objects>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
         <image name="coverImage" width="1500" height="844"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
