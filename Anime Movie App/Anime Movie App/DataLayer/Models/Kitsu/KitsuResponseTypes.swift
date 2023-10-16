@@ -12,6 +12,14 @@ class KitsuResponse: Codable {
     }
 }
 
+class KitsuResponseSingle: Codable {
+    let data: KitsuResult?
+    
+    init(data: KitsuResult?) {
+        self.data = data
+    }
+}
+
 class KitsuResponseLinks: Codable {
     let first, next, last: String?
 

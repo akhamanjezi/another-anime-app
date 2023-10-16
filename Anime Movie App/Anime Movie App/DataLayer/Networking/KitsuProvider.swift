@@ -3,6 +3,7 @@ import Foundation
 class KitsuProvider: DataProviding {
     private let baseURL = "https://kitsu.io/api/edge"
     private let baseSearchEndpoint = "/anime?filter[subtype]=movie&filter[text]="
+    private let animeByIdEndpoint = "/anime/"
     
     func search(for term: String, completion: @escaping (Result<Data, LocalizedError>) -> ()) {
         guard let searchRequest = urlRequest(for: baseSearchEndpoint + term) else {
@@ -17,6 +18,19 @@ class KitsuProvider: DataProviding {
         searchDataTask.resume()
     }
     
+    func getAnime(by id: String, completion: @escaping (Result<Data, LocalizedError>) -> ()) {
+        guard let getRequest = urlRequest(for: animeByIdEndpoint + id) else {
+            completion(.failure(.invalidRequest))
+            return
+        }
+        
+        let getDataTask = dataTask(for: getRequest) { result in
+            completion(result)
+        }
+        
+        getDataTask.resume()
+    }
+        
     private func urlRequest(for endpoint: String) -> URLRequest? {
         guard let url = URL(string: baseURL + endpoint) else {
             return nil
