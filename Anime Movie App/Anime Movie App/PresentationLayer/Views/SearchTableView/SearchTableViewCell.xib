@@ -24,6 +24,7 @@
                                 <rect key="frame" x="0.0" y="1" width="40" height="58.666666666666671"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DwJ-Xv-S5W" secondAttribute="height" multiplier="2:3" id="Dwn-mv-mEE"/>
+                                    <constraint firstAttribute="height" priority="999" constant="60" id="vle-QL-At0"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="center" axis="vertical" distribution="fillProportionally" alignment="top" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1kl-LD-JD8">
@@ -44,10 +45,6 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="DwJ-Xv-S5W" firstAttribute="height" secondItem="72n-6m-G0n" secondAttribute="height" id="lWS-R0-8vB"/>
-                            <constraint firstAttribute="height" constant="60" id="rvM-JV-etD"/>
-                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
