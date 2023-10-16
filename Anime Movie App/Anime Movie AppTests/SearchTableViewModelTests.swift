@@ -1,6 +1,6 @@
 import XCTest
 
-final class HomeViewModelTests: XCTestCase {
+final class SearchTableViewModelTests: XCTestCase {
     private var systemUnderTest: SearchTableViewModel? = nil
     
     override func tearDown() {
@@ -9,7 +9,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     func testSuccessfulCallWithNotNullData() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let (animeSearchResults, searchingError) = searchSearchTableViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         let expected = 3
         let actual = animeSearchResults.count
         
@@ -18,7 +18,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     func testSuccessfulCallWithNullData() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.nullKitsuDataProvider)
+        let (animeSearchResults, searchingError) = searchSearchTableViewModelWith(dataProvider: AnimeTestDataProvider.nullKitsuDataProvider)
         let expected = 0
         let actual = animeSearchResults.count
 
@@ -27,7 +27,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     func testSuccessfulAnimeReturn() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let (animeSearchResults, searchingError) = searchSearchTableViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         let expected = AnimeTestDataProvider.validAnimeInstance
         
         XCTAssertNil(searchingError)
@@ -41,7 +41,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     func testSuccessfulAnimeReturnNoResults() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
+        let (animeSearchResults, searchingError) = searchSearchTableViewModelWith(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
         let expected = 0
         let actual = animeSearchResults.count
         
@@ -50,7 +50,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     func testUnsuccessfulCall() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
+        let (animeSearchResults, searchingError) = searchSearchTableViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
         let expected = 0
         let actual = animeSearchResults.count
         
@@ -64,7 +64,7 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertNotNil(systemUnderTest)
     }
     
-    private func searchHomeViewModelWith(dataProvider: DataProviding) -> ([Anime], LocalizedError?) {
+    private func searchSearchTableViewModelWith(dataProvider: DataProviding) -> ([Anime], LocalizedError?) {
         initSystemUnderTest(dataProvider: dataProvider)
         systemUnderTest!.search(for: "")
         
