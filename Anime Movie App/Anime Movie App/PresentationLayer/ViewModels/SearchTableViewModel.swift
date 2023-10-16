@@ -7,6 +7,7 @@ class SearchTableViewModel {
     var isSearching: Observable<Bool> = Observable(false)
     var searchingError: Observable<LocalizedError?> = Observable(nil)
     var searchQueue = OperationQueue()
+    var currentSearchTerm = ""
     
     init(animeRepository: AnimeRepository) {
         self.animeRepository = animeRepository
@@ -15,8 +16,13 @@ class SearchTableViewModel {
     func search(for searchTerm: String) {
         isSearching.value = true
         searchingError.value = nil
+        currentSearchTerm = searchTerm
         
         animeRepository.searchResults(for: searchTerm) { [weak self] result in
+            guard self?.currentSearchTerm == searchTerm else {
+                return
+            }
+            
             switch result {
             case .success(let anime):
                 self?.updateSearchResults(with: anime)
