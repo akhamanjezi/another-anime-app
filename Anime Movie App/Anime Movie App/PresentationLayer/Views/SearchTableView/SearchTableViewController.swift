@@ -6,10 +6,13 @@ class SearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView = UITableView(frame: self.tableView.frame, style: .insetGrouped)
-        
+        setupView()
         registerCell()
         bindWithViewModel()
+    }
+    
+    fileprivate func setupView() {
+        tableView = UITableView(frame: tableView.frame, style: .insetGrouped)
     }
     
     private func registerCell() {
