@@ -18,7 +18,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     func testSuccessfulCallWithNullData() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.nullKitsuSearchDataProvider)
+        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.nullKitsuDataProvider)
         let expected = 0
         let actual = animeSearchResults.count
 
@@ -50,7 +50,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     func testUnsuccessfulCall() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuSearchDataProvider)
+        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
         let expected = 0
         let actual = animeSearchResults.count
         

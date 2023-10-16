@@ -2,7 +2,7 @@ import XCTest
 
 final class KitsuRepositoryTests: XCTestCase {
     private var systemUnderTest: KitsuRepository? = nil
-        
+    
     override func tearDown() {
         systemUnderTest = nil
         super.tearDown()
@@ -13,7 +13,10 @@ final class KitsuRepositoryTests: XCTestCase {
         XCTAssertNotNil(systemUnderTest)
     }
     
-    func testSuccessfulCallWithNotNullData() throws {
+    
+    // MARK: Search
+    
+    func testSuccessfulSearchWithNotNullData() throws {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         
         systemUnderTest?.searchResults(for: "") { result in
@@ -26,11 +29,11 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfulCallWithNullData() throws {
-        initSystemUnderTest(dataProvider: AnimeTestDataProvider.nullKitsuSearchDataProvider)
+    func testSuccessfulSearchWithNullData() throws {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.nullKitsuDataProvider)
         
         let expected = LocalizedError.invalidResponse
-                
+        
         systemUnderTest?.searchResults(for: "") { result in
             switch result {
             case .success(_):
@@ -41,7 +44,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfulAnimeReturn() throws {
+    func testSuccessfulSearchAnimeReturn() throws {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         
         let expected = AnimeTestDataProvider.validAnimeInstance
@@ -57,7 +60,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfulAnimeReturnNoResults() throws {
+    func testSuccessfulSearchAnimeReturnNoResults() throws {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
         
         let expected = 0
@@ -73,12 +76,88 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testUnSuccessfulCall() throws {
-        initSystemUnderTest(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuSearchDataProvider)
+    func testUnsuccessfulSearch() throws {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
         
         let expected = LocalizedError.invalidRequest
         
         systemUnderTest?.searchResults(for: "") { result in
+            switch result {
+            case .success(_):
+                XCTFail("Unexpected successful call")
+            case .failure(let actual):
+                XCTAssertEqual(expected, actual)
+            }
+        }
+    }
+    
+    // MARK: Anime by ID
+    
+    func testSuccessfulAnimeByIdWithNotNullData() throws {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuAnimeByIDDataProvider)
+        
+        systemUnderTest?.anime(by: "") { result in
+            switch result {
+            case .success(let actual):
+                XCTAssertNotNil(actual)
+            case .failure(_):
+                XCTFail("Unexpected unsuccessful call")
+            }
+        }
+    }
+    
+    func testSuccessfulAnimeByIdWithNullData() throws {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.nullKitsuDataProvider)
+        
+        let expected = LocalizedError.invalidResponse
+        
+        systemUnderTest?.anime(by: "") { result in
+            switch result {
+            case .success(_):
+                XCTFail("Unexpected successful call")
+            case .failure(let actual):
+                XCTAssertEqual(expected, actual)
+            }
+        }
+    }
+    
+    func testSuccessfulAnimeByIdAnimeReturn() throws {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuAnimeByIDDataProvider)
+        
+        let expected = AnimeTestDataProvider.validAnimeInstance
+        
+        systemUnderTest?.anime(by: "") { result in
+            switch result {
+            case .success(let data):
+                let actual = data
+                XCTAssertEqual(expected, actual)
+            case .failure(_):
+                XCTFail("Unexpected unsuccessful call")
+            }
+        }
+    }
+    
+    func testSuccessfulAnimeByIdAnimeReturnNoResults() throws {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
+        
+        let expected = LocalizedError.invalidResponse
+        
+        systemUnderTest?.anime(by: "") { result in
+            switch result {
+            case .success(_):
+                XCTFail("Unexpected successful call")
+            case .failure(let actual):
+               XCTAssertEqual(expected, actual)
+            }
+        }
+    }
+    
+    func testUnsuccessfulAnimeById() throws {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
+        
+        let expected = LocalizedError.invalidRequest
+        
+        systemUnderTest?.anime(by: "") { result in
             switch result {
             case .success(_):
                 XCTFail("Unexpected successful call")

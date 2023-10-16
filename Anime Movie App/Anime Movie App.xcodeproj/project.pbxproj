@@ -22,6 +22,8 @@
 		198577872AD3E3AA0025F615 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577852AD3E3AA0025F615 /* HomeViewController.swift */; };
 		198577882AD3E3AA0025F615 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 198577862AD3E3AA0025F615 /* HomeViewController.xib */; };
 		1985778A2AD3EA2F0025F615 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577892AD3EA2F0025F615 /* MainNavigationController.swift */; };
+		198A26E52ADD3F8100F5EFC5 /* get_spirited_away.json in Resources */ = {isa = PBXBuildFile; fileRef = 198A26E32ADD3C4B00F5EFC5 /* get_spirited_away.json */; };
+		198A26E62ADD3F8400F5EFC5 /* get_no_result.json in Resources */ = {isa = PBXBuildFile; fileRef = 198A26E42ADD3C7000F5EFC5 /* get_no_result.json */; };
 		19ADAD592AD426E500663A6E /* KitsuResponseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD582AD426E500663A6E /* KitsuResponseTypes.swift */; };
 		19ADAD5D2AD4281600663A6E /* DataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5C2AD4281600663A6E /* DataProviding.swift */; };
 		19ADAD5F2AD4296800663A6E /* KitsuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */; };
@@ -53,11 +55,11 @@
 		19ADAD952AD56DE500663A6E /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD932AD56DE500663A6E /* Observable.swift */; };
 		19ADAD9E2AD66DCF00663A6E /* KitsuRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD9D2AD66DCF00663A6E /* KitsuRepositoryTests.swift */; };
 		19ADAD9F2AD66DED00663A6E /* KitsuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */; };
-		19ADADA12AD674D100663A6E /* spirited_away.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADA02AD674D100663A6E /* spirited_away.json */; };
+		19ADADA12AD674D100663A6E /* search_spirited_away.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADA02AD674D100663A6E /* search_spirited_away.json */; };
 		19ADADA42AD6896E00663A6E /* null.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADA22AD6862E00663A6E /* null.json */; };
 		19ADADA82AD69F8800663A6E /* DataProviderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA72AD69F8800663A6E /* DataProviderStub.swift */; };
 		19ADADAA2AD6A23A00663A6E /* SearchTableViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADADA92AD6A23A00663A6E /* SearchTableViewModelTests.swift */; };
-		19ADADAC2AD6AF7E00663A6E /* not_an_anime.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADAB2AD6AE7300663A6E /* not_an_anime.json */; };
+		19ADADAC2AD6AF7E00663A6E /* search_not_an_anime.json in Resources */ = {isa = PBXBuildFile; fileRef = 19ADADAB2AD6AE7300663A6E /* search_not_an_anime.json */; };
 		19B811CF2AD813F900F3DACE /* KitsuTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811CE2AD813F900F3DACE /* KitsuTitles.swift */; };
 		19B811D02AD8140B00F3DACE /* KitsuTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811CE2AD813F900F3DACE /* KitsuTitles.swift */; };
 		19B811D32AD816E300F3DACE /* AnimeTestDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811D22AD816E300F3DACE /* AnimeTestDataProvider.swift */; };
@@ -96,6 +98,8 @@
 		198577852AD3E3AA0025F615 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		198577862AD3E3AA0025F615 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		198577892AD3EA2F0025F615 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		198A26E32ADD3C4B00F5EFC5 /* get_spirited_away.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_spirited_away.json; sourceTree = "<group>"; };
+		198A26E42ADD3C7000F5EFC5 /* get_no_result.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_no_result.json; sourceTree = "<group>"; };
 		19ADAD582AD426E500663A6E /* KitsuResponseTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuResponseTypes.swift; sourceTree = "<group>"; };
 		19ADAD5C2AD4281600663A6E /* DataProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviding.swift; sourceTree = "<group>"; };
 		19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuProvider.swift; sourceTree = "<group>"; };
@@ -112,11 +116,11 @@
 		19ADAD882AD5507300663A6E /* SearchTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewModel.swift; sourceTree = "<group>"; };
 		19ADAD932AD56DE500663A6E /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		19ADAD9D2AD66DCF00663A6E /* KitsuRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuRepositoryTests.swift; sourceTree = "<group>"; };
-		19ADADA02AD674D100663A6E /* spirited_away.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spirited_away.json; sourceTree = "<group>"; };
+		19ADADA02AD674D100663A6E /* search_spirited_away.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search_spirited_away.json; sourceTree = "<group>"; };
 		19ADADA22AD6862E00663A6E /* null.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = null.json; sourceTree = "<group>"; };
 		19ADADA72AD69F8800663A6E /* DataProviderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviderStub.swift; sourceTree = "<group>"; };
 		19ADADA92AD6A23A00663A6E /* SearchTableViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewModelTests.swift; sourceTree = "<group>"; };
-		19ADADAB2AD6AE7300663A6E /* not_an_anime.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = not_an_anime.json; sourceTree = "<group>"; };
+		19ADADAB2AD6AE7300663A6E /* search_not_an_anime.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_not_an_anime.json; sourceTree = "<group>"; };
 		19B811CE2AD813F900F3DACE /* KitsuTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuTitles.swift; sourceTree = "<group>"; };
 		19B811D22AD816E300F3DACE /* AnimeTestDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeTestDataProvider.swift; sourceTree = "<group>"; };
 		19B811D62AD81CE400F3DACE /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
@@ -311,8 +315,10 @@
 		19ADADA32AD6872600663A6E /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				19ADADA02AD674D100663A6E /* spirited_away.json */,
-				19ADADAB2AD6AE7300663A6E /* not_an_anime.json */,
+				19ADADA02AD674D100663A6E /* search_spirited_away.json */,
+				19ADADAB2AD6AE7300663A6E /* search_not_an_anime.json */,
+				198A26E32ADD3C4B00F5EFC5 /* get_spirited_away.json */,
+				198A26E42ADD3C7000F5EFC5 /* get_no_result.json */,
 				19ADADA22AD6862E00663A6E /* null.json */,
 			);
 			path = Responses;
@@ -436,9 +442,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19ADADAC2AD6AF7E00663A6E /* not_an_anime.json in Resources */,
+				19ADADAC2AD6AF7E00663A6E /* search_not_an_anime.json in Resources */,
 				19ADADA42AD6896E00663A6E /* null.json in Resources */,
-				19ADADA12AD674D100663A6E /* spirited_away.json in Resources */,
+				198A26E52ADD3F8100F5EFC5 /* get_spirited_away.json in Resources */,
+				198A26E62ADD3F8400F5EFC5 /* get_no_result.json in Resources */,
+				19ADADA12AD674D100663A6E /* search_spirited_away.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

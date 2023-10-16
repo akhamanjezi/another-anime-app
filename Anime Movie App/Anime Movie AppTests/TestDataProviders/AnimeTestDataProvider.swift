@@ -60,11 +60,15 @@ class AnimeTestDataProvider {
                                                 attributes: nil,
                                                 relationships: nil)
     
-    static let successfulKitsuSearchDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "spirited_away", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    static let successfulKitsuSearchDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "search_spirited_away", withExtension: "json")?.path(percentEncoded: false) ?? "")
     
-    static let nullKitsuSearchDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "null", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    static let nullKitsuDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "null", withExtension: "json")?.path(percentEncoded: false) ?? "")
     
-    static let successfulNoResultKitsuSearchDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "not_an_anime", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    static let successfulNoResultKitsuSearchDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "search_not_an_anime", withExtension: "json")?.path(percentEncoded: false) ?? "")
     
-    static let unsuccessfulKitsuSearchDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    static let unsuccessfulKitsuDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    
+    static let successfulKitsuAnimeByIDDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "get_spirited_away", withExtension: "json")?.path(percentEncoded: false) ?? "")
+        
+    static let successfulNoResultKitsuAnimeByIDDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "get_no_result", withExtension: "json")?.path(percentEncoded: false) ?? "")
 }
