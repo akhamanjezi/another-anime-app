@@ -1,7 +1,7 @@
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate {
-    private let viewModel = HomeViewModel()
+    private let viewModel = HomeViewModel(animeRepository: KitsuRepository())
     @IBOutlet private weak var favouritesTableView: UITableView!
     @IBOutlet private weak var featureImageView: UIImageView!
     @IBOutlet private weak var favouritesLabel: UILabel!
@@ -11,8 +11,9 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         setupView()
-        setupSearchResultsController()
         registerNib()
+        setupSearchResultsController()
+        bindWithViewModel()
         updateFeatureAnime()
     }
     
@@ -23,14 +24,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         featureLabel.font = .featureTitle
     }
     
-    private func setupSearchResultsController() {
-        let rvc = SearchTableViewController()
-        let search = UISearchController(searchResultsController: rvc)
-        search.delegate = rvc
-        search.searchBar.delegate = rvc
-        self.navigationItem.searchController = search
-    }
-    
     private func registerNib() {
         let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
         favouritesTableView.register(nib, forCellReuseIdentifier: SearchTableViewCell.cellIdentifier)
@@ -39,10 +32,29 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         favouritesTableView.dataSource = self
     }
     
-    private func updateFeatureAnime() {
-        viewModel.newFeatureAnime { [weak self] anime in
-            self?.featureLabel.text = "\(anime.title ?? "") - \(anime.styledReleaseDate ?? "")"
+    private func setupSearchResultsController() {
+        let searchTableViewController = SearchTableViewController()
+        let searchController = UISearchController(searchResultsController: searchTableViewController)
+        
+        searchController.delegate = searchTableViewController
+        searchController.searchBar.delegate = searchTableViewController
+        
+        self.navigationItem.searchController = searchController
+    }
+    
+    private func bindWithViewModel() {
+        viewModel.featureAnime.bind { [weak self] anime in
+            self?.updateFeatureAnimeDisplay(with: anime ?? Anime.placeholder)
         }
+    
+    private func updateFeatureAnimeDisplay(with anime: Anime) {
+        DispatchQueue.main.async {
+            self.featureLabel.text = "\(anime.title ?? "") - \(anime.styledReleaseDate ?? "")"
+        }
+    }
+    private func updateFeatureAnime() {
+        viewModel.newFeatureAnime()
+    }
     }
 }
 
