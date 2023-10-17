@@ -1,14 +1,14 @@
 import UIKit
 
 class SearchTableViewController: UITableViewController {
-    private let viewModel = SearchTableViewModel(animeRepository: KitsuRepository())
+    private let viewModel = SearchTableViewModel(animeRepository: KitsuRepository(), imageRepository: ImageRepository())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         registerCell()
-        bindWithViewModel()
+        setupDatasource()
     }
     
     fileprivate func setupView() {
@@ -20,12 +20,18 @@ class SearchTableViewController: UITableViewController {
         tableView.register(nib, forCellReuseIdentifier: SearchTableViewCell.cellIdentifier)
     }
     
-    private func bindWithViewModel() {
-        viewModel.animeSearchResults.bind { anime in
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+    private func setupDatasource() {
+        viewModel.dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView) { [weak self]
+            (tableView: UITableView, indexPath: IndexPath, item: Anime) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath)  as! SearchTableViewCell
+    
+            self?.viewModel.downloadImage(from: NSURL(string: item.posterImageURL ?? "")!, for: item)
+            
+            cell.configureCell(for: item)
+            return cell
         }
+        
+        viewModel.dataSource.defaultRowAnimation = .fade
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,26 +41,19 @@ class SearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.animeSearchResults.value.count
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard indexPath.row < viewModel.animeSearchResults.value.count else {
-            return UITableViewCell()
-        }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath) as! SearchTableViewCell
-        let animeSearchResult = viewModel.animeSearchResults.value[indexPath.row]
-        cell.configureCell(for: animeSearchResult)
-        return cell
-    }
 }
 
 fileprivate extension SearchTableViewCell {
     func configureCell(for anime: Anime) {
         self.titleLabel.text = anime.title
+        self.thumbnailView.image = anime.posterImage
+        
         guard let displayReleaseDate = anime.styledReleaseDate else {
+            self.releaseDateLabel.isHidden = true
             return
         }
         
+        self.releaseDateLabel.isHidden = false
         self.releaseDateLabel.text = displayReleaseDate
     }
 }

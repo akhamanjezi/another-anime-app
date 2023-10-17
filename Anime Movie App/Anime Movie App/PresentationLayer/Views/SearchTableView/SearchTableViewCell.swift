@@ -30,5 +30,7 @@ class SearchTableViewCell: UITableViewCell {
         
         titleLabel.font = .cellTitle
         releaseDateLabel.font = .cellSubtitle
+        
+        thumbnailView.contentMode = .scaleAspectFill
     }
 }

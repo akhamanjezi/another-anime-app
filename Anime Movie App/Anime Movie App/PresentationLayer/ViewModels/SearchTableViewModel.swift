@@ -1,16 +1,21 @@
 import Foundation
+import UIKit
 
 class SearchTableViewModel {
     private let animeRepository: AnimeRepository
+    private let imageRepository: ImageRepository
+    
     let numberOfSections = 1
     var animeSearchResults: Observable<[Anime]> = Observable([])
     var isSearching: Observable<Bool> = Observable(false)
     var searchingError: Observable<LocalizedError?> = Observable(nil)
     var searchQueue = OperationQueue()
-    var currentSearchTerm = ""
+    private var currentSearchTerm = ""
+    var dataSource: UITableViewDiffableDataSource<Section, Anime>! = nil
     
-    init(animeRepository: AnimeRepository) {
+    init(animeRepository: AnimeRepository, imageRepository: ImageRepository) {
         self.animeRepository = animeRepository
+        self.imageRepository = imageRepository
     }
     
     func search(for searchTerm: String) {
@@ -33,13 +38,46 @@ class SearchTableViewModel {
     }
     
     func cancelSearch() {
-        self.isSearching.value = false
-        self.animeSearchResults.value = []
+        updateSearchResults(with: [])
+    }
+    
+    func downloadImage(from url: NSURL, for item: Anime) {
+        self.imageRepository.image(from: url, for: item) { anime, image in
+            self.updateImageAndApplySnapshot(for: anime, with: image)
+        }
+    }
+    
+    private func updateDatasource() {
+        var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Anime>()
+        initialSnapshot.appendSections([.main])
+        initialSnapshot.appendItems(animeSearchResults.value)
+        DispatchQueue.main.async {
+            self.dataSource.apply(initialSnapshot, animatingDifferences: true)
+        }
+    }
+    
+    private func updateImageAndApplySnapshot(for anime: Anime, with image: UIImage?) {
+        guard let img = image, img != anime.posterImage else {
+            return
+        }
+        
+        var updatedSnapshot = dataSource.snapshot()
+        
+        guard let datasourceIndex = updatedSnapshot.indexOfItem(anime) else {
+            return
+        }
+        
+        let item = animeSearchResults.value[datasourceIndex]
+        item.posterImage = img
+        
+        updatedSnapshot.reloadItems([item])
+        dataSource.apply(updatedSnapshot, animatingDifferences: false)
     }
     
     private func updateSearchResults(with anime: [Anime]) {
         self.animeSearchResults.value = anime
         self.isSearching.value = false
+        self.updateDatasource()
     }
     
     private func handleSearchingError(_ error: LocalizedError? = nil) {
