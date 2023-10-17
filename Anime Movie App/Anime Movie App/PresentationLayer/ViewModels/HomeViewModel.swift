@@ -15,15 +15,6 @@ class HomeViewModel {
         self.imageRepository = imageRepository
     }
     
-    func downloadImage(for anime: Anime) {
-        guard let imageURL = anime.coverImageURL, let imageURL = NSURL(string: imageURL) else {
-            return
-        }
-        imageRepository.image(from: imageURL, for: anime) { [weak self] anime, image in
-            self?.handleSuccessfulFeatureImage(for: anime, with: image)
-        }
-    }
-    
     func newFeatureAnime() {
         initiateFetching()
         
@@ -49,6 +40,16 @@ class HomeViewModel {
     private func handleSuccessfulFeatureDetails(for anime: Anime) {
         featureAnime.value = anime
         downloadImage(for: anime)
+    }
+    
+    private func downloadImage(for anime: Anime) {
+        guard let imageURL = anime.coverImageURL, let imageURL = NSURL(string: imageURL) else {
+            return
+        }
+        
+        imageRepository.image(from: imageURL, for: anime) { [weak self] anime, image in
+            self?.handleSuccessfulFeatureImage(for: anime, with: image)
+        }
     }
     
     private func handleUnsuccessfulFeatureAnime(with error: LocalizedError) {
