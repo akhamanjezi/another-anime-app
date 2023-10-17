@@ -31,10 +31,6 @@ class ImageDownloader: ImageDownloading {
         imageDataTask.resume()
     }
     
-    private func image(url: NSURL) -> UIImage? {
-        return storage.object(forKey: url)
-    }
-    
     private func dataTask(for url: NSURL, completion: @escaping (Result<Data, LocalizedError>) -> ()) ->
         URLSessionDataTask {
         return URLSession.shared.dataTask(with: url as URL) { (data, response, error) in
