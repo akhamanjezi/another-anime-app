@@ -60,7 +60,7 @@ final class SearchTableViewModelTests: XCTestCase {
     
     private func initSystemUnderTest(dataProvider: DataProviding) {
         let kitsuRepo = KitsuRepository(dataProvider: dataProvider)
-        systemUnderTest = SearchTableViewModel(animeRepository: kitsuRepo)
+        systemUnderTest = SearchTableViewModel(animeRepository: kitsuRepo, imageRepository: ImageRepository(imageDownloder: ImageDownloaderStub()))
         XCTAssertNotNil(systemUnderTest)
     }
     

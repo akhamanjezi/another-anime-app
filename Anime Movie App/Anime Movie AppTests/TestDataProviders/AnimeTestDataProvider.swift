@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class AnimeTestDataProvider {
     static let validAnimeInstance = Anime.placeholder
@@ -66,4 +67,8 @@ class AnimeTestDataProvider {
     static let successfulKitsuAnimeByIDDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "get_spirited_away", withExtension: "json")?.path(percentEncoded: false) ?? "")
         
     static let successfulNoResultKitsuAnimeByIDDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "get_no_result", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    
+    static let spiritedAwayPosterImage = UIImage(named: "posterImage", in: Bundle(for: Anime_Movie_AppTests.self), with: nil)
+    
+    static let spiritedAwayCoverImage = UIImage(named: "coverImage", in: Bundle(for: Anime_Movie_AppTests.self), with: nil)
 }
