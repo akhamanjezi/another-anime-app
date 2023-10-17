@@ -1,7 +1,7 @@
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate {
-    private let viewModel = HomeViewModel(animeRepository: KitsuRepository())
+    private let viewModel = HomeViewModel(animeRepository: KitsuRepository(), imageRepository: ImageRepository())
     @IBOutlet private weak var favouritesTableView: UITableView!
     @IBOutlet private weak var featureImageView: UIImageView!
     @IBOutlet private weak var favouritesLabel: UILabel!
@@ -23,6 +23,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         self.title = "Animovie"
         featureImageView.layer.cornerRadius = 8
         reloadButton.layer.cornerRadius = 8
+        featureImageView.contentMode = .scaleAspectFill
         favouritesLabel.font = .sectionTitle
         featureLabel.font = .featureTitle
     }
@@ -58,6 +59,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     private func updateFeatureAnimeDisplay(with anime: Anime) {
         DispatchQueue.main.async {
             self.featureLabel.text = "\(anime.title ?? "") - \(anime.styledReleaseDate ?? "")"
+            self.featureImageView.image = anime.coverImage
         }
     }
     
@@ -70,7 +72,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     private func configureReloadButton() {
         let reloadButtonConfigHandler: UIButton.ConfigurationUpdateHandler = { button in
-            var reloadButtonConfig = UIButton.Configuration.tinted()
+            var reloadButtonConfig = UIButton.Configuration.borderless()
             
             if self.viewModel.isFetching.value {
                 reloadButtonConfig.showsActivityIndicator = true
