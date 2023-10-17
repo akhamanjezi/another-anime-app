@@ -12,8 +12,9 @@ class KitsuResultToAnimeMapper: ResponseToAnimeMapper {
                      synopsis: attributes.synopsis,
                      averageRating: attributes.averageRating != nil ? Double(attributes.averageRating!) : nil,
                      ageRating: attributes.ageRating,
-                     imageURL: attributes.posterImage?.original,
-                     thumnail: nil,
+                     posterImageURL: attributes.posterImage?.large ?? attributes.posterImage?.original,
+                     coverImageURL: attributes.coverImage?.original ?? attributes.posterImage?.original,
+                     thumbnail: nil,
                      duration: .seconds(60) * (attributes.totalLength ?? 0),
                      externalID: response.id,
                      source: .kitsu
