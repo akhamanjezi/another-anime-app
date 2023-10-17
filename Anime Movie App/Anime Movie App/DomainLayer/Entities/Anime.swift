@@ -17,6 +17,10 @@ class Anime: Equatable, Hashable {
     var posterImage: UIImage?
     var coverImage: UIImage?
     
+    var styledReleaseDate: String? {
+        releaseDate?.toStringAnimeDateStyle()
+    }
+    
     init(title: String? = nil, genres: [String]? = nil, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: Data? = nil, duration: Duration? = nil, externalID: String? = nil, source: AnimeSources? = nil, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
         self.title = title
         self.genres = genres
@@ -32,10 +36,6 @@ class Anime: Equatable, Hashable {
         self.source = source
         self.posterImage = posterImage
         self.coverImage = coverImage
-    }
-    
-    var styledReleaseDate: String? {
-        releaseDate?.toStringAnimeDateStyle()
     }
     
     static func == (lhs: Anime, rhs: Anime) -> Bool {
