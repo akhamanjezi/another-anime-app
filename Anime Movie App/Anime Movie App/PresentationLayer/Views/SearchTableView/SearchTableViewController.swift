@@ -20,6 +20,21 @@ class SearchTableViewController: UITableViewController {
         tableView.register(nib, forCellReuseIdentifier: SearchTableViewCell.cellIdentifier)
     }
     
+    private func bindWithViewModel() {
+        viewModel.animeSearchResults.bind { anime in
+            self.updateDatasource()
+        }
+    }
+    
+    private func updateDatasource() {
+        var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Anime>()
+        initialSnapshot.appendSections([.main])
+        initialSnapshot.appendItems(viewModel.animeSearchResults.value)
+        DispatchQueue.main.async {
+            self.viewModel.dataSource.apply(initialSnapshot, animatingDifferences: true)
+        }
+    }
+    
     private func setupDatasource() {
         viewModel.dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView) { [weak self]
             (tableView: UITableView, indexPath: IndexPath, item: Anime) -> UITableViewCell? in

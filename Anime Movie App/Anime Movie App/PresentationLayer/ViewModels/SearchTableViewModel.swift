@@ -47,15 +47,6 @@ class SearchTableViewModel {
         }
     }
     
-    private func updateDatasource() {
-        var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Anime>()
-        initialSnapshot.appendSections([.main])
-        initialSnapshot.appendItems(animeSearchResults.value)
-        DispatchQueue.main.async {
-            self.dataSource.apply(initialSnapshot, animatingDifferences: true)
-        }
-    }
-    
     private func updateImageAndApplySnapshot(for anime: Anime, with image: UIImage?) {
         guard let img = image, img != anime.posterImage else {
             return
@@ -77,7 +68,6 @@ class SearchTableViewModel {
     private func updateSearchResults(with anime: [Anime]) {
         self.animeSearchResults.value = anime
         self.isSearching.value = false
-        self.updateDatasource()
     }
     
     private func handleSearchingError(_ error: LocalizedError? = nil) {
