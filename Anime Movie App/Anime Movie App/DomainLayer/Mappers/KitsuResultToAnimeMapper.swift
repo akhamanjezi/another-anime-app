@@ -1,11 +1,11 @@
 import Foundation
 
-class KitsuResultToAnimeMapper: ResponseToAnimeMapper<KitsuResult> {
-    override func mapToAnime(from response: KitsuResult) -> Anime? {
+class KitsuResultToAnimeMapper: ResponseToAnimeMapper {
+    func mapToAnime(from response: KitsuResult) -> Anime? {
         guard let attributes = response.attributes else {
             return nil
         }
-        
+                
         return Anime(title: attributes.canonicalTitle,
                      genres: nil,
                      releaseDate: attributes.startDate?.toDate(),
