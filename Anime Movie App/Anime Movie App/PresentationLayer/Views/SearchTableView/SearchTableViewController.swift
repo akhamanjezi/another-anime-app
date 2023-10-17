@@ -8,6 +8,7 @@ class SearchTableViewController: UITableViewController {
         
         setupView()
         registerCell()
+        bindWithViewModel()
         setupDatasource()
     }
     
@@ -39,9 +40,8 @@ class SearchTableViewController: UITableViewController {
         viewModel.dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView) { [weak self]
             (tableView: UITableView, indexPath: IndexPath, item: Anime) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath)  as! SearchTableViewCell
-    
-            self?.viewModel.downloadImage(from: NSURL(string: item.posterImageURL ?? "")!, for: item)
             
+            self?.viewModel.downloadImage(from: NSURL(string: item.posterImageURL ?? "")!, for: item)
             cell.configureCell(for: item)
             return cell
         }
