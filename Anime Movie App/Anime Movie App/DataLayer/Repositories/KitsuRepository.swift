@@ -47,14 +47,18 @@ class KitsuRepository: AnimeRepository {
         
         switch kitsuResponse {
         case is KitsuResponseSingle:
-            guard let kitsuResult = (kitsuResponse as! KitsuResponseSingle).data else {
-                return nil
-            }
-                        
-            return [responseToAnimeMapper.mapToAnime(from: kitsuResult)].compactMap { $0 }
+            return convertToAnime(from: kitsuResponse as! KitsuResponseSingle)
         default:
             return convertToAnime(from: kitsuResponse as! KitsuResponse)
         }
+    }
+    
+    private func convertToAnime(from response: KitsuResponseSingle) -> [Anime] {
+        guard let kitsuResult = response.data else {
+            return []
+        }
+        
+        return [responseToAnimeMapper.mapToAnime(from: kitsuResult)].compactMap { $0 }
     }
     
     private func convertToAnime(from response: KitsuResponse) -> [Anime] {
