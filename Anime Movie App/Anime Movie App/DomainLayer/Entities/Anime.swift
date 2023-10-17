@@ -50,9 +50,7 @@ class Anime: Equatable, Hashable {
         lhs.thumbnail == rhs.thumbnail &&
         lhs.duration == rhs.duration &&
         lhs.externalID == rhs.externalID &&
-        lhs.source == rhs.source &&
-        lhs.posterImage == rhs.posterImage &&
-        lhs.coverImage == rhs.coverImage
+        lhs.source == rhs.source
     }
     
     func hash(into hasher: inout Hasher) {
