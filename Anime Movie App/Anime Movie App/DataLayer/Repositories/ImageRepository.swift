@@ -24,7 +24,7 @@ class ImageRepository {
                 self.storage.setObject(image, forKey: url)
                 completion(anime, image)
             case .failure(_):
-                completion(anime, nil)
+                completion(anime, UIImage(systemName: "popcorn.circle"))
             }
         }
     }
