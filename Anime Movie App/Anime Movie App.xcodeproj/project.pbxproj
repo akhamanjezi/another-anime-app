@@ -28,6 +28,21 @@
 		198A26E62ADD3F8400F5EFC5 /* get_no_result.json in Resources */ = {isa = PBXBuildFile; fileRef = 198A26E42ADD3C7000F5EFC5 /* get_no_result.json */; };
 		198A26E82ADD470500F5EFC5 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26E72ADD470500F5EFC5 /* HomeViewModelTests.swift */; };
 		198A26E92ADD482000F5EFC5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811E32AD96B0300F3DACE /* HomeViewModel.swift */; };
+		198A26EB2ADD66C200F5EFC5 /* ImageDownloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26EA2ADD66C200F5EFC5 /* ImageDownloading.swift */; };
+		198A26ED2ADD685400F5EFC5 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26EC2ADD685400F5EFC5 /* ImageDownloader.swift */; };
+		198A26EF2ADD6E8900F5EFC5 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26EE2ADD6E8900F5EFC5 /* UIImage+Extension.swift */; };
+		198A26F12ADD86DD00F5EFC5 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26F02ADD86DD00F5EFC5 /* Section.swift */; };
+		198A26F22ADE5C5000F5EFC5 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26EC2ADD685400F5EFC5 /* ImageDownloader.swift */; };
+		198A26F32ADE5C5600F5EFC5 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26F02ADD86DD00F5EFC5 /* Section.swift */; };
+		198A26F42ADE5C6000F5EFC5 /* ImageDownloading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26EA2ADD66C200F5EFC5 /* ImageDownloading.swift */; };
+		198A26F62ADE683000F5EFC5 /* Storing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26F52ADE683000F5EFC5 /* Storing.swift */; };
+		198A26F72ADE683000F5EFC5 /* Storing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26F52ADE683000F5EFC5 /* Storing.swift */; };
+		198A26FA2ADE6E2100F5EFC5 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26F92ADE6E2100F5EFC5 /* ImageCache.swift */; };
+		198A26FB2ADE6E2100F5EFC5 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26F92ADE6E2100F5EFC5 /* ImageCache.swift */; };
+		198A26FD2ADE6E2300F5EFC5 /* ImageStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26FC2ADE6E2300F5EFC5 /* ImageStoring.swift */; };
+		198A26FE2ADE6E2300F5EFC5 /* ImageStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26FC2ADE6E2300F5EFC5 /* ImageStoring.swift */; };
+		198A27002ADE72D900F5EFC5 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26FF2ADE72D800F5EFC5 /* ImageRepository.swift */; };
+		198A27012ADE72D900F5EFC5 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198A26FF2ADE72D800F5EFC5 /* ImageRepository.swift */; };
 		19ADAD592AD426E500663A6E /* KitsuResponseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD582AD426E500663A6E /* KitsuResponseTypes.swift */; };
 		19ADAD5D2AD4281600663A6E /* DataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5C2AD4281600663A6E /* DataProviding.swift */; };
 		19ADAD5F2AD4296800663A6E /* KitsuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */; };
@@ -106,6 +121,14 @@
 		198A26E32ADD3C4B00F5EFC5 /* get_spirited_away.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_spirited_away.json; sourceTree = "<group>"; };
 		198A26E42ADD3C7000F5EFC5 /* get_no_result.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_no_result.json; sourceTree = "<group>"; };
 		198A26E72ADD470500F5EFC5 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		198A26EA2ADD66C200F5EFC5 /* ImageDownloading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloading.swift; sourceTree = "<group>"; };
+		198A26EC2ADD685400F5EFC5 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		198A26EE2ADD6E8900F5EFC5 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		198A26F02ADD86DD00F5EFC5 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		198A26F52ADE683000F5EFC5 /* Storing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storing.swift; sourceTree = "<group>"; };
+		198A26F92ADE6E2100F5EFC5 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		198A26FC2ADE6E2300F5EFC5 /* ImageStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStoring.swift; sourceTree = "<group>"; };
+		198A26FF2ADE72D800F5EFC5 /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
 		19ADAD582AD426E500663A6E /* KitsuResponseTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuResponseTypes.swift; sourceTree = "<group>"; };
 		19ADAD5C2AD4281600663A6E /* DataProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviding.swift; sourceTree = "<group>"; };
 		19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitsuProvider.swift; sourceTree = "<group>"; };
@@ -248,6 +271,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		198A26F82ADE6E1400F5EFC5 /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				198A26F52ADE683000F5EFC5 /* Storing.swift */,
+				198A26FC2ADE6E2300F5EFC5 /* ImageStoring.swift */,
+				198A26F92ADE6E2100F5EFC5 /* ImageCache.swift */,
+			);
+			path = Caching;
+			sourceTree = "<group>";
+		};
 		19ADAD5A2AD426EA00663A6E /* Kitsu */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +300,8 @@
 				19ADAD5C2AD4281600663A6E /* DataProviding.swift */,
 				19ADAD5E2AD4296800663A6E /* KitsuProvider.swift */,
 				19ADAD702AD51C0E00663A6E /* LocalizedError.swift */,
+				198A26EA2ADD66C200F5EFC5 /* ImageDownloading.swift */,
+				198A26EC2ADD685400F5EFC5 /* ImageDownloader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -277,6 +312,7 @@
 				19ADAD9C2AD5E8B200663A6E /* Repositories */,
 				19ADAD5B2AD427EE00663A6E /* Networking */,
 				198577842AD3E1960025F615 /* Models */,
+				198A26F82ADE6E1400F5EFC5 /* Caching */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -289,6 +325,7 @@
 				19B811DF2AD9602D00F3DACE /* Date+Extension.swift */,
 				19B811E12AD9677D00F3DACE /* UIFont+Extension.swift */,
 				198A26DE2ADD015200F5EFC5 /* Array+Extension.swift */,
+				198A26EE2ADD6E8900F5EFC5 /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -316,6 +353,7 @@
 			children = (
 				19ADAD812AD542DD00663A6E /* AnimeRepository.swift */,
 				19ADAD832AD5447600663A6E /* KitsuRepository.swift */,
+				198A26FF2ADE72D800F5EFC5 /* ImageRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -337,6 +375,7 @@
 			children = (
 				19ADAD932AD56DE500663A6E /* Observable.swift */,
 				19ADAD7D2AD53FAD00663A6E /* Anime.swift */,
+				198A26F02ADD86DD00F5EFC5 /* Section.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -469,8 +508,10 @@
 				19ADAD942AD56DE500663A6E /* Observable.swift in Sources */,
 				191773FE2AD6C92700AF1FAD /* KitsuResultToAnimeMapper.swift in Sources */,
 				19ADAD892AD5507300663A6E /* SearchTableViewModel.swift in Sources */,
+				198A26EF2ADD6E8900F5EFC5 /* UIImage+Extension.swift in Sources */,
 				191774172AD7C2C600AF1FAD /* SearchTableViewCell.swift in Sources */,
 				1917741A2AD7C4E900AF1FAD /* SearchTableViewController.swift in Sources */,
+				198A27002ADE72D900F5EFC5 /* ImageRepository.swift in Sources */,
 				19ADAD872AD547E400663A6E /* String+Extension.swift in Sources */,
 				19ADAD712AD51C0E00663A6E /* LocalizedError.swift in Sources */,
 				19ADAD5F2AD4296800663A6E /* KitsuProvider.swift in Sources */,
@@ -481,18 +522,24 @@
 				19ADAD5D2AD4281600663A6E /* DataProviding.swift in Sources */,
 				198577532AD3E0550025F615 /* AppDelegate.swift in Sources */,
 				19ADAD6B2AD48DE600663A6E /* KitsuImageTypes.swift in Sources */,
+				198A26ED2ADD685400F5EFC5 /* ImageDownloader.swift in Sources */,
 				19ADAD592AD426E500663A6E /* KitsuResponseTypes.swift in Sources */,
 				19ADAD842AD5447600663A6E /* KitsuRepository.swift in Sources */,
 				19ADAD822AD542DD00663A6E /* AnimeRepository.swift in Sources */,
+				198A26F62ADE683000F5EFC5 /* Storing.swift in Sources */,
 				19ADAD6F2AD491AA00663A6E /* JSONNull.swift in Sources */,
+				198A26FB2ADE6E2100F5EFC5 /* ImageCache.swift in Sources */,
 				19ADAD612AD48BE700663A6E /* KitsuResultTypes.swift in Sources */,
 				1985778A2AD3EA2F0025F615 /* MainNavigationController.swift in Sources */,
+				198A26FE2ADE6E2300F5EFC5 /* ImageStoring.swift in Sources */,
 				19B811D72AD81CE400F3DACE /* DateFormatter+Extension.swift in Sources */,
 				198577872AD3E3AA0025F615 /* HomeViewController.swift in Sources */,
 				19ADAD632AD48C2A00663A6E /* KitsuAttributes.swift in Sources */,
 				19B811CF2AD813F900F3DACE /* KitsuTitles.swift in Sources */,
 				19ADAD6D2AD490A700663A6E /* KitsuRelationshipTypes.swift in Sources */,
+				198A26F12ADD86DD00F5EFC5 /* Section.swift in Sources */,
 				191773FC2AD6C88D00AF1FAD /* ResponseToAnimeMapper.swift in Sources */,
+				198A26EB2ADD66C200F5EFC5 /* ImageDownloading.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,8 +554,11 @@
 				19ADAD742AD5250300663A6E /* LocalizedError.swift in Sources */,
 				19ADAD9F2AD66DED00663A6E /* KitsuProvider.swift in Sources */,
 				19ADAD762AD5254E00663A6E /* KitsuResultTypes.swift in Sources */,
+				198A27012ADE72D900F5EFC5 /* ImageRepository.swift in Sources */,
 				19ADAD792AD5255600663A6E /* KitsuRelationshipTypes.swift in Sources */,
 				191774092AD73E5200AF1FAD /* ResponseToAnimeMapper.swift in Sources */,
+				198A26F32ADE5C5600F5EFC5 /* Section.swift in Sources */,
+				198A26F42ADE5C6000F5EFC5 /* ImageDownloading.swift in Sources */,
 				19ADAD732AD5250000663A6E /* DataProviding.swift in Sources */,
 				19ADAD8A2AD555C900663A6E /* KitsuRepository.swift in Sources */,
 				19ADAD752AD5250600663A6E /* KitsuResponseTypes.swift in Sources */,
@@ -516,11 +566,15 @@
 				19ADADA82AD69F8800663A6E /* DataProviderStub.swift in Sources */,
 				19ADAD8C2AD5564000663A6E /* SearchTableViewModel.swift in Sources */,
 				198A26E92ADD482000F5EFC5 /* HomeViewModel.swift in Sources */,
+				198A26F22ADE5C5000F5EFC5 /* ImageDownloader.swift in Sources */,
 				1985776A2AD3E0580025F615 /* Anime_Movie_AppTests.swift in Sources */,
 				19B811E52AD96D6900F3DACE /* Date+Extension.swift in Sources */,
+				198A26F72ADE683000F5EFC5 /* Storing.swift in Sources */,
 				19ADAD8D2AD5567200663A6E /* Anime.swift in Sources */,
+				198A26FA2ADE6E2100F5EFC5 /* ImageCache.swift in Sources */,
 				19B811D02AD8140B00F3DACE /* KitsuTitles.swift in Sources */,
 				19B811D32AD816E300F3DACE /* AnimeTestDataProvider.swift in Sources */,
+				198A26FD2ADE6E2300F5EFC5 /* ImageStoring.swift in Sources */,
 				19B811D82AD81F1A00F3DACE /* DateFormatter+Extension.swift in Sources */,
 				191774002AD7352E00AF1FAD /* KitsuResultToAnimeMapper.swift in Sources */,
 				198A26E02ADD01FB00F5EFC5 /* Array+Extension.swift in Sources */,
