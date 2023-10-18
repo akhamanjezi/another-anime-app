@@ -12,7 +12,7 @@ class SearchTableViewController: UITableViewController {
         setupDatasource()
     }
     
-    fileprivate func setupView() {
+    private func setupView() {
         tableView = UITableView(frame: tableView.frame, style: .insetGrouped)
     }
     
