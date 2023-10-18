@@ -13,7 +13,7 @@ class SearchViewModel {
     private var currentSearchTerm = ""
     var dataSource: UITableViewDiffableDataSource<Section, Anime>! = nil
     
-    init(animeRepository: AnimeRepository, imageRepository: ImageRepository) {
+    init(animeRepository: AnimeRepository = KitsuRepository(), imageRepository: ImageRepository = ImageRepository()) {
         self.animeRepository = animeRepository
         self.imageRepository = imageRepository
     }
