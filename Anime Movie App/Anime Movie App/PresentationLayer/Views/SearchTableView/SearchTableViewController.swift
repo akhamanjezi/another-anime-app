@@ -14,6 +14,7 @@ class SearchTableViewController: UITableViewController {
     
     private func setupView() {
         tableView = UITableView(frame: tableView.frame, style: .insetGrouped)
+        tableView.delegate = self
     }
     
     private func registerCell() {
@@ -25,6 +26,15 @@ class SearchTableViewController: UITableViewController {
         viewModel.animeSearchResults.bind { anime in
             self.updateDataSource()
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedAnime = viewModel.animeSearchResults.value[indexPath.row]
+        let detailsViewModel = DetailsViewModel(anime: selectedAnime)
+        let detailsViewController = DetailsViewController(with: detailsViewModel)
+        
+        self.presentingViewController?.navigationController?.pushViewController(detailsViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     private func updateDataSource() {
