@@ -10,7 +10,7 @@ class HomeViewModel {
     var fetchingError: Observable<LocalizedError?> = Observable(nil)
     var favourites: Observable<[Anime]> = Observable(Array(repeating: Anime.placeholder, count: 6))
     
-    init(animeRepository: AnimeRepository, imageRepository: ImageRepository) {
+    init(animeRepository: AnimeRepository = KitsuRepository(), imageRepository: ImageRepository = ImageRepository()) {
         self.animeRepository = animeRepository
         self.imageRepository = imageRepository
     }
