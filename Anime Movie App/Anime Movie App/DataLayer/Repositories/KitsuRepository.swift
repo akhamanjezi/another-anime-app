@@ -29,15 +29,22 @@ class KitsuRepository: AnimeRepository {
         dataProvider.getAnime(by: id) { [weak self] result in
             switch result {
             case .success(let responseData):
-                guard let anime = self?.decodeAndConvert(responseData, from: KitsuResponseSingle.self) else {
-                    completion(.failure(.invalidResponse))
-                    return
+                self?.handleSearchSuccess(for: responseData) { result in
+                    completion(result)
                 }
-                completion(.success(anime[safe: 0]))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
+    }
+    
+    private func handleSearchSuccess(for responseData: Data, completion: @escaping (Result<Anime?, LocalizedError>) -> ()) {
+        guard let anime = decodeAndConvert(responseData, from: KitsuResponseSingle.self) else {
+            completion(.failure(.invalidResponse))
+            return
+        }
+        
+        completion(.success(anime[safe: 0]))
     }
     
     private func decodeAndConvert<T>(_ responseData: Data, from type: T.Type) -> [Anime]? where T : Decodable {
