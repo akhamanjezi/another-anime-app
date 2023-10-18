@@ -1,12 +1,12 @@
 import UIKit
 
 class HomeViewController: UIViewController, UITableViewDelegate {
-    private let viewModel = HomeViewModel(animeRepository: KitsuRepository(), imageRepository: ImageRepository())
     @IBOutlet private weak var favouritesTableView: UITableView!
     @IBOutlet private weak var featureImageView: UIImageView!
     @IBOutlet private weak var favouritesLabel: UILabel!
     @IBOutlet private weak var featureLabel: UILabel!
     @IBOutlet weak var reloadButton: UIButton!
+    private let viewModel = HomeViewModel(animeRepository: KitsuRepository(), imageRepository: ImageRepository())
     
     override func viewDidLoad() {
         super.viewDidLoad()
