@@ -2,10 +2,10 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var thumbnailView: UIImageView!
-    @IBOutlet weak var releaseDateLabel: UILabel!
-    @IBOutlet weak var detailsStackView: UIStackView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var thumbnailView: UIImageView!
+    @IBOutlet private weak var releaseDateLabel: UILabel!
+    @IBOutlet private weak var detailsStackView: UIStackView!
     
     static let cellIdentifier = "searchTableViewCell"
     
@@ -13,9 +13,24 @@ class SearchTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setupView()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func configureCell(for anime: Anime) {
+        titleLabel.text = anime.title
+        releaseDateLabel.text = anime.styledReleaseDate
+        thumbnailView.image = anime.posterImage
+        thumbnailView.contentMode = .scaleAspectFill
+        
+        guard let displayReleaseDate = anime.styledReleaseDate else {
+            self.releaseDateLabel.isHidden = true
+            return
+        }
+        
+        self.releaseDateLabel.isHidden = false
+        self.releaseDateLabel.text = displayReleaseDate
     }
     
     private func setupView() {

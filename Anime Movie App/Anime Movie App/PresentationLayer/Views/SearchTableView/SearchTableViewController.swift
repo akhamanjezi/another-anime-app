@@ -58,22 +58,6 @@ class SearchTableViewController: UITableViewController {
     }
 }
 
-fileprivate extension SearchTableViewCell {
-    func configureCell(for anime: Anime) {
-        self.titleLabel.text = anime.title
-        self.thumbnailView.image = anime.posterImage
-        
-        guard let displayReleaseDate = anime.styledReleaseDate else {
-            self.releaseDateLabel.isHidden = true
-            return
-        }
-        
-        self.releaseDateLabel.isHidden = false
-        self.releaseDateLabel.text = displayReleaseDate
-    }
-}
-
-
 extension SearchTableViewController: UISearchControllerDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         viewModel.cancelSearch()

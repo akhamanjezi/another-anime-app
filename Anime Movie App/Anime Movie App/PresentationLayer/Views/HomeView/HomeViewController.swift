@@ -102,23 +102,4 @@ extension HomeViewController: UITableViewDataSource {
         cell.configureCell(for: viewModel.favourites.value[indexPath.row])
         return cell
     }
-    
-    private func configureCell(_ cell: SearchTableViewCell, for anime: Anime) -> SearchTableViewCell {
-        cell.titleLabel.text = anime.title
-        cell.thumbnailView.image = UIImage(named: "posterImage")
-        cell.thumbnailView.contentMode = .scaleAspectFill
-        
-        return cell
-    }
-}
-
-// MARK: SearchTableViewCell+Extension
-
-fileprivate extension SearchTableViewCell {
-    func configureCell(for anime: Anime) {
-        self.titleLabel.text = anime.title
-        self.releaseDateLabel.text = anime.styledReleaseDate
-        self.thumbnailView.image = UIImage(named: "posterImage")
-        self.thumbnailView.contentMode = .scaleAspectFill
-    }
 }
