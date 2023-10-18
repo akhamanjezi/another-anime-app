@@ -77,7 +77,9 @@ class SearchViewModel {
         item.posterImage = img
         
         updatedSnapshot.reloadItems([item])
-        dataSource.apply(updatedSnapshot, animatingDifferences: false)
+        DispatchQueue.main.async {
+            self.dataSource.apply(updatedSnapshot, animatingDifferences: false)
+        }
     }
     
     private func updateSearchResults(with anime: [Anime]) {
