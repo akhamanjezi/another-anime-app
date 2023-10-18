@@ -3,11 +3,6 @@ import UIKit
 
 class ImageDownloader: ImageDownloading {
     typealias ImageDownloadCompletionType = (Result<UIImage, LocalizedError>) -> ()
-    private let storage: any ImageStoring<NSURL, UIImage>
-    
-    init(cache: any ImageStoring<NSURL, UIImage> = ImageCache.shared) {
-        self.storage = cache
-    }
     
     func downloadImage(from url: NSURL, completion: @escaping ImageDownloadCompletionType) {
         let imageDataTask = dataTask(for: url) { result in
