@@ -16,6 +16,8 @@
 		191774182AD7C2C600AF1FAD /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 191774162AD7C2C600AF1FAD /* SearchTableViewCell.xib */; };
 		1917741A2AD7C4E900AF1FAD /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191774192AD7C4E900AF1FAD /* SearchTableViewController.swift */; };
 		1970AA032AE00489008A8377 /* UIButtonConfiguration+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970AA022AE00489008A8377 /* UIButtonConfiguration+Extension.swift */; };
+		1970AA042AE00DD2008A8377 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191774152AD7C2C600AF1FAD /* SearchTableViewCell.swift */; };
+		1970AA052AE00DEB008A8377 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811E12AD9677D00F3DACE /* UIFont+Extension.swift */; };
 		198577532AD3E0550025F615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577522AD3E0550025F615 /* AppDelegate.swift */; };
 		1985775C2AD3E0570025F615 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1985775B2AD3E0570025F615 /* Assets.xcassets */; };
 		1985775F2AD3E0570025F615 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1985775D2AD3E0570025F615 /* LaunchScreen.storyboard */; };
@@ -580,6 +582,7 @@
 				19ADADA82AD69F8800663A6E /* DataProviderStub.swift in Sources */,
 				19ADAD8C2AD5564000663A6E /* SearchViewModel.swift in Sources */,
 				198A26E92ADD482000F5EFC5 /* HomeViewModel.swift in Sources */,
+				1970AA042AE00DD2008A8377 /* SearchTableViewCell.swift in Sources */,
 				198A26F22ADE5C5000F5EFC5 /* ImageDownloader.swift in Sources */,
 				1985776A2AD3E0580025F615 /* Anime_Movie_AppTests.swift in Sources */,
 				19B811E52AD96D6900F3DACE /* Date+Extension.swift in Sources */,
@@ -596,6 +599,7 @@
 				19ADAD782AD5255300663A6E /* KitsuImageTypes.swift in Sources */,
 				191774082AD739B400AF1FAD /* KitsuResultToAnimeMapperTests.swift in Sources */,
 				19ADAD8B2AD5563200663A6E /* AnimeRepository.swift in Sources */,
+				1970AA052AE00DEB008A8377 /* UIFont+Extension.swift in Sources */,
 				19ADAD8F2AD5569800663A6E /* String+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
