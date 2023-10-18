@@ -2,16 +2,17 @@ import Foundation
 import UIKit
 
 class ImageDownloader: ImageDownloading {
+    typealias ImageDownloadCompletionType = (Result<UIImage, LocalizedError>) -> ()
     private let storage: any ImageStoring<NSURL, UIImage>
-    private var loadingResponses = [NSURL: [(Result<UIImage, LocalizedError>) -> ()]]()
+    private var loadingResponses = [NSURL: [ImageDownloadCompletionType]]()
     
     init(cache: any ImageStoring<NSURL, UIImage> = ImageCache.shared) {
         self.storage = cache
     }
     
-    func downloadImage(from url: NSURL, completion: @escaping (Result<UIImage, LocalizedError>) -> ()) {
         if loadingResponses[url] != nil {
             loadingResponses[url]?.append(completion)
+    func downloadImage(from url: NSURL, completion: @escaping ImageDownloadCompletionType) {
             return
         } else {
             loadingResponses[url] = [completion]
@@ -46,8 +47,8 @@ class ImageDownloader: ImageDownloading {
         }
     }
     
-    private func decodeAndConvertResponse(from url: NSURL, with responseData: Data, completion: @escaping (Result<UIImage, LocalizedError>) -> ()) {
         guard let image = UIImage(data: responseData), let blocks = self.loadingResponses[url] else {
+    private func decodeAndConvertResponse(from url: NSURL, with responseData: Data, completion: @escaping ImageDownloadCompletionType) {
             completion(.failure(.invalidResponse))
             return
         }
