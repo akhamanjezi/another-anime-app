@@ -4,19 +4,19 @@ import UIKit
 class ImageDownloader: ImageDownloading {
     typealias ImageDownloadCompletionType = (Result<UIImage, LocalizedError>) -> ()
     private let storage: any ImageStoring<NSURL, UIImage>
-    private var loadingResponses = [NSURL: [ImageDownloadCompletionType]]()
+    private var cachedCompletions = [NSURL: [ImageDownloadCompletionType]]()
     
     init(cache: any ImageStoring<NSURL, UIImage> = ImageCache.shared) {
         self.storage = cache
     }
     
-        if loadingResponses[url] != nil {
-            loadingResponses[url]?.append(completion)
     func downloadImage(from url: NSURL, completion: @escaping ImageDownloadCompletionType) {
+        if anOngoingRequstSent(for: url) {
+            cacheCompletion(completion, for: url)
             return
-        } else {
-            loadingResponses[url] = [completion]
         }
+        
+        cacheCompletion(completion, for: url)
        
         let imageDataTask = dataTask(for: url) { result in
             switch result {
@@ -30,6 +30,19 @@ class ImageDownloader: ImageDownloading {
             }
         }
         imageDataTask.resume()
+    }
+    
+    private func anOngoingRequstSent(for url: NSURL) -> Bool {
+        return cachedCompletions[url] != nil
+    }
+    
+    private func cacheCompletion(_ completion: @escaping ImageDownloadCompletionType, for url: NSURL) {
+        if var completions = cachedCompletions[url] {
+            completions.append(completion)
+            cachedCompletions[url] = completions
+        } else {
+            cachedCompletions[url] = [completion]
+        }
     }
     
     private func dataTask(for url: NSURL, completion: @escaping (Result<Data, LocalizedError>) -> ()) ->
@@ -47,8 +60,8 @@ class ImageDownloader: ImageDownloading {
         }
     }
     
-        guard let image = UIImage(data: responseData), let blocks = self.loadingResponses[url] else {
     private func decodeAndConvertResponse(from url: NSURL, with responseData: Data, completion: @escaping ImageDownloadCompletionType) {
+        guard let image = UIImage(data: responseData), let blocks = self.cachedCompletions[url] else {
             completion(.failure(.invalidResponse))
             return
         }
