@@ -42,8 +42,8 @@ class SearchViewModel {
     }
     
     func downloadImage(from url: NSURL, for item: Anime) {
-        self.imageRepository.image(from: url, for: item) { anime, image in
-            self.updateImageAndApplySnapshot(for: anime, with: image)
+        imageRepository.image(from: url, for: item) { [weak self] anime, image in
+            self?.updateImageAndApplySnapshot(for: anime, with: image)
         }
     }
     
