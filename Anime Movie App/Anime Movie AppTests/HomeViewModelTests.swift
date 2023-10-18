@@ -63,7 +63,7 @@ final class HomeViewModelTests: XCTestCase {
     private func initSystemUnderTest(dataProvider: DataProviding) {
         let kitsuRepo = KitsuRepository(dataProvider: dataProvider)
         
-        systemUnderTest = HomeViewModel(animeRepository: kitsuRepo, imageRepository: ImageRepository(imageDownloder: ImageDownloaderStub()))
+        systemUnderTest = HomeViewModel(animeRepository: kitsuRepo, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
         
         XCTAssertNotNil(systemUnderTest)
     }

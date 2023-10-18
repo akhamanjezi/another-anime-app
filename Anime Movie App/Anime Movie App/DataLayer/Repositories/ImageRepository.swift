@@ -2,11 +2,11 @@ import Foundation
 import UIKit
 
 class ImageRepository {
-    private let imageDownloder: ImageDownloading
+    private let imageDownloader: ImageDownloading
     private let storage: any ImageStoring<NSURL, UIImage>
     
-    init(imageDownloder: ImageDownloading = ImageDownloader(), storage: any ImageStoring<NSURL, UIImage> = ImageCache.shared) {
-        self.imageDownloder = imageDownloder
+    init(imageDownloader: ImageDownloading = ImageDownloader(), storage: any ImageStoring<NSURL, UIImage> = ImageCache.shared) {
+        self.imageDownloader = imageDownloader
         self.storage = storage
     }
     
@@ -18,7 +18,7 @@ class ImageRepository {
             return
         }
         
-        imageDownloder.downloadImage(from: url) { result in
+        imageDownloader.downloadImage(from: url) { result in
             switch result {
             case .success(let image):
                 self.storage.setObject(image, forKey: url)
