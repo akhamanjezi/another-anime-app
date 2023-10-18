@@ -12,9 +12,7 @@ class ImageRepository {
     
     func image(from url: NSURL, for anime: Anime, completion: @escaping (Anime, UIImage?) -> ()) {
         if let cachedImage = imageFromCache(with: url) {
-            DispatchQueue.main.async {
-                completion(anime, cachedImage)
-            }
+            completion(anime, cachedImage)
             return
         }
         
