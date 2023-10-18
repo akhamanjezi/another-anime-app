@@ -69,7 +69,11 @@ class SearchViewModel {
             return
         }
         
-        let item = animeSearchResults.value[datasourceIndex]
+        guard let item = animeSearchResults.value[safe: datasourceIndex],
+              item == anime else {
+            return
+        }
+        
         item.posterImage = img
         
         updatedSnapshot.reloadItems([item])
