@@ -4,20 +4,12 @@ import UIKit
 class ImageDownloader: ImageDownloading {
     typealias ImageDownloadCompletionType = (Result<UIImage, LocalizedError>) -> ()
     private let storage: any ImageStoring<NSURL, UIImage>
-    private var cachedCompletions = [NSURL: [ImageDownloadCompletionType]]()
     
     init(cache: any ImageStoring<NSURL, UIImage> = ImageCache.shared) {
         self.storage = cache
     }
     
     func downloadImage(from url: NSURL, completion: @escaping ImageDownloadCompletionType) {
-        if anOngoingRequstSent(for: url) {
-            cacheCompletion(completion, for: url)
-            return
-        }
-        
-        cacheCompletion(completion, for: url)
-        
         let imageDataTask = dataTask(for: url) { result in
             switch result {
             case .success(let responseData):
@@ -30,19 +22,6 @@ class ImageDownloader: ImageDownloading {
             }
         }
         imageDataTask.resume()
-    }
-    
-    private func anOngoingRequstSent(for url: NSURL) -> Bool {
-        return cachedCompletions[url] != nil
-    }
-    
-    private func cacheCompletion(_ completion: @escaping ImageDownloadCompletionType, for url: NSURL) {
-        if var completions = cachedCompletions[url] {
-            completions.append(completion)
-            cachedCompletions[url] = completions
-        } else {
-            cachedCompletions[url] = [completion]
-        }
     }
     
     private func dataTask(for url: NSURL, completion: @escaping (Result<Data, LocalizedError>) -> ()) ->
@@ -61,17 +40,11 @@ class ImageDownloader: ImageDownloading {
     }
     
     private func decodeAndConvert(_ responseData: Data, from url: NSURL, completion: @escaping ImageDownloadCompletionType) {
-        guard let image = UIImage(data: responseData),
-              let blocks = self.cachedCompletions[url] else {
+        guard let image = UIImage(data: responseData) else {
             completion(.failure(.invalidResponse))
             return
         }
         
-        for block in blocks {
-            DispatchQueue.main.async {
-                block(.success(image))
-            }
-            return
-        }
+        completion(.success(image))
     }
 }
