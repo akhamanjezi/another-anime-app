@@ -12,8 +12,8 @@ class KitsuRepository: AnimeRepository {
     func searchResults(for term: String, completion: @escaping (Result<[Anime], LocalizedError>) -> ()) {
         dataProvider.search(for: term) { [weak self] result in
             switch result {
-            case .success(let dataResponse):
-                guard let anime = self?.decodeAndConvertResponse(for: dataResponse, from: KitsuResponse.self) else {
+            case .success(let responseData):
+                guard let anime = self?.decodeAndConvert(responseData, from: KitsuResponse.self) else {
                     completion(.failure(.invalidResponse))
                     return
                 }
@@ -28,8 +28,8 @@ class KitsuRepository: AnimeRepository {
     func anime(by id: String, completion: @escaping (Result<Anime?, LocalizedError>) -> ()) {
         dataProvider.getAnime(by: id) { [weak self] result in
             switch result {
-            case .success(let dataResponse):
-                guard let anime = self?.decodeAndConvertResponse(for: dataResponse, from: KitsuResponseSingle.self) else {
+            case .success(let responseData):
+                guard let anime = self?.decodeAndConvert(responseData, from: KitsuResponseSingle.self) else {
                     completion(.failure(.invalidResponse))
                     return
                 }
@@ -40,8 +40,8 @@ class KitsuRepository: AnimeRepository {
         }
     }
     
-    private func decodeAndConvertResponse<T>(for dataResponse: Data, from type: T.Type) -> [Anime]? where T : Decodable {
-        guard let kitsuResponse = try? JSONDecoder().decode(T.self, from: dataResponse) else {
+    private func decodeAndConvert<T>(_ responseData: Data, from type: T.Type) -> [Anime]? where T : Decodable {
+        guard let kitsuResponse = try? JSONDecoder().decode(T.self, from: responseData) else {
             return nil
         }
         

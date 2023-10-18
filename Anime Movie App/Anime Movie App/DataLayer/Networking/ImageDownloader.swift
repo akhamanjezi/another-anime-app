@@ -21,7 +21,7 @@ class ImageDownloader: ImageDownloading {
         let imageDataTask = dataTask(for: url) { result in
             switch result {
             case .success(let responseData):
-                self.decodeAndConvertResponse(from: url, with: responseData) { result in
+                self.decodeAndConvert(responseData, from: url) { result in
                     completion(result)
                     return
                 }
@@ -60,7 +60,7 @@ class ImageDownloader: ImageDownloading {
         }
     }
     
-    private func decodeAndConvertResponse(from url: NSURL, with responseData: Data, completion: @escaping ImageDownloadCompletionType) {
+    private func decodeAndConvert(_ responseData: Data, from url: NSURL, completion: @escaping ImageDownloadCompletionType) {
         guard let image = UIImage(data: responseData), let blocks = self.cachedCompletions[url] else {
             completion(.failure(.invalidResponse))
             return
