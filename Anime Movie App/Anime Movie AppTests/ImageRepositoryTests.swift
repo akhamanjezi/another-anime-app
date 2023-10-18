@@ -8,6 +8,7 @@ final class ImageRepositoryTests: XCTestCase {
         let expected = AnimeTestDataProvider.spiritedAwayPosterImage
         
         guard let imageURL = animeForTest.posterImageURL, let imageURL = NSURL(string: imageURL) else {
+            XCTFail("Could not init NSURL")
             return
         }
         
@@ -21,6 +22,7 @@ final class ImageRepositoryTests: XCTestCase {
         let expected = AnimeTestDataProvider.spiritedAwayCoverImage
         
         guard let imageURL = AnimeTestDataProvider.validAnimeInstance.coverImageURL, let imageURL = NSURL(string: imageURL) else {
+            XCTFail("Could not init NSURL")
             return
         }
         
