@@ -8,7 +8,7 @@ final class HomeViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSuccessfulAnimeByIdWithNotNullData() throws {
+    func testSuccessfulAnimeByIdWithNotNullData() {
         newFeatureAnime(with: AnimeTestDataProvider.successfulKitsuAnimeByIDDataProvider)
         
         let actual = systemUnderTest?.featureAnime.value
@@ -16,7 +16,7 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertNotNil(actual)
     }
     
-    func testSuccessfulAnimeByIdWithNullData() throws {
+    func testSuccessfulAnimeByIdWithNullData() {
         newFeatureAnime(with: AnimeTestDataProvider.nullKitsuDataProvider)
         
         let expected = LocalizedError.invalidResponse
@@ -25,7 +25,7 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testSuccessfulAnimeByIdAnimeReturn() throws {
+    func testSuccessfulAnimeByIdAnimeReturn() {
         newFeatureAnime(with: AnimeTestDataProvider.successfulKitsuAnimeByIDDataProvider)
         
         let expected = AnimeTestDataProvider.validAnimeInstance
@@ -36,7 +36,7 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testSuccessfulAnimeByIdAnimeReturnNoResults() throws {
+    func testSuccessfulAnimeByIdAnimeReturnNoResults() {
         newFeatureAnime(with: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
         
         let expected = LocalizedError.invalidResponse
@@ -45,7 +45,7 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testUnsuccessfulAnimeById() throws {
+    func testUnsuccessfulAnimeById() {
         newFeatureAnime(with: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
         
         let expected = LocalizedError.invalidRequest

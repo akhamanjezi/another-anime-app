@@ -4,7 +4,7 @@ final class ImageRepositoryTests: XCTestCase {
     private let systemUnderTest = ImageRepository(imageDownloader: ImageDownloaderStub())
     private let animeForTest = AnimeTestDataProvider.validAnimeInstance
     
-    func testSuccessfulPosterImageDownload() throws {
+    func testSuccessfulPosterImageDownload() {
         let expected = AnimeTestDataProvider.spiritedAwayPosterImage
         
         guard let imageURL = animeForTest.posterImageURL, let imageURL = NSURL(string: imageURL) else {
@@ -18,7 +18,7 @@ final class ImageRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfulCoverImageDownload() throws {
+    func testSuccessfulCoverImageDownload() {
         let expected = AnimeTestDataProvider.spiritedAwayCoverImage
         
         guard let imageURL = AnimeTestDataProvider.validAnimeInstance.coverImageURL, let imageURL = NSURL(string: imageURL) else {
@@ -32,7 +32,7 @@ final class ImageRepositoryTests: XCTestCase {
         }
     }
     
-    func testUnsuccessfulImageDownload() throws {
+    func testUnsuccessfulImageDownload() {
         let expected = UIImage(systemName: "popcorn.circle")
         
         systemUnderTest.image(from: NSURL(), for: animeForTest) { anime, image in

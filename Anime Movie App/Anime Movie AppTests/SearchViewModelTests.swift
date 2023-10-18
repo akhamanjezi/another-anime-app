@@ -8,7 +8,7 @@ final class SearchViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSuccessfulCallWithNotNullData() throws {
+    func testSuccessfulCallWithNotNullData() {
         let (animeSearchResults, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         let expected = 3
         let actual = animeSearchResults.count
@@ -17,7 +17,7 @@ final class SearchViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testSuccessfulCallWithNullData() throws {
+    func testSuccessfulCallWithNullData() {
         let (animeSearchResults, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.nullKitsuDataProvider)
         let expected = 0
         let actual = animeSearchResults.count
@@ -26,7 +26,7 @@ final class SearchViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testSuccessfulAnimeReturn() throws {
+    func testSuccessfulAnimeReturn() {
         let (animeSearchResults, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         let expected = AnimeTestDataProvider.validAnimeInstance
         
@@ -40,7 +40,7 @@ final class SearchViewModelTests: XCTestCase {
         }
     }
     
-    func testSuccessfulAnimeReturnNoResults() throws {
+    func testSuccessfulAnimeReturnNoResults() {
         let (animeSearchResults, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
         let expected = 0
         let actual = animeSearchResults.count
@@ -49,7 +49,7 @@ final class SearchViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testUnsuccessfulCall() throws {
+    func testUnsuccessfulCall() {
         let (animeSearchResults, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
         let expected = 0
         let actual = animeSearchResults.count

@@ -16,7 +16,7 @@ final class KitsuRepositoryTests: XCTestCase {
     
     // MARK: Search
     
-    func testSuccessfulSearchWithNotNullData() throws {
+    func testSuccessfulSearchWithNotNullData() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         
         systemUnderTest?.searchResults(for: "") { result in
@@ -29,7 +29,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfulSearchWithNullData() throws {
+    func testSuccessfulSearchWithNullData() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.nullKitsuDataProvider)
         
         let expected = LocalizedError.invalidResponse
@@ -44,7 +44,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfulSearchAnimeReturn() throws {
+    func testSuccessfulSearchAnimeReturn() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         
         let expected = AnimeTestDataProvider.validAnimeInstance
@@ -60,7 +60,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfulSearchAnimeReturnNoResults() throws {
+    func testSuccessfulSearchAnimeReturnNoResults() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
         
         let expected = 0
@@ -76,7 +76,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testUnsuccessfulSearch() throws {
+    func testUnsuccessfulSearch() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
         
         let expected = LocalizedError.invalidRequest
@@ -93,7 +93,7 @@ final class KitsuRepositoryTests: XCTestCase {
     
     // MARK: Anime by ID
     
-    func testSuccessfulAnimeByIdWithNotNullData() throws {
+    func testSuccessfulAnimeByIdWithNotNullData() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuAnimeByIDDataProvider)
         
         systemUnderTest?.anime(by: "") { result in
@@ -106,7 +106,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfulAnimeByIdWithNullData() throws {
+    func testSuccessfulAnimeByIdWithNullData() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.nullKitsuDataProvider)
         
         let expected = LocalizedError.invalidResponse
@@ -121,7 +121,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfulAnimeByIdAnimeReturn() throws {
+    func testSuccessfulAnimeByIdAnimeReturn() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuAnimeByIDDataProvider)
         
         let expected = AnimeTestDataProvider.validAnimeInstance
@@ -137,7 +137,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testSuccessfulAnimeByIdAnimeReturnNoResults() throws {
+    func testSuccessfulAnimeByIdAnimeReturnNoResults() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
         
         let expected = LocalizedError.invalidResponse
@@ -152,7 +152,7 @@ final class KitsuRepositoryTests: XCTestCase {
         }
     }
     
-    func testUnsuccessfulAnimeById() throws {
+    func testUnsuccessfulAnimeById() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
         
         let expected = LocalizedError.invalidRequest
