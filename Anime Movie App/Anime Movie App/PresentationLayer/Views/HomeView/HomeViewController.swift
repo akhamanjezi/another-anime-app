@@ -74,16 +74,8 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
     
     private func configureReloadButton() {
-        let reloadButtonConfigHandler: UIButton.ConfigurationUpdateHandler = { button in
-            var reloadButtonConfig = UIButton.Configuration.borderless()
-            
-            if self.viewModel.isFetching.value {
-                reloadButtonConfig.showsActivityIndicator = true
-            } else {
-                reloadButtonConfig.image = UIImage(systemName: "arrow.clockwise")
-            }
-            
-            button.configuration = reloadButtonConfig
+        let reloadButtonConfigHandler: UIButton.ConfigurationUpdateHandler = { [weak self] button in
+            button.configuration = (self?.viewModel.isFetching.value ?? false) ? .loadingBorderless : .reloadBorderless
         }
         reloadButton.configurationUpdateHandler = reloadButtonConfigHandler
     }
