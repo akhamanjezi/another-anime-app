@@ -17,7 +17,7 @@ class ImageDownloader: ImageDownloading {
         }
         
         cacheCompletion(completion, for: url)
-       
+        
         let imageDataTask = dataTask(for: url) { result in
             switch result {
             case .success(let responseData):
@@ -46,7 +46,7 @@ class ImageDownloader: ImageDownloading {
     }
     
     private func dataTask(for url: NSURL, completion: @escaping (Result<Data, LocalizedError>) -> ()) ->
-        URLSessionDataTask {
+    URLSessionDataTask {
         return URLSession.shared.dataTask(with: url as URL) { (data, response, error) in
             guard error == nil,
                   let data = data,
@@ -61,11 +61,12 @@ class ImageDownloader: ImageDownloading {
     }
     
     private func decodeAndConvert(_ responseData: Data, from url: NSURL, completion: @escaping ImageDownloadCompletionType) {
-        guard let image = UIImage(data: responseData), let blocks = self.cachedCompletions[url] else {
+        guard let image = UIImage(data: responseData),
+              let blocks = self.cachedCompletions[url] else {
             completion(.failure(.invalidResponse))
             return
         }
-                
+        
         for block in blocks {
             DispatchQueue.main.async {
                 block(.success(image))
