@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
     
     private func setupView() {
-        self.title = "Animovie"
+        title = "Animovie"
         featureImageView.layer.cornerRadius = 8
         reloadButton.layer.cornerRadius = 8
         featureImageView.contentMode = .scaleAspectFill
