@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         setupView()
         registerNib()
+        configureTableView()
         setupSearchResultsController()
         bindWithViewModel()
         configureReloadButton()
@@ -31,7 +32,9 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     private func registerNib() {
         let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
         favouritesTableView.register(nib, forCellReuseIdentifier: SearchTableViewCell.cellIdentifier)
-        
+    }
+    
+    private func configureTableView() {
         favouritesTableView.delegate = self
         favouritesTableView.dataSource = self
     }
