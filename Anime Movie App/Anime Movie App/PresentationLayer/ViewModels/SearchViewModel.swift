@@ -41,7 +41,18 @@ class SearchViewModel {
         updateSearchResults(with: [])
     }
     
-    func downloadImage(from url: NSURL, for item: Anime) {
+    var resultCellProvider: UITableViewDiffableDataSource<Section, Anime>.CellProvider {
+        return { [weak self]
+            (tableView: UITableView, indexPath: IndexPath, item: Anime) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath)  as! SearchTableViewCell
+            
+            self?.downloadImage(from: NSURL(string: item.posterImageURL ?? "")!, for: item)
+            cell.configureCell(for: item)
+            return cell
+        }
+    }
+    
+    private func downloadImage(from url: NSURL, for item: Anime) {
         imageRepository.image(from: url, for: item) { [weak self] anime, image in
             self?.updateImageAndApplySnapshot(for: anime, with: image)
         }

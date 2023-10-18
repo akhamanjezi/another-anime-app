@@ -9,7 +9,7 @@ class SearchTableViewController: UITableViewController {
         setupView()
         registerCell()
         bindWithViewModel()
-        setupDatasource()
+        setupDataSource()
     }
     
     private func setupView() {
@@ -23,11 +23,11 @@ class SearchTableViewController: UITableViewController {
     
     private func bindWithViewModel() {
         viewModel.animeSearchResults.bind { anime in
-            self.updateDatasource()
+            self.updateDataSource()
         }
     }
     
-    private func updateDatasource() {
+    private func updateDataSource() {
         var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Anime>()
         initialSnapshot.appendSections([.main])
         initialSnapshot.appendItems(viewModel.animeSearchResults.value)
@@ -36,16 +36,8 @@ class SearchTableViewController: UITableViewController {
         }
     }
     
-    private func setupDatasource() {
-        viewModel.dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView) { [weak self]
-            (tableView: UITableView, indexPath: IndexPath, item: Anime) -> UITableViewCell? in
-            let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath)  as! SearchTableViewCell
-            
-            self?.viewModel.downloadImage(from: NSURL(string: item.posterImageURL ?? "")!, for: item)
-            cell.configureCell(for: item)
-            return cell
-        }
-        
+    private func setupDataSource() {
+        viewModel.dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView, cellProvider: viewModel.resultCellProvider)
         viewModel.dataSource.defaultRowAnimation = .fade
     }
     
