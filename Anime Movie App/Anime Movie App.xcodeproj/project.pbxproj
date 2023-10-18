@@ -15,6 +15,7 @@
 		191774172AD7C2C600AF1FAD /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191774152AD7C2C600AF1FAD /* SearchTableViewCell.swift */; };
 		191774182AD7C2C600AF1FAD /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 191774162AD7C2C600AF1FAD /* SearchTableViewCell.xib */; };
 		1917741A2AD7C4E900AF1FAD /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191774192AD7C4E900AF1FAD /* SearchTableViewController.swift */; };
+		1970AA032AE00489008A8377 /* UIButtonConfiguration+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970AA022AE00489008A8377 /* UIButtonConfiguration+Extension.swift */; };
 		198577532AD3E0550025F615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577522AD3E0550025F615 /* AppDelegate.swift */; };
 		1985775C2AD3E0570025F615 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1985775B2AD3E0570025F615 /* Assets.xcassets */; };
 		1985775F2AD3E0570025F615 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1985775D2AD3E0570025F615 /* LaunchScreen.storyboard */; };
@@ -110,6 +111,7 @@
 		191774152AD7C2C600AF1FAD /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		191774162AD7C2C600AF1FAD /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		191774192AD7C4E900AF1FAD /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		1970AA022AE00489008A8377 /* UIButtonConfiguration+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButtonConfiguration+Extension.swift"; sourceTree = "<group>"; };
 		1985774F2AD3E0550025F615 /* Anime Movie App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anime Movie App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		198577522AD3E0550025F615 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1985775B2AD3E0570025F615 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				19B811E12AD9677D00F3DACE /* UIFont+Extension.swift */,
 				198A26DE2ADD015200F5EFC5 /* Array+Extension.swift */,
 				198A26EE2ADD6E8900F5EFC5 /* UIImage+Extension.swift */,
+				1970AA022AE00489008A8377 /* UIButtonConfiguration+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				19B811D72AD81CE400F3DACE /* DateFormatter+Extension.swift in Sources */,
 				198577872AD3E3AA0025F615 /* HomeViewController.swift in Sources */,
 				19ADAD632AD48C2A00663A6E /* KitsuAttributes.swift in Sources */,
+				1970AA032AE00489008A8377 /* UIButtonConfiguration+Extension.swift in Sources */,
 				19B811CF2AD813F900F3DACE /* KitsuTitles.swift in Sources */,
 				19ADAD6D2AD490A700663A6E /* KitsuRelationshipTypes.swift in Sources */,
 				198A26F12ADD86DD00F5EFC5 /* Section.swift in Sources */,
