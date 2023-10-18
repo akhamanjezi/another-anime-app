@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class SearchTableViewModel {
+class SearchViewModel {
     private let animeRepository: AnimeRepository
     private let imageRepository: ImageRepository
     

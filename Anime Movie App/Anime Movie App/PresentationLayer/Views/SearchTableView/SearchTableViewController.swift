@@ -1,7 +1,7 @@
 import UIKit
 
 class SearchTableViewController: UITableViewController {
-    private let viewModel = SearchTableViewModel(animeRepository: KitsuRepository(), imageRepository: ImageRepository())
+    private let viewModel = SearchViewModel(animeRepository: KitsuRepository(), imageRepository: ImageRepository())
     
     override func viewDidLoad() {
         super.viewDidLoad()
