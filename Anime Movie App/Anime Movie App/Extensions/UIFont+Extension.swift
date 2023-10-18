@@ -1,19 +1,19 @@
 import UIKit
 
 extension UIFont {
-    static var sectionTitle: UIFont {
+    static var headingBold: UIFont {
         UIFont.preferredFont(forTextStyle: .title2).with(weight: .bold).rounded()
     }
     
-    static var featureTitle: UIFont {
+    static var subHeadingMedium: UIFont {
         UIFont.preferredFont(forTextStyle: .callout).with(weight: .medium).rounded()
     }
     
-    static var cellTitle: UIFont {
+    static var roundedCallout: UIFont {
         UIFont.preferredFont(forTextStyle: .callout).with(weight: .regular).rounded()
     }
     
-    static var cellSubtitle: UIFont {
+    static var roundedCaption2: UIFont {
         UIFont.preferredFont(forTextStyle: .caption2).with(weight: .regular).rounded()
     }
     

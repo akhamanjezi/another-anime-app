@@ -28,8 +28,8 @@ class SearchTableViewCell: UITableViewCell {
         backgroundView.layer.cornerRadius = 8
         self.selectedBackgroundView = backgroundView
         
-        titleLabel.font = .cellTitle
-        releaseDateLabel.font = .cellSubtitle
+        titleLabel.font = .roundedCallout
+        releaseDateLabel.font = .roundedCaption2
         
         thumbnailView.contentMode = .scaleAspectFill
     }

@@ -24,8 +24,8 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         featureImageView.layer.cornerRadius = 8
         reloadButton.layer.cornerRadius = 8
         featureImageView.contentMode = .scaleAspectFill
-        favouritesLabel.font = .sectionTitle
-        featureLabel.font = .featureTitle
+        favouritesLabel.font = .headingBold
+        featureLabel.font = .subHeadingMedium
     }
     
     private func registerNib() {
