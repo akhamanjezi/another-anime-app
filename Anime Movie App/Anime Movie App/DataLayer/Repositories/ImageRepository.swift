@@ -16,10 +16,10 @@ class ImageRepository {
             return
         }
         
-        imageDownloader.downloadImage(from: url) { result in
+        imageDownloader.downloadImage(from: url) { [weak self] result in
             switch result {
             case .success(let image):
-                self.storage.setObject(image, forKey: url)
+                self?.storage.setObject(image, forKey: url)
                 completion(anime, image)
             case .failure(_):
                 completion(anime, UIImage(systemName: "popcorn.circle"))
