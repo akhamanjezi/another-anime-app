@@ -5,7 +5,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet private weak var featureImageView: UIImageView!
     @IBOutlet private weak var favouritesLabel: UILabel!
     @IBOutlet private weak var featureLabel: UILabel!
-    @IBOutlet weak var reloadButton: UIButton!
+    @IBOutlet private weak var reloadButton: UIButton!
     private let viewModel = HomeViewModel(animeRepository: KitsuRepository(), imageRepository: ImageRepository())
     
     override func viewDidLoad() {
