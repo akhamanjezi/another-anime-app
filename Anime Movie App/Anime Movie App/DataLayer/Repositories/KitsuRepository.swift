@@ -92,7 +92,11 @@ class KitsuRepository: AnimeRepository {
     }
     
     private func convertToAnime(from response: KitsuResponse) -> [Anime] {
-        let converted = (response.data ?? []).compactMap { kitsuResult in
+        guard let kitsuResults = response.data else {
+            return []
+        }
+        
+        let converted = kitsuResults.compactMap { kitsuResult in
             responseToAnimeMapper.mapToAnime(from: kitsuResult)
         }
         
