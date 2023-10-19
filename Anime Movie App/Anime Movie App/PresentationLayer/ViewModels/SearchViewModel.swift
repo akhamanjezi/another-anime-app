@@ -5,7 +5,7 @@ class SearchViewModel {
     var currentSearchTerm = ""
     
     let numberOfSections = 1
-    var animeSearchResults: Observable<AnimeRepository.SearchResultsType> = Observable(("", []))
+    var animeSearchResults: Observable<[String: [Anime]]> = Observable([:])
     var isSearching: Observable<Bool> = Observable(false)
     var searchingError: Observable<LocalizedError?> = Observable(nil)
     var searchQueue = OperationQueue()
@@ -18,9 +18,14 @@ class SearchViewModel {
     func search(for searchTerm: String) {
         isSearching.value = true
         searchingError.value = nil
-        currentSearchTerm = searchTerm
+        currentSearchTerm = searchTerm.lowercased()
         
-        animeRepository.searchResults(for: searchTerm) { [weak self] result in
+        guard nil == animeSearchResults.value[searchTerm.lowercased()] else {
+            isSearching.value = false
+            return
+        }
+        
+        animeRepository.searchResults(for: searchTerm.lowercased()) { [weak self] result in
             switch result {
             case .success(let results):
                 self?.updateSearchResults(results)
@@ -32,6 +37,7 @@ class SearchViewModel {
     
     func cancelSearch() {
         updateSearchResults(("", []))
+        currentSearchTerm = ""
         searchingError.value = nil
         isSearching.value = false
     }
@@ -42,8 +48,8 @@ class SearchViewModel {
         }
     }
     
-    private func updateSearchResults(_ results: AnimeRepository.SearchResultsType) {
-        animeSearchResults.value = results
+    private func updateSearchResults(_ search: AnimeRepository.SearchResultsType) {
+        animeSearchResults.value[search.term] = search.results
         isSearching.value = false
     }
     
