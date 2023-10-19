@@ -21,6 +21,10 @@
 		1970AA032AE00489008A8377 /* UIButtonConfiguration+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970AA022AE00489008A8377 /* UIButtonConfiguration+Extension.swift */; };
 		1970AA042AE00DD2008A8377 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191774152AD7C2C600AF1FAD /* SearchTableViewCell.swift */; };
 		1970AA052AE00DEB008A8377 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811E12AD9677D00F3DACE /* UIFont+Extension.swift */; };
+		1970AA0E2AE12A96008A8377 /* ImageRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970AA0D2AE12A96008A8377 /* ImageRole.swift */; };
+		1970AA0F2AE12B9E008A8377 /* ImageRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970AA0D2AE12A96008A8377 /* ImageRole.swift */; };
+		1970AA112AE138A4008A8377 /* get_nil_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1970AA102AE13895008A8377 /* get_nil_data.json */; };
+		1970AA132AE13ABC008A8377 /* search_nil_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1970AA122AE13AA8008A8377 /* search_nil_data.json */; };
 		1970AA082AE05E80008A8377 /* ImageDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970AA072AE05E80008A8377 /* ImageDescriptionTableViewCell.swift */; };
 		1970AA092AE06199008A8377 /* ImageDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1970AA062AE05E66008A8377 /* ImageDescriptionTableViewCell.xib */; };
 		198577532AD3E0550025F615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577522AD3E0550025F615 /* AppDelegate.swift */; };
@@ -124,6 +128,9 @@
 		1970A9F52ADEB2CF008A8377 /* TitleDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		1970A9F82ADFA36B008A8377 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		1970AA022AE00489008A8377 /* UIButtonConfiguration+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButtonConfiguration+Extension.swift"; sourceTree = "<group>"; };
+		1970AA0D2AE12A96008A8377 /* ImageRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRole.swift; sourceTree = "<group>"; };
+		1970AA102AE13895008A8377 /* get_nil_data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = get_nil_data.json; sourceTree = "<group>"; };
+		1970AA122AE13AA8008A8377 /* search_nil_data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_nil_data.json; sourceTree = "<group>"; };
 		1970AA062AE05E66008A8377 /* ImageDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		1970AA072AE05E80008A8377 /* ImageDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		1985774F2AD3E0550025F615 /* Anime Movie App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anime Movie App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -428,8 +435,10 @@
 			children = (
 				19ADADA02AD674D100663A6E /* search_spirited_away.json */,
 				19ADADAB2AD6AE7300663A6E /* search_not_an_anime.json */,
+				1970AA122AE13AA8008A8377 /* search_nil_data.json */,
 				198A26E32ADD3C4B00F5EFC5 /* get_spirited_away.json */,
 				198A26E42ADD3C7000F5EFC5 /* get_no_result.json */,
+				1970AA102AE13895008A8377 /* get_nil_data.json */,
 				19ADADA22AD6862E00663A6E /* null.json */,
 			);
 			path = Responses;
@@ -441,6 +450,7 @@
 				19ADAD932AD56DE500663A6E /* Observable.swift */,
 				19ADAD7D2AD53FAD00663A6E /* Anime.swift */,
 				198A26F02ADD86DD00F5EFC5 /* Section.swift */,
+				1970AA0D2AE12A96008A8377 /* ImageRole.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -557,10 +567,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1970AA112AE138A4008A8377 /* get_nil_data.json in Resources */,
 				19ADADAC2AD6AF7E00663A6E /* search_not_an_anime.json in Resources */,
 				19ADADA42AD6896E00663A6E /* null.json in Resources */,
 				198A26E52ADD3F8100F5EFC5 /* get_spirited_away.json in Resources */,
 				198A26E62ADD3F8400F5EFC5 /* get_no_result.json in Resources */,
+				1970AA132AE13ABC008A8377 /* search_nil_data.json in Resources */,
 				198A270A2ADE934100F5EFC5 /* Assets.xcassets in Resources */,
 				19ADADA12AD674D100663A6E /* search_spirited_away.json in Resources */,
 			);
@@ -586,6 +598,7 @@
 				1970A9F92ADFA36B008A8377 /* DetailsViewModel.swift in Sources */,
 				19ADAD712AD51C0E00663A6E /* LocalizedError.swift in Sources */,
 				19ADAD5F2AD4296800663A6E /* KitsuProvider.swift in Sources */,
+				1970AA0E2AE12A96008A8377 /* ImageRole.swift in Sources */,
 				19ADAD7E2AD53FAD00663A6E /* Anime.swift in Sources */,
 				19B811E42AD96B0300F3DACE /* HomeViewModel.swift in Sources */,
 				198A26DF2ADD015200F5EFC5 /* Array+Extension.swift in Sources */,
@@ -624,6 +637,7 @@
 				19ADAD952AD56DE500663A6E /* Observable.swift in Sources */,
 				19ADAD9E2AD66DCF00663A6E /* KitsuRepositoryTests.swift in Sources */,
 				19ADAD7A2AD5255800663A6E /* JSONNull.swift in Sources */,
+				1970AA0F2AE12B9E008A8377 /* ImageRole.swift in Sources */,
 				198A27062ADE8DC900F5EFC5 /* ImageRepositoryTests.swift in Sources */,
 				198A26E82ADD470500F5EFC5 /* HomeViewModelTests.swift in Sources */,
 				19ADAD742AD5250300663A6E /* LocalizedError.swift in Sources */,

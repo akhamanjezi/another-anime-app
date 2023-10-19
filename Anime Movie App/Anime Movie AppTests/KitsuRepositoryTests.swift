@@ -9,10 +9,9 @@ final class KitsuRepositoryTests: XCTestCase {
     }
     
     private func initSystemUnderTest(dataProvider: DataProviding) {
-        systemUnderTest = KitsuRepository(dataProvider: dataProvider)
+        systemUnderTest = KitsuRepository(dataProvider: dataProvider, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
         XCTAssertNotNil(systemUnderTest)
     }
-    
     
     // MARK: Search
     
@@ -52,7 +51,7 @@ final class KitsuRepositoryTests: XCTestCase {
         systemUnderTest?.searchResults(for: "") { result in
             switch result {
             case .success(let data):
-                let actual = data[0]
+                let actual = data.results[0]
                 XCTAssertEqual(expected, actual)
             case .failure(_):
                 XCTFail("Unexpected unsuccessful call")
@@ -68,7 +67,7 @@ final class KitsuRepositoryTests: XCTestCase {
         systemUnderTest?.searchResults(for: "") { result in
             switch result {
             case .success(let data):
-                let actual = data.count
+                let actual = data.results.count
                 XCTAssertEqual(expected, actual)
             case .failure(_):
                 XCTFail("Unexpected unsuccessful call")
@@ -87,6 +86,22 @@ final class KitsuRepositoryTests: XCTestCase {
                 XCTFail("Unexpected successful call")
             case .failure(let actual):
                 XCTAssertEqual(expected, actual)
+            }
+        }
+    }
+    
+    func testSuccessfulSearchAnimeReturnNilData() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulNilDataKitsuSearchDataProvider)
+        
+        let expected: [Anime] = []
+        
+        systemUnderTest?.searchResults(for: "") { result in
+            switch result {
+            case .success(let result):
+                let actual = result.results
+                XCTAssertEqual(expected, actual)
+            case .failure(_):
+                XCTFail("Unexpected unsuccessful call")
             }
         }
     }
@@ -164,6 +179,63 @@ final class KitsuRepositoryTests: XCTestCase {
             case .failure(let actual):
                 XCTAssertEqual(expected, actual)
             }
+        }
+    }
+    
+    func testSuccessfulAnimeByIdAnimeReturnNilData() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulNilDataKitsuAnimeByIDDataProvider)
+        
+        let expected = LocalizedError.invalidResponse
+        
+        systemUnderTest?.anime(by: "") { result in
+            switch result {
+            case .success(_):
+                XCTFail("Unexpected successful call")
+            case .failure(let actual):
+                XCTAssertEqual(expected, actual)
+            }
+        }
+    }
+    
+    // MARK: Image Download
+    
+    func testSuccessfulCoverImageDownload() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.spiritedAwayCoverImage
+        
+        systemUnderTest?.downloadImage(.cover, for: AnimeTestDataProvider.validAnimeInstance) { image in
+            let actual = image
+            XCTAssertEqual(expected, actual)
+        }
+    }
+    
+    func testSuccessfulPosterImageDownload() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.spiritedAwayPosterImage
+        
+        systemUnderTest?.downloadImage(.poster, for: AnimeTestDataProvider.validAnimeInstance) { image in
+            let actual = image
+            XCTAssertEqual(expected, actual)
+        }
+    }
+    
+    func testUnsuccessfulCoverImageDownload() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.popcornPlaceholderImage
+        
+        systemUnderTest?.downloadImage(.cover, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
+            let actual = image
+            XCTAssertEqual(expected, actual)
+        }
+    }
+    
+    func testUnsuccessfulPosterImageDownload() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.popcornPlaceholderImage
+        
+        systemUnderTest?.downloadImage(.cover, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
+            let actual = image
+            XCTAssertEqual(expected, actual)
         }
     }
 }

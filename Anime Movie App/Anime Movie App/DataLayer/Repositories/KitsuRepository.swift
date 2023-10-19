@@ -1,15 +1,17 @@
-import Foundation
+import UIKit
 
 class KitsuRepository: AnimeRepository {
     private let dataProvider: DataProviding
     private let responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult>
+    private let imageRepository: ImageRepository
     
-    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper()) {
+    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(), imageRepository: ImageRepository = ImageRepository()) {
         self.dataProvider = dataProvider
         self.responseToAnimeMapper = responseToAnimeMapper
+        self.imageRepository = imageRepository
     }
     
-    func searchResults(for term: String, completion: @escaping (Result<[Anime], LocalizedError>) -> ()) {
+    func searchResults(for term: String, completion: @escaping (Result<AnimeRepository.SearchResultsType, LocalizedError>) -> ()) {
         dataProvider.search(for: term) { [weak self] result in
             switch result {
             case .success(let responseData):
@@ -18,14 +20,14 @@ class KitsuRepository: AnimeRepository {
                     return
                 }
                 
-                completion(.success(anime))
+                completion(.success((term, anime)))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    func anime(by id: String, completion: @escaping (Result<Anime?, LocalizedError>) -> ()) {
+    func anime(by id: String, completion: @escaping (Result<Anime, LocalizedError>) -> ()) {
         dataProvider.getAnime(by: id) { [weak self] result in
             switch result {
             case .success(let responseData):
@@ -38,13 +40,34 @@ class KitsuRepository: AnimeRepository {
         }
     }
     
-    private func handleSearchSuccess(for responseData: Data, completion: @escaping (Result<Anime?, LocalizedError>) -> ()) {
-        guard let anime = decodeAndConvert(responseData, from: KitsuResponseSingle.self) else {
+    func downloadImage(_ role: ImageRole, for anime: Anime, completion: @escaping (UIImage?) -> ()) {
+        guard let imageURL = imageURL(of: anime, for: role) else {
+            completion(UIImage(systemName: "popcorn.circle"))
+            return
+        }
+        
+        imageRepository.image(from: imageURL, for: anime) { anime, image in
+            completion(image)
+        }
+    }
+    
+    private func imageURL(of anime: Anime, for role: ImageRole) -> NSURL? {
+        switch role {
+        case .cover:
+            return anime.coverImageURL == nil ? nil : NSURL(string: anime.coverImageURL!)
+        case .poster:
+            return anime.posterImageURL == nil ? nil : NSURL(string: anime.posterImageURL!)
+        }
+    }
+    
+    private func handleSearchSuccess(for responseData: Data, completion: @escaping (Result<Anime, LocalizedError>) -> ()) {
+        guard let animeArray = decodeAndConvert(responseData, from: KitsuResponseSingle.self),
+              let anime = animeArray[safe: 0] else {
             completion(.failure(.invalidResponse))
             return
         }
         
-        completion(.success(anime[safe: 0]))
+        completion(.success(anime))
     }
     
     private func decodeAndConvert<T>(_ responseData: Data, from type: T.Type) -> [Anime]? where T : Decodable {
@@ -69,7 +92,11 @@ class KitsuRepository: AnimeRepository {
     }
     
     private func convertToAnime(from response: KitsuResponse) -> [Anime] {
-        let converted = (response.data ?? []).compactMap { kitsuResult in
+        guard let kitsuResults = response.data else {
+            return []
+        }
+        
+        let converted = kitsuResults.compactMap { kitsuResult in
             responseToAnimeMapper.mapToAnime(from: kitsuResult)
         }
         

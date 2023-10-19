@@ -46,7 +46,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         searchController.delegate = searchTableViewController
         searchController.searchBar.delegate = searchTableViewController
         
-        self.navigationItem.searchController = searchController
+        navigationItem.searchController = searchController
     }
     
     private func bindWithViewModel() {
@@ -80,13 +80,12 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         reloadButton.configurationUpdateHandler = reloadButtonConfigHandler
     }
     
-    private func updateFeatureAnime() {
-        viewModel.newFeatureAnime()
+    @IBAction private func refreshAnime(_ sender: Any) {
+        updateFeatureAnime()
     }
     
-    
-    @IBAction func refreshAnime(_ sender: Any) {
-        updateFeatureAnime()
+    private func updateFeatureAnime() {
+        viewModel.newFeatureAnime()
     }
 }
 

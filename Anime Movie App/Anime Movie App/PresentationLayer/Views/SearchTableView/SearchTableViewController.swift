@@ -2,6 +2,7 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
     private let viewModel = SearchViewModel()
+    private var dataSource: UITableViewDiffableDataSource<Section, Anime>! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +24,11 @@ class SearchTableViewController: UITableViewController {
     }
     
     private func bindWithViewModel() {
-        viewModel.animeSearchResults.bind { anime in
-            self.updateDataSource()
+        viewModel.animeSearchResults.bind { [weak self] searchResults in
+            guard self?.viewModel.currentSearchTerm == searchResults.term else {
+                return
+            }
+            self?.updateDataSource()
         }
     }
     
@@ -40,15 +44,53 @@ class SearchTableViewController: UITableViewController {
     private func updateDataSource() {
         var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Anime>()
         initialSnapshot.appendSections([.main])
-        initialSnapshot.appendItems(viewModel.animeSearchResults.value)
+        initialSnapshot.appendItems(viewModel.animeSearchResults.value.results)
         DispatchQueue.main.async {
-            self.viewModel.dataSource.apply(initialSnapshot, animatingDifferences: true)
+            self.dataSource.apply(initialSnapshot, animatingDifferences: true)
         }
     }
     
     private func setupDataSource() {
-        viewModel.dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView, cellProvider: viewModel.resultCellProvider)
-        viewModel.dataSource.defaultRowAnimation = .fade
+        dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView, cellProvider: resultCellProvider)
+        dataSource.defaultRowAnimation = .fade
+    }
+    
+    private var resultCellProvider: UITableViewDiffableDataSource<Section, Anime>.CellProvider {
+        return { [weak self]
+            (tableView: UITableView, indexPath: IndexPath, item: Anime) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath)  as! SearchTableViewCell
+            
+            self?.viewModel.downloadImage(for: item) { image in
+                self?.updateImageAndApplySnapshot(for: item, with: image)
+            }
+            
+            cell.configureCell(for: item)
+            return cell
+        }
+    }
+    
+    private func updateImageAndApplySnapshot(for anime: Anime, with image: UIImage?) {
+        guard let img = image, img != anime.posterImage else {
+            return
+        }
+        
+        var updatedSnapshot = dataSource.snapshot()
+        
+        guard let datasourceIndex = updatedSnapshot.indexOfItem(anime) else {
+            return
+        }
+        
+        guard let item = viewModel.animeSearchResults.value.results[safe: datasourceIndex],
+              item == anime else {
+            return
+        }
+        
+        item.posterImage = img
+        
+        updatedSnapshot.reloadItems([item])
+        DispatchQueue.main.async {
+            self.dataSource.apply(updatedSnapshot, animatingDifferences: false)
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,7 +98,7 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.animeSearchResults.value.count
+        return viewModel.animeSearchResults.value.results.count
     }
 }
 
