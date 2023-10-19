@@ -9,7 +9,7 @@ class SearchViewModel {
     var isSearching: Observable<Bool> = Observable(false)
     var searchingError: Observable<LocalizedError?> = Observable(nil)
     var searchQueue = OperationQueue()
-    var dataSource: UITableViewDiffableDataSource<Section, Anime>! = nil
+    
     
     init(animeRepository: AnimeRepository = KitsuRepository()) {
         self.animeRepository = animeRepository
@@ -40,33 +40,9 @@ class SearchViewModel {
         isSearching.value = false
     }
     
-    func downloadImage(from url: NSURL, for item: Anime) {
+    func downloadImage(from url: NSURL, for item: Anime, completion: @escaping (UIImage?) -> ()) {
         animeRepository.downloadImage(for: item) { [weak self] image in
-            self?.updateImageAndApplySnapshot(for: item, with: image)
-        }
-    }
-    
-    private func updateImageAndApplySnapshot(for anime: Anime, with image: UIImage?) {
-        guard let img = image, img != anime.posterImage else {
-            return
-        }
-        
-        var updatedSnapshot = dataSource.snapshot()
-        
-        guard let datasourceIndex = updatedSnapshot.indexOfItem(anime) else {
-            return
-        }
-        
-        guard let item = animeSearchResults.value[safe: datasourceIndex],
-              item == anime else {
-            return
-        }
-        
-        item.posterImage = img
-        
-        updatedSnapshot.reloadItems([item])
-        DispatchQueue.main.async {
-            self.dataSource.apply(updatedSnapshot, animatingDifferences: false)
+            completion(image)
         }
     }
     

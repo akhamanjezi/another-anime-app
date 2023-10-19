@@ -2,6 +2,7 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
     private let viewModel = SearchViewModel()
+    private var dataSource: UITableViewDiffableDataSource<Section, Anime>! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +33,13 @@ class SearchTableViewController: UITableViewController {
         initialSnapshot.appendSections([.main])
         initialSnapshot.appendItems(viewModel.animeSearchResults.value)
         DispatchQueue.main.async {
-            self.viewModel.dataSource.apply(initialSnapshot, animatingDifferences: true)
+            self.dataSource.apply(initialSnapshot, animatingDifferences: true)
         }
     }
     
     private func setupDataSource() {
-        viewModel.dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView, cellProvider: resultCellProvider)
-        viewModel.dataSource.defaultRowAnimation = .fade
+        dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView, cellProvider: resultCellProvider)
+        dataSource.defaultRowAnimation = .fade
     }
     
     private var resultCellProvider: UITableViewDiffableDataSource<Section, Anime>.CellProvider {
@@ -46,9 +47,36 @@ class SearchTableViewController: UITableViewController {
             (tableView: UITableView, indexPath: IndexPath, item: Anime) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath)  as! SearchTableViewCell
             
-            self?.viewModel.downloadImage(from: NSURL(string: item.posterImageURL ?? "")!, for: item)
+            self?.viewModel.downloadImage(from: NSURL(string: item.posterImageURL ?? "")!, for: item) { image in
+                self?.updateImageAndApplySnapshot(for: item, with: image)
+            }
+            
             cell.configureCell(for: item)
             return cell
+        }
+    }
+    
+    private func updateImageAndApplySnapshot(for anime: Anime, with image: UIImage?) {
+        guard let img = image, img != anime.posterImage else {
+            return
+        }
+        
+        var updatedSnapshot = dataSource.snapshot()
+        
+        guard let datasourceIndex = updatedSnapshot.indexOfItem(anime) else {
+            return
+        }
+        
+        guard let item = viewModel.animeSearchResults.value[safe: datasourceIndex],
+              item == anime else {
+            return
+        }
+        
+        item.posterImage = img
+        
+        updatedSnapshot.reloadItems([item])
+        DispatchQueue.main.async {
+            self.dataSource.apply(updatedSnapshot, animatingDifferences: false)
         }
     }
     
