@@ -9,7 +9,7 @@ final class KitsuRepositoryTests: XCTestCase {
     }
     
     private func initSystemUnderTest(dataProvider: DataProviding) {
-        systemUnderTest = KitsuRepository(dataProvider: dataProvider)
+        systemUnderTest = KitsuRepository(dataProvider: dataProvider, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
         XCTAssertNotNil(systemUnderTest)
     }
     
