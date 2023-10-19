@@ -7,7 +7,7 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet private weak var releaseDateLabel: UILabel!
     @IBOutlet private weak var detailsStackView: UIStackView!
     
-    static let cellIdentifier = "searchTableViewCell"
+    static let cellIdentifier = String(describing: SearchTableViewCell.self)
     
     override func awakeFromNib() {
         super.awakeFromNib()
