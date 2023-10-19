@@ -83,6 +83,18 @@ final class SearchViewModelTests: XCTestCase {
         XCTAssertNil(actual)
     }
     
+    func testRepeatSearchUsesDictionaryLookup() {
+        let (animeSearchResults, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        
+        let expected = 3
+        var actual: Int? = animeSearchResults?.count
+        XCTAssertEqual(expected, actual)
+        
+        systemUnderTest?.search(for: "spirited away")
+        actual = systemUnderTest?.animeSearchResults.value["spirited away"]?.count
+        XCTAssertEqual(expected, actual)
+    }
+    
     func testSuccessfulImageDownload() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         let expected = AnimeTestDataProvider.spiritedAwayPosterImage
