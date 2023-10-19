@@ -13,7 +13,6 @@ final class KitsuRepositoryTests: XCTestCase {
         XCTAssertNotNil(systemUnderTest)
     }
     
-    
     // MARK: Search
     
     func testSuccessfulSearchWithNotNullData() {
