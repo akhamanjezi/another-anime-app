@@ -36,6 +36,8 @@ class SearchViewModel {
     
     func cancelSearch() {
         updateSearchResults(with: [])
+        searchingError.value = nil
+        isSearching.value = false
     }
     
     func downloadImage(from url: NSURL, for item: Anime) {
