@@ -5,7 +5,7 @@ class SearchViewModel {
     var currentSearchTerm = ""
     
     let numberOfSections = 1
-    var animeSearchResults: Observable<[String: [Anime]]> = Observable([:])
+    var animeSearchResults: Observable<[String: [Anime]]> = Observable(["":[]])
     var isSearching: Observable<Bool> = Observable(false)
     var searchingError: Observable<LocalizedError?> = Observable(nil)
     var searchQueue = OperationQueue()
@@ -36,7 +36,7 @@ class SearchViewModel {
     }
     
     func cancelSearch() {
-        updateSearchResults(("", []))
+        animeSearchResults.value = (["":[]])
         currentSearchTerm = ""
         searchingError.value = nil
         isSearching.value = false
