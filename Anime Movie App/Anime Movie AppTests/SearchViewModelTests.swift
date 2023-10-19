@@ -69,7 +69,7 @@ final class SearchViewModelTests: XCTestCase {
         systemUnderTest?.cancelSearch()
         
         expected = 0
-        actual = systemUnderTest?.animeSearchResults.value.count
+        actual = systemUnderTest?.animeSearchResults.value.results.count
         XCTAssertEqual(expected, actual)
     }
     
@@ -115,6 +115,6 @@ final class SearchViewModelTests: XCTestCase {
         initSystemUnderTest(dataProvider: dataProvider)
         systemUnderTest!.search(for: "")
         
-        return (systemUnderTest!.animeSearchResults.value, systemUnderTest!.searchingError.value)
+        return (systemUnderTest!.animeSearchResults.value.results, systemUnderTest!.searchingError.value)
     }
 }

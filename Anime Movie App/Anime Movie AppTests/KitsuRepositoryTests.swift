@@ -51,7 +51,7 @@ final class KitsuRepositoryTests: XCTestCase {
         systemUnderTest?.searchResults(for: "") { result in
             switch result {
             case .success(let data):
-                let actual = data[0]
+                let actual = data.results[0]
                 XCTAssertEqual(expected, actual)
             case .failure(_):
                 XCTFail("Unexpected unsuccessful call")
@@ -67,7 +67,7 @@ final class KitsuRepositoryTests: XCTestCase {
         systemUnderTest?.searchResults(for: "") { result in
             switch result {
             case .success(let data):
-                let actual = data.count
+                let actual = data.results.count
                 XCTAssertEqual(expected, actual)
             case .failure(_):
                 XCTFail("Unexpected unsuccessful call")
@@ -98,7 +98,7 @@ final class KitsuRepositoryTests: XCTestCase {
         systemUnderTest?.searchResults(for: "") { result in
             switch result {
             case .success(let result):
-                let actual = result.1
+                let actual = result.results
                 XCTAssertEqual(expected, actual)
             case .failure(_):
                 XCTFail("Unexpected unsuccessful call")

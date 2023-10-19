@@ -23,15 +23,18 @@ class SearchTableViewController: UITableViewController {
     }
     
     private func bindWithViewModel() {
-        viewModel.animeSearchResults.bind { anime in
-            self.updateDataSource()
+        viewModel.animeSearchResults.bind { [weak self] searchResults in
+            guard self?.viewModel.currentSearchTerm == searchResults.term else {
+                return
+            }
+            self?.updateDataSource()
         }
     }
     
     private func updateDataSource() {
         var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Anime>()
         initialSnapshot.appendSections([.main])
-        initialSnapshot.appendItems(viewModel.animeSearchResults.value)
+        initialSnapshot.appendItems(viewModel.animeSearchResults.value.results)
         DispatchQueue.main.async {
             self.dataSource.apply(initialSnapshot, animatingDifferences: true)
         }
@@ -67,7 +70,7 @@ class SearchTableViewController: UITableViewController {
             return
         }
         
-        guard let item = viewModel.animeSearchResults.value[safe: datasourceIndex],
+        guard let item = viewModel.animeSearchResults.value.results[safe: datasourceIndex],
               item == anime else {
             return
         }
@@ -85,7 +88,7 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.animeSearchResults.value.count
+        return viewModel.animeSearchResults.value.results.count
     }
 }
 

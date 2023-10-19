@@ -11,7 +11,7 @@ class KitsuRepository: AnimeRepository {
         self.imageRepository = imageRepository
     }
     
-    func searchResults(for term: String, completion: @escaping (Result<[Anime], LocalizedError>) -> ()) {
+    func searchResults(for term: String, completion: @escaping (Result<AnimeRepository.SearchResultsType, LocalizedError>) -> ()) {
         dataProvider.search(for: term) { [weak self] result in
             switch result {
             case .success(let responseData):
@@ -20,7 +20,7 @@ class KitsuRepository: AnimeRepository {
                     return
                 }
                 
-                completion(.success(anime))
+                completion(.success((term, anime)))
             case .failure(let error):
                 completion(.failure(error))
             }
