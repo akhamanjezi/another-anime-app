@@ -32,12 +32,13 @@ final class SearchViewModelTests: XCTestCase {
         
         XCTAssertNil(searchingError)
         
-        if animeSearchResults.count > 0 {
-            let actual = animeSearchResults[0]
-            XCTAssertEqual(expected, actual)
-        } else {
+        guard animeSearchResults.count > 0 else {
             XCTFail("Unexpected empty anime result")
+            return
         }
+        
+        let actual = animeSearchResults[0]
+        XCTAssertEqual(expected, actual)
     }
     
     func testSuccessfulAnimeReturnNoResults() {
