@@ -37,8 +37,19 @@ class SearchTableViewController: UITableViewController {
     }
     
     private func setupDataSource() {
-        viewModel.dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView, cellProvider: viewModel.resultCellProvider)
+        viewModel.dataSource = UITableViewDiffableDataSource<Section, Anime>(tableView: tableView, cellProvider: resultCellProvider)
         viewModel.dataSource.defaultRowAnimation = .fade
+    }
+    
+    private var resultCellProvider: UITableViewDiffableDataSource<Section, Anime>.CellProvider {
+        return { [weak self]
+            (tableView: UITableView, indexPath: IndexPath, item: Anime) -> UITableViewCell? in
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath)  as! SearchTableViewCell
+            
+            self?.viewModel.downloadImage(from: NSURL(string: item.posterImageURL ?? "")!, for: item)
+            cell.configureCell(for: item)
+            return cell
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
