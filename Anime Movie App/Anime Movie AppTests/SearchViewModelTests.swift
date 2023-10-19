@@ -84,6 +84,26 @@ final class SearchViewModelTests: XCTestCase {
         XCTAssertNil(actual)
     }
     
+    func testSuccessfulImageDownload() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.spiritedAwayPosterImage
+        
+        systemUnderTest?.downloadImage(for: AnimeTestDataProvider.validAnimeInstance) { image in
+            let actual = image
+            XCTAssertEqual(expected, actual)
+        }
+    }
+    
+    func testUnSuccessfulImageDownload() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.popcornPlaceholderImage
+        
+        systemUnderTest?.downloadImage(for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
+            let actual = image
+            XCTAssertEqual(expected, actual)
+        }
+    }
+    
     private func initSystemUnderTest(dataProvider: DataProviding) {
         let kitsuRepo = KitsuRepository(dataProvider: dataProvider, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
         systemUnderTest = SearchViewModel(animeRepository: kitsuRepo)
