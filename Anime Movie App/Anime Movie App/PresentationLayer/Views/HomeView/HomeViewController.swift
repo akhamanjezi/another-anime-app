@@ -46,7 +46,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         searchController.delegate = searchTableViewController
         searchController.searchBar.delegate = searchTableViewController
         
-        self.navigationItem.searchController = searchController
+        navigationItem.searchController = searchController
     }
     
     private func bindWithViewModel() {
