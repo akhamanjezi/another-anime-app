@@ -1,12 +1,15 @@
 import Foundation
+import UIKit
 
 class KitsuRepository: AnimeRepository {
     private let dataProvider: DataProviding
     private let responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult>
+    private let imageRepository: ImageRepository
     
-    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper()) {
+    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(), imageRepository: ImageRepository = ImageRepository()) {
         self.dataProvider = dataProvider
         self.responseToAnimeMapper = responseToAnimeMapper
+        self.imageRepository = imageRepository
     }
     
     func searchResults(for term: String, completion: @escaping (Result<[Anime], LocalizedError>) -> ()) {
@@ -35,6 +38,17 @@ class KitsuRepository: AnimeRepository {
             case .failure(let error):
                 completion(.failure(error))
             }
+        }
+    }
+    
+    func downloadImage(for anime: Anime, completion: @escaping (UIImage?) -> ()) {
+        guard let imageURL = anime.coverImageURL, let imageURL = NSURL(string: imageURL) else {
+            completion(UIImage(systemName: "popcorn.circle"))
+            return
+        }
+        
+        imageRepository.image(from: imageURL, for: anime) { anime, image in
+            completion(image)
         }
     }
     

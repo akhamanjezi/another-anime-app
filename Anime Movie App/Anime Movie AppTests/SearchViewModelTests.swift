@@ -59,8 +59,8 @@ final class SearchViewModelTests: XCTestCase {
     }
     
     private func initSystemUnderTest(dataProvider: DataProviding) {
-        let kitsuRepo = KitsuRepository(dataProvider: dataProvider)
-        systemUnderTest = SearchViewModel(animeRepository: kitsuRepo, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
+        let kitsuRepo = KitsuRepository(dataProvider: dataProvider, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
+        systemUnderTest = SearchViewModel(animeRepository: kitsuRepo)
         XCTAssertNotNil(systemUnderTest)
     }
     

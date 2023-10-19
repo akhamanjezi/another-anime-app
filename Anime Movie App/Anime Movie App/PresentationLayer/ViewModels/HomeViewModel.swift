@@ -3,16 +3,14 @@ import UIKit
 
 class HomeViewModel {
     private let animeRepository: AnimeRepository
-    private let imageRepository: ImageRepository
     
     var featureAnime: Observable<Anime?> = Observable(nil)
     var isFetching: Observable<Bool> = Observable(false)
     var fetchingError: Observable<LocalizedError?> = Observable(nil)
     var favourites: Observable<[Anime]> = Observable(Array(repeating: Anime.placeholder, count: 6))
     
-    init(animeRepository: AnimeRepository = KitsuRepository(), imageRepository: ImageRepository = ImageRepository()) {
+    init(animeRepository: AnimeRepository = KitsuRepository()) {
         self.animeRepository = animeRepository
-        self.imageRepository = imageRepository
     }
     
     func newFeatureAnime() {
@@ -43,11 +41,7 @@ class HomeViewModel {
     }
     
     private func downloadImage(for anime: Anime) {
-        guard let imageURL = anime.coverImageURL, let imageURL = NSURL(string: imageURL) else {
-            return
-        }
-        
-        imageRepository.image(from: imageURL, for: anime) { [weak self] anime, image in
+        animeRepository.downloadImage(for: anime) { [weak self] image in
             self?.setCoverImage(for: anime, to: image)
         }
     }

@@ -3,19 +3,17 @@ import UIKit
 
 class SearchViewModel {
     private let animeRepository: AnimeRepository
-    private let imageRepository: ImageRepository
+    private var currentSearchTerm = ""
     
     let numberOfSections = 1
     var animeSearchResults: Observable<[Anime]> = Observable([])
     var isSearching: Observable<Bool> = Observable(false)
     var searchingError: Observable<LocalizedError?> = Observable(nil)
     var searchQueue = OperationQueue()
-    private var currentSearchTerm = ""
     var dataSource: UITableViewDiffableDataSource<Section, Anime>! = nil
     
-    init(animeRepository: AnimeRepository = KitsuRepository(), imageRepository: ImageRepository = ImageRepository()) {
+    init(animeRepository: AnimeRepository = KitsuRepository()) {
         self.animeRepository = animeRepository
-        self.imageRepository = imageRepository
     }
     
     func search(for searchTerm: String) {
@@ -53,8 +51,8 @@ class SearchViewModel {
     }
     
     private func downloadImage(from url: NSURL, for item: Anime) {
-        imageRepository.image(from: url, for: item) { [weak self] anime, image in
-            self?.updateImageAndApplySnapshot(for: anime, with: image)
+        animeRepository.downloadImage(for: item) { [weak self] image in
+            self?.updateImageAndApplySnapshot(for: item, with: image)
         }
     }
     
