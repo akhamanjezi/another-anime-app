@@ -84,7 +84,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         viewModel.newFeatureAnime()
     }
     
-    
     @IBAction func refreshAnime(_ sender: Any) {
         updateFeatureAnime()
     }
