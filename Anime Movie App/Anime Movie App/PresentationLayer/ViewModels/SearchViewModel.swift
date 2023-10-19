@@ -41,7 +41,7 @@ class SearchViewModel {
     }
     
     func downloadImage(from url: NSURL, for item: Anime, completion: @escaping (UIImage?) -> ()) {
-        animeRepository.downloadImage(for: item) { [weak self] image in
+        animeRepository.downloadImage(.poster, for: item) { image in
             completion(image)
         }
     }

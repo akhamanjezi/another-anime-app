@@ -18,6 +18,8 @@
 		1970AA032AE00489008A8377 /* UIButtonConfiguration+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970AA022AE00489008A8377 /* UIButtonConfiguration+Extension.swift */; };
 		1970AA042AE00DD2008A8377 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191774152AD7C2C600AF1FAD /* SearchTableViewCell.swift */; };
 		1970AA052AE00DEB008A8377 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811E12AD9677D00F3DACE /* UIFont+Extension.swift */; };
+		1970AA0E2AE12A96008A8377 /* ImageRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970AA0D2AE12A96008A8377 /* ImageRole.swift */; };
+		1970AA0F2AE12B9E008A8377 /* ImageRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970AA0D2AE12A96008A8377 /* ImageRole.swift */; };
 		198577532AD3E0550025F615 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198577522AD3E0550025F615 /* AppDelegate.swift */; };
 		1985775C2AD3E0570025F615 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1985775B2AD3E0570025F615 /* Assets.xcassets */; };
 		1985775F2AD3E0570025F615 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1985775D2AD3E0570025F615 /* LaunchScreen.storyboard */; };
@@ -114,6 +116,7 @@
 		191774162AD7C2C600AF1FAD /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		191774192AD7C4E900AF1FAD /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		1970AA022AE00489008A8377 /* UIButtonConfiguration+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButtonConfiguration+Extension.swift"; sourceTree = "<group>"; };
+		1970AA0D2AE12A96008A8377 /* ImageRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRole.swift; sourceTree = "<group>"; };
 		1985774F2AD3E0550025F615 /* Anime Movie App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anime Movie App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		198577522AD3E0550025F615 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1985775B2AD3E0570025F615 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -388,6 +391,7 @@
 				19ADAD932AD56DE500663A6E /* Observable.swift */,
 				19ADAD7D2AD53FAD00663A6E /* Anime.swift */,
 				198A26F02ADD86DD00F5EFC5 /* Section.swift */,
+				1970AA0D2AE12A96008A8377 /* ImageRole.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -528,6 +532,7 @@
 				19ADAD872AD547E400663A6E /* String+Extension.swift in Sources */,
 				19ADAD712AD51C0E00663A6E /* LocalizedError.swift in Sources */,
 				19ADAD5F2AD4296800663A6E /* KitsuProvider.swift in Sources */,
+				1970AA0E2AE12A96008A8377 /* ImageRole.swift in Sources */,
 				19ADAD7E2AD53FAD00663A6E /* Anime.swift in Sources */,
 				19B811E42AD96B0300F3DACE /* HomeViewModel.swift in Sources */,
 				198A26DF2ADD015200F5EFC5 /* Array+Extension.swift in Sources */,
@@ -564,6 +569,7 @@
 				19ADAD952AD56DE500663A6E /* Observable.swift in Sources */,
 				19ADAD9E2AD66DCF00663A6E /* KitsuRepositoryTests.swift in Sources */,
 				19ADAD7A2AD5255800663A6E /* JSONNull.swift in Sources */,
+				1970AA0F2AE12B9E008A8377 /* ImageRole.swift in Sources */,
 				198A27062ADE8DC900F5EFC5 /* ImageRepositoryTests.swift in Sources */,
 				198A26E82ADD470500F5EFC5 /* HomeViewModelTests.swift in Sources */,
 				19ADAD742AD5250300663A6E /* LocalizedError.swift in Sources */,

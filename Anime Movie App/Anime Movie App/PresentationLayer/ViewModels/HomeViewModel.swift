@@ -40,7 +40,7 @@ class HomeViewModel {
     }
     
     private func downloadImage(for anime: Anime) {
-        animeRepository.downloadImage(for: anime) { [weak self] image in
+        animeRepository.downloadImage(.poster, for: anime) { [weak self] image in
             self?.setCoverImage(for: anime, to: image)
         }
     }

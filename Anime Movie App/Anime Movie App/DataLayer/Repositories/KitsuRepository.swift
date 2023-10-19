@@ -40,14 +40,23 @@ class KitsuRepository: AnimeRepository {
         }
     }
     
-    func downloadImage(for anime: Anime, completion: @escaping (UIImage?) -> ()) {
-        guard let imageURL = anime.coverImageURL, let imageURL = NSURL(string: imageURL) else {
+    func downloadImage(_ role: ImageRole, for anime: Anime, completion: @escaping (UIImage?) -> ()) {
+        guard let imageURL = imageURL(of: anime, for: role) else {
             completion(UIImage(systemName: "popcorn.circle"))
             return
         }
         
         imageRepository.image(from: imageURL, for: anime) { anime, image in
             completion(image)
+        }
+    }
+    
+    private func imageURL(of anime: Anime, for role: ImageRole) -> NSURL? {
+        switch role {
+        case .cover:
+            return anime.coverImageURL == nil ? nil : NSURL(string: anime.coverImageURL!)
+        case .poster:
+            return anime.posterImageURL == nil ? nil : NSURL(string: anime.posterImageURL!)
         }
     }
     
