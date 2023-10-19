@@ -47,7 +47,7 @@ class SearchTableViewController: UITableViewController {
             (tableView: UITableView, indexPath: IndexPath, item: Anime) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellIdentifier, for: indexPath)  as! SearchTableViewCell
             
-            self?.viewModel.downloadImage(from: NSURL(string: item.posterImageURL ?? "")!, for: item) { image in
+            self?.viewModel.downloadImage(for: item) { image in
                 self?.updateImageAndApplySnapshot(for: item, with: image)
             }
             

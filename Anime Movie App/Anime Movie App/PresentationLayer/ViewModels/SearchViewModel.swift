@@ -40,7 +40,7 @@ class SearchViewModel {
         isSearching.value = false
     }
     
-    func downloadImage(from url: NSURL, for item: Anime, completion: @escaping (UIImage?) -> ()) {
+    func downloadImage(for item: Anime, completion: @escaping (UIImage?) -> ()) {
         animeRepository.downloadImage(.poster, for: item) { image in
             completion(image)
         }
