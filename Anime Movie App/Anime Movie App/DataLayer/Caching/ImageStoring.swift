@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 
 protocol ImageStoring<KeyType, ValueType>: Storing {
