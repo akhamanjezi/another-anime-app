@@ -18,7 +18,7 @@ class HomeViewModel {
         animeRepository.anime(by: randomId) { [weak self] result in
             switch result {
             case .success(let anime):
-                self?.updateDetailsAndDownloadImage(for: anime ?? Anime.placeholder)
+                self?.updateDetailsAndDownloadImage(for: anime)
             case .failure(let error):
                 self?.resetFeatureAnime(with: error)
             }

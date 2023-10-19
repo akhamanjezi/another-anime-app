@@ -27,7 +27,7 @@ class KitsuRepository: AnimeRepository {
         }
     }
     
-    func anime(by id: String, completion: @escaping (Result<Anime?, LocalizedError>) -> ()) {
+    func anime(by id: String, completion: @escaping (Result<Anime, LocalizedError>) -> ()) {
         dataProvider.getAnime(by: id) { [weak self] result in
             switch result {
             case .success(let responseData):
@@ -51,13 +51,14 @@ class KitsuRepository: AnimeRepository {
         }
     }
     
-    private func handleSearchSuccess(for responseData: Data, completion: @escaping (Result<Anime?, LocalizedError>) -> ()) {
-        guard let anime = decodeAndConvert(responseData, from: KitsuResponseSingle.self) else {
+    private func handleSearchSuccess(for responseData: Data, completion: @escaping (Result<Anime, LocalizedError>) -> ()) {
+        guard let animeArray = decodeAndConvert(responseData, from: KitsuResponseSingle.self),
+              let anime = animeArray[safe: 0] else {
             completion(.failure(.invalidResponse))
             return
         }
         
-        completion(.success(anime[safe: 0]))
+        completion(.success(anime))
     }
     
     private func decodeAndConvert<T>(_ responseData: Data, from type: T.Type) -> [Anime]? where T : Decodable {
