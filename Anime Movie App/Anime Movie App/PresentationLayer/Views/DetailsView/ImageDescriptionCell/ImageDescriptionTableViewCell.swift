@@ -24,17 +24,35 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     }
     
     private func decriptionText(for anime: Anime) -> NSMutableAttributedString {
+        let f = DateComponentsFormatter()
+        f.unitsStyle = .brief
+        var descriptionParts: [(UIFont, String?, UIColor?)] = [(.subHeadingMedium, anime.title, nil),
+                                                              (.roundedCallout, "\n", nil),
+                                                              (.roundedCaption2, anime.styledReleaseDate, nil)]
+        
+        guard let duration = anime.duration else {
+            return buildText(from: descriptionParts)
+        }
+        
+        descriptionParts += [(.roundedCallout, "\n", nil),
+                             (.roundedCaption2, f.string(from: duration), .secondaryLabel)]
+        
+        return buildText(from: descriptionParts)
+    }
+    
+    private func buildText(from parts: [(UIFont, String?, UIColor?)]) -> NSMutableAttributedString {
         let decriptionText = NSMutableAttributedString()
-        decriptionText.append(applyFont(.roundedCallout, to: anime.title))
-        decriptionText.append(applyFont(.roundedCallout, to: "\n"))
-        decriptionText.append(applyFont(.roundedCaption2, to: anime.styledReleaseDate))
+        for part in parts {
+            decriptionText.append(applyFont(part.0, to: part.1, with: part.2 ?? .label))
+        }
         return decriptionText
     }
     
-    private func applyFont(_ font: UIFont, to string: String?) -> NSMutableAttributedString {
+    private func applyFont(_ font: UIFont, to string: String?, with textColor: UIColor = .label) -> NSMutableAttributedString {
         return NSMutableAttributedString(
             string: string ?? "",
-            attributes: [NSAttributedString.Key.font:font]
+            attributes: [NSAttributedString.Key.font:font,
+                         NSAttributedString.Key.foregroundColor:textColor]
         )
     }
 }
