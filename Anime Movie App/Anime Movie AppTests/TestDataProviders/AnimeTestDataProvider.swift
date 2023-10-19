@@ -72,11 +72,15 @@ class AnimeTestDataProvider {
     
     static let successfulNoResultKitsuSearchDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "search_not_an_anime", withExtension: "json")?.path(percentEncoded: false) ?? "")
     
+    static let successfulNilDataKitsuSearchDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "search_nil_data", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    
     static let unsuccessfulKitsuDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "", withExtension: "json")?.path(percentEncoded: false) ?? "")
     
     static let successfulKitsuAnimeByIDDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "get_spirited_away", withExtension: "json")?.path(percentEncoded: false) ?? "")
         
     static let successfulNoResultKitsuAnimeByIDDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "get_no_result", withExtension: "json")?.path(percentEncoded: false) ?? "")
+    
+    static let successfulNilDataKitsuAnimeByIDDataProvider = DataProviderStub(resourcePath: Bundle(for: Anime_Movie_AppTests.self).url(forResource: "get_nil_data", withExtension: "json")?.path(percentEncoded: false) ?? "")
     
     static let spiritedAwayPosterImage = UIImage(named: "posterImage", in: Bundle(for: Anime_Movie_AppTests.self), with: nil)
     
