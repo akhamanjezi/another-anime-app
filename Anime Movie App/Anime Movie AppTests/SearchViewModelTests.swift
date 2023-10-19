@@ -21,7 +21,7 @@ final class SearchViewModelTests: XCTestCase {
         let (animeSearchResults, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.nullKitsuDataProvider)
         let expected = 0
         let actual = animeSearchResults.count
-
+        
         XCTAssertNotNil(searchingError)
         XCTAssertEqual(expected, actual)
     }
@@ -56,6 +56,32 @@ final class SearchViewModelTests: XCTestCase {
         
         XCTAssertNotNil(searchingError)
         XCTAssertEqual(expected, actual)
+    }
+    
+    func testCancelSearchClearsResults() {
+        let (animeSearchResults, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        
+        var expected = 3
+        var actual: Int? = animeSearchResults.count
+        XCTAssertEqual(expected, actual)
+        
+        systemUnderTest?.cancelSearch()
+        
+        expected = 0
+        actual = systemUnderTest?.animeSearchResults.value.count
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testCancelSearchClearsError() {
+        let (_, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
+        
+        var actual = searchingError
+        XCTAssertNotNil(actual)
+        
+        systemUnderTest?.cancelSearch()
+        
+        actual = systemUnderTest?.searchingError.value
+        XCTAssertNil(actual)
     }
     
     private func initSystemUnderTest(dataProvider: DataProviding) {
