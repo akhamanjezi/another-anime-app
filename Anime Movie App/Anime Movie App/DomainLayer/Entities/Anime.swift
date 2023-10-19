@@ -11,7 +11,7 @@ class Anime: Equatable, Hashable {
     var posterImageURL: String?
     var coverImageURL: String?
     var thumbnail: Data?
-    var duration: Duration?
+    var duration: TimeInterval?
     var externalID: String?
     var source: AnimeSources?
     var posterImage: UIImage?
@@ -21,7 +21,7 @@ class Anime: Equatable, Hashable {
         releaseDate?.toStringAnimeDateStyle()
     }
     
-    init(title: String? = nil, genres: [String]? = nil, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: Data? = nil, duration: Duration? = nil, externalID: String? = nil, source: AnimeSources? = nil, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
+    init(title: String? = nil, genres: [String]? = nil, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: Data? = nil, duration: TimeInterval? = nil, externalID: String? = nil, source: AnimeSources? = nil, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
         self.title = title
         self.genres = genres
         self.releaseDate = releaseDate
@@ -66,7 +66,7 @@ class Anime: Equatable, Hashable {
                                    posterImageURL: "https://media.kitsu.io/anime/poster_images/176/large.jpg",
                                    coverImageURL: "https://media.kitsu.io/anime/cover_images/176/original.jpg",
                                    thumbnail: nil,
-                                   duration: .seconds(60) * 125,
+                                   duration: 60 * 125,
                                    externalID: "176",
                                    source: .kitsu,
                                    posterImage: UIImage(named: "posterImage"),

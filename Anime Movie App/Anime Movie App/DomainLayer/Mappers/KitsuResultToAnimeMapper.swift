@@ -15,7 +15,7 @@ class KitsuResultToAnimeMapper: ResponseToAnimeMapper {
                      posterImageURL: attributes.posterImage?.large ?? attributes.posterImage?.original,
                      coverImageURL: attributes.coverImage?.original ?? attributes.posterImage?.original,
                      thumbnail: nil,
-                     duration: .seconds(60) * (attributes.totalLength ?? 0),
+                     duration: 60 * Double((attributes.totalLength ?? 0)),
                      externalID: response.id,
                      source: .kitsu
         )
