@@ -71,12 +71,12 @@ class SearchViewModel {
     }
     
     private func updateSearchResults(with anime: [Anime]) {
-        self.animeSearchResults.value = anime
-        self.isSearching.value = false
+        animeSearchResults.value = anime
+        isSearching.value = false
     }
     
     private func handleSearchingError(_ error: LocalizedError? = nil) {
-        self.updateSearchResults(with: [])
-        self.searchingError.value = error
+        updateSearchResults(with: [])
+        searchingError.value = error
     }
 }
