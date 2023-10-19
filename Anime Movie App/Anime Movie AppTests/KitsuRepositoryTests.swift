@@ -165,4 +165,46 @@ final class KitsuRepositoryTests: XCTestCase {
             }
         }
     }
+    
+    // MARK: Image Download
+    
+    func testSuccessfulCoverImageDownload() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.spiritedAwayCoverImage
+        
+        systemUnderTest?.downloadImage(.cover, for: AnimeTestDataProvider.validAnimeInstance) { image in
+            let actual = image
+            XCTAssertEqual(expected, actual)
+        }
+    }
+    
+    func testSuccessfulPosterImageDownload() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.spiritedAwayPosterImage
+        
+        systemUnderTest?.downloadImage(.poster, for: AnimeTestDataProvider.validAnimeInstance) { image in
+            let actual = image
+            XCTAssertEqual(expected, actual)
+        }
+    }
+    
+    func testUnsuccessfulCoverImageDownload() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.popcornPlaceholderImage
+        
+        systemUnderTest?.downloadImage(.cover, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
+            let actual = image
+            XCTAssertEqual(expected, actual)
+        }
+    }
+    
+    func testUnsuccessfulPosterImageDownload() {
+        initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = AnimeTestDataProvider.popcornPlaceholderImage
+        
+        systemUnderTest?.downloadImage(.cover, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
+            let actual = image
+            XCTAssertEqual(expected, actual)
+        }
+    }
 }
