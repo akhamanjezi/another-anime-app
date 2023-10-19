@@ -66,8 +66,8 @@ final class KitsuRepositoryTests: XCTestCase {
         
         systemUnderTest?.searchResults(for: "") { result in
             switch result {
-            case .success(let data):
-                let actual = data.results.count
+            case .success(let search):
+                let actual = search.results.count
                 XCTAssertEqual(expected, actual)
             case .failure(_):
                 XCTFail("Unexpected unsuccessful call")
