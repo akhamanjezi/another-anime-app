@@ -24,8 +24,8 @@ class SearchTableViewController: UITableViewController {
     
     private func bindWithViewModel() {
         viewModel.animeSearchResults.bind { [weak self] searchResults in
-            guard let currentSearchTerm = self?.currentSearchTerm,
-                  searchResults[currentSearchTerm] != nil else {
+            guard let searchTermKey = self?.searchTermKey,
+                  searchResults[searchTermKey] != nil else {
                 return
             }
             self?.updateDataSource()
@@ -38,12 +38,12 @@ class SearchTableViewController: UITableViewController {
         }
     }
     
-    private var currentSearchTerm: String {
-        viewModel.currentSearchTerm
+    private var searchTermKey: String {
+        viewModel.searchTerm.lowercased()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selectedAnime = viewModel.animeSearchResults.value[currentSearchTerm]?[indexPath.row] else {
+        guard let selectedAnime = viewModel.animeSearchResults.value[searchTermKey]?[indexPath.row] else {
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
@@ -55,7 +55,7 @@ class SearchTableViewController: UITableViewController {
     }
     
     private func updateDataSource() {
-        guard let newResults = viewModel.animeSearchResults.value[currentSearchTerm] else {
+        guard let newResults = viewModel.animeSearchResults.value[searchTermKey] else {
             return
         }
         
@@ -98,7 +98,7 @@ class SearchTableViewController: UITableViewController {
             return
         }
         
-        guard let item = viewModel.animeSearchResults.value[currentSearchTerm]?[safe: dataSourceIndex],
+        guard let item = viewModel.animeSearchResults.value[searchTermKey]?[safe: dataSourceIndex],
               item == anime else {
             return
         }
@@ -116,7 +116,7 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count =  viewModel.animeSearchResults.value[currentSearchTerm]?.count else {
+        guard let count =  viewModel.animeSearchResults.value[searchTermKey]?.count else {
             return 0
         }
         return count

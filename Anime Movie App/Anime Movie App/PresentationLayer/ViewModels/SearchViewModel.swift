@@ -3,9 +3,6 @@ import UIKit
 class SearchViewModel {
     private let animeRepository: AnimeRepository
     private(set) var searchTerm = ""
-    var currentSearchTerm: String {
-        searchTerm.lowercased()
-    }
     
     let numberOfSections = 1
     var animeSearchResults: Observable<[String: [Anime]]> = Observable(["":[]])
