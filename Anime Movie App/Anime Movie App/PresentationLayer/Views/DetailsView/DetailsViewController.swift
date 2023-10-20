@@ -11,6 +11,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
         setupView()
         registerCells()
         configureTableView()
+        bindWithViewModel()
     }
     
     init(with viewModel: DetailsViewModel) {
@@ -44,6 +45,14 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
     private func configureTableView() {
         detailsTableView.delegate = self
         detailsTableView.dataSource = self
+    }
+    
+    private func bindWithViewModel() {
+        viewModel.anime.bind { [weak self] anime in
+            DispatchQueue.main.async {
+                self?.detailsTableView.reloadData()
+            }
+        }
     }
 }
 
