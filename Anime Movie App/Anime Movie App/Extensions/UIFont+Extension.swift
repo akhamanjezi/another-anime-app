@@ -25,6 +25,10 @@ extension UIFont {
         UIFont.preferredFont(forTextStyle: .largeTitle).with(weight: .bold).rounded()
     }
     
+    static var roundedHeadline: UIFont {
+        UIFont.preferredFont(forTextStyle: .headline).with(weight: .semibold).rounded()
+    }
+    
     private func with(weight: UIFont.Weight) -> UIFont {
         UIFont.systemFont(ofSize: pointSize, weight: weight)
     }
