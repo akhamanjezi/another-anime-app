@@ -43,7 +43,8 @@ final class DetailsViewModelTests: XCTestCase {
     }
     
     private func initSystemUnderTest(anime: Anime = AnimeTestDataProvider.validAnimeInstance, searchTerm: String? = "Spirited Away") {
-        systemUnderTest = DetailsViewModel(anime: anime, searchTerm: searchTerm)
+        let kitsuRepo = KitsuRepository(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
+        systemUnderTest = DetailsViewModel(animeRepository: kitsuRepo, anime: anime, searchTerm: searchTerm)
         
         XCTAssertNotNil(systemUnderTest)
     }
