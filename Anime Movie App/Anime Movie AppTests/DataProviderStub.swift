@@ -8,6 +8,18 @@ class DataProviderStub: DataProviding {
     }
     
     func search(for term: String, completion: @escaping (Result<Data, LocalizedError>) -> ()) {
+        getResourceAtPath { result in
+            completion(result)
+        }
+    }
+    
+    func getAnime(by id: String, completion: @escaping (Result<Data, LocalizedError>) -> ()) {
+        getResourceAtPath { result in
+            completion(result)
+        }
+    }
+    
+    fileprivate func getResourceAtPath(completion: @escaping (Result<Data, LocalizedError>) -> ()) {
         let fileManager = FileManager.default
         
         if !fileManager.fileExists(atPath: resourcePath) {

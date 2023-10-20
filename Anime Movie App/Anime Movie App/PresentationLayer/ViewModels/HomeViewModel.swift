@@ -1,36 +1,59 @@
-import Foundation
+import UIKit
 
 class HomeViewModel {
     private let animeRepository: AnimeRepository
-    var animeSearchResults: Observable<[Anime]> = Observable([])
-    var isSearching: Observable<Bool> = Observable(false)
-    var searchingError: Observable<LocalizedError?> = Observable(nil)
     
-    init(animeRepository: AnimeRepository) {
+    var featureAnime: Observable<Anime?> = Observable(nil)
+    var isFetching: Observable<Bool> = Observable(false)
+    var fetchingError: Observable<LocalizedError?> = Observable(nil)
+    var favourites: Observable<[Anime]> = Observable(Array(repeating: Anime.placeholder, count: 6))
+    
+    init(animeRepository: AnimeRepository = KitsuRepository()) {
         self.animeRepository = animeRepository
     }
     
-    func search(for searchTerm: String) {
-        isSearching.value = true
-        searchingError.value = nil
+    func newFeatureAnime() {
+        initiateFetching()
         
-        animeRepository.searchResults(for: searchTerm) { [weak self] result in
+        animeRepository.anime(by: randomId) { [weak self] result in
             switch result {
             case .success(let anime):
-                self?.updateSearchResults(with: anime)
+                self?.updateDetailsAndDownloadImage(for: anime)
             case .failure(let error):
-                self?.handleSearchingError(error)
+                self?.resetFeatureAnime(with: error)
             }
         }
     }
     
-    private func updateSearchResults(with anime: [Anime]) {
-        self.animeSearchResults.value = anime
-        self.isSearching.value = false
+    private var randomId: String {
+        Int.random(in: 0...10000).description
     }
     
-    private func handleSearchingError(_ error: LocalizedError? = nil) {
-        self.updateSearchResults(with: [])
-        self.searchingError.value = error
+    private func initiateFetching() {
+        isFetching.value = true
+        fetchingError.value = nil
+    }
+    
+    private func updateDetailsAndDownloadImage(for anime: Anime) {
+        featureAnime.value = anime
+        downloadImage(for: anime)
+    }
+    
+    private func downloadImage(for anime: Anime) {
+        animeRepository.downloadImage(.poster, for: anime) { [weak self] image in
+            self?.setCoverImage(for: anime, to: image)
+        }
+    }
+    
+    private func resetFeatureAnime(with error: LocalizedError) {
+        updateDetailsAndDownloadImage(for: Anime.placeholder)
+        isFetching.value = false
+        fetchingError.value = error
+    }
+    
+    private func setCoverImage(for anime: Anime, to image: UIImage?) {
+        anime.coverImage = image
+        self.featureAnime.value = anime
+        self.isFetching.value = false
     }
 }

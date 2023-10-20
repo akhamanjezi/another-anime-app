@@ -8,66 +8,63 @@ final class HomeViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSuccessfulCallWithNotNullData() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
-        let expected = 3
-        let actual = animeSearchResults.count
+    func testSuccessfulAnimeByIdWithNotNullData() {
+        newFeatureAnime(with: AnimeTestDataProvider.successfulKitsuAnimeByIDDataProvider)
         
-        XCTAssertNil(searchingError)
+        let actual = systemUnderTest?.featureAnime.value
+        
+        XCTAssertNotNil(actual)
+    }
+    
+    func testSuccessfulAnimeByIdWithNullData() {
+        newFeatureAnime(with: AnimeTestDataProvider.nullKitsuDataProvider)
+        
+        let expected = LocalizedError.invalidResponse
+        let actual = systemUnderTest?.fetchingError.value
+        
         XCTAssertEqual(expected, actual)
     }
     
-    func testSuccessfulCallWithNullData() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.nullKitsuSearchDataProvider)
-        let expected = 0
-        let actual = animeSearchResults.count
-
-        XCTAssertNotNil(searchingError)
-        XCTAssertEqual(expected, actual)
-    }
-    
-    func testSuccessfulAnimeReturn() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+    func testSuccessfulAnimeByIdAnimeReturn() {
+        newFeatureAnime(with: AnimeTestDataProvider.successfulKitsuAnimeByIDDataProvider)
+        
         let expected = AnimeTestDataProvider.validAnimeInstance
+        let actual = systemUnderTest?.featureAnime.value
+        let fetchingError = systemUnderTest?.fetchingError.value
         
-        XCTAssertNil(searchingError)
-        
-        if animeSearchResults.count > 0 {
-            let actual = animeSearchResults[0]
-            XCTAssertEqual(expected, actual)
-        } else {
-            XCTFail("Unexpected empty anime result")
-        }
-    }
-    
-    func testSuccessfulAnimeReturnNoResults() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
-        let expected = 0
-        let actual = animeSearchResults.count
-        
-        XCTAssertNil(searchingError)
+        XCTAssertNil(fetchingError)
         XCTAssertEqual(expected, actual)
     }
     
-    func testUnsuccessfulCall() throws {
-        let (animeSearchResults, searchingError) = searchHomeViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuSearchDataProvider)
-        let expected = 0
-        let actual = animeSearchResults.count
+    func testSuccessfulAnimeByIdAnimeReturnNoResults() {
+        newFeatureAnime(with: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
         
-        XCTAssertNotNil(searchingError)
+        let expected = LocalizedError.invalidResponse
+        let actual = systemUnderTest?.fetchingError.value
+        
         XCTAssertEqual(expected, actual)
+    }
+    
+    func testUnsuccessfulAnimeById() {
+        newFeatureAnime(with: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
+        
+        let expected = LocalizedError.invalidRequest
+        let actual = systemUnderTest?.fetchingError.value
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    
+    private func newFeatureAnime(with dataProvider: DataProviding) {
+        initSystemUnderTest(dataProvider: dataProvider)
+        systemUnderTest!.newFeatureAnime()
     }
     
     private func initSystemUnderTest(dataProvider: DataProviding) {
-        let kitsuRepo = KitsuRepository(dataProvider: dataProvider)
-        systemUnderTest = HomeViewModel(animeRepository: kitsuRepo)
-        XCTAssertNotNil(systemUnderTest)
-    }
-    
-    private func searchHomeViewModelWith(dataProvider: DataProviding) -> ([Anime], LocalizedError?) {
-        initSystemUnderTest(dataProvider: dataProvider)
-        systemUnderTest!.search(for: "")
+        let kitsuRepo = KitsuRepository(dataProvider: dataProvider, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
         
-        return (systemUnderTest!.animeSearchResults.value, systemUnderTest!.searchingError.value)
+        systemUnderTest = HomeViewModel(animeRepository: kitsuRepo)
+        
+        XCTAssertNotNil(systemUnderTest)
     }
 }
