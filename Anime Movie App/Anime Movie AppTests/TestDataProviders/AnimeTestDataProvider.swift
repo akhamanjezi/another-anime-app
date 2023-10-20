@@ -40,6 +40,19 @@ class AnimeTestDataProvider {
                                    externalID: "176",
                                    source: .kitsu)
     
+    static let animeInstanceNilSynopsis = Anime(title: "Spirited Away",
+                                   genres: nil,
+                                   releaseDate: "2001-07-20".toDate(),
+                                   synopsis: nil,
+                                   averageRating: 82.59,
+                                   ageRating: "G",
+                                   posterImageURL: "https://media.kitsu.io/anime/poster_images/176/original.jpg",
+                                   coverImageURL: "https://media.kitsu.io/anime/poster_images/176/original.jpg",
+                                   thumbnail: nil,
+                                   duration: 0,
+                                   externalID: "176",
+                                   source: .kitsu)
+    
     static let validKitsuResult = KitsuResult(id: "176",
                                               type: nil,
                                               links: nil,
