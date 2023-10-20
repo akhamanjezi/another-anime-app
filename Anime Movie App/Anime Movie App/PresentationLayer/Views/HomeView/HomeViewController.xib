@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="favouritesLabel" destination="APw-SB-52N" id="rQh-ce-Zab"/>
                 <outlet property="favouritesTableView" destination="Anf-7f-OKk" id="Xh9-6l-qqD"/>
+                <outlet property="featureAnimeView" destination="ZoQ-dD-hqN" id="P4o-I3-HHK"/>
                 <outlet property="featureImageView" destination="M7K-6u-P3h" id="UcA-Xa-MLS"/>
                 <outlet property="featureLabel" destination="cQq-ko-PM7" id="ZOR-kR-5gS"/>
                 <outlet property="reloadButton" destination="dZP-7I-Usd" id="24v-tZ-M4x"/>

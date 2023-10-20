@@ -6,6 +6,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet private weak var favouritesLabel: UILabel!
     @IBOutlet private weak var featureLabel: UILabel!
     @IBOutlet private weak var reloadButton: UIButton!
+    @IBOutlet private weak var featureAnimeView: UIView!
     private let viewModel = HomeViewModel()
     
     override func viewDidLoad() {
@@ -18,6 +19,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         bindWithViewModel()
         configureReloadButton()
         updateFeatureAnime()
+        setupFeatureAnimeTapGesture()
     }
     
     private func setupView() {
@@ -58,6 +60,23 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         }
     }
     
+    private func configureReloadButton() {
+        let reloadButtonConfigHandler: UIButton.ConfigurationUpdateHandler = { [weak self] button in
+            button.configuration = (self?.viewModel.isFetching.value ?? false) ? .loadingBorderless : .reloadBorderless
+        }
+        reloadButton.configurationUpdateHandler = reloadButtonConfigHandler
+    }
+    
+    private func updateFeatureAnime() {
+        viewModel.newFeatureAnime()
+    }
+    
+    private func setupFeatureAnimeTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(viewFeatureDetails(_:)))
+//        featureAnimeView.isUserInteractionEnabled = true
+        featureAnimeView.addGestureRecognizer(tap)
+    }
+    
     private func updateFeatureAnimeDisplay(with anime: Anime) {
         DispatchQueue.main.async {
             self.featureLabel.text = "\(anime.title ?? "") - \(anime.styledReleaseDate ?? "")"
@@ -72,19 +91,19 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         }
     }
     
-    private func configureReloadButton() {
-        let reloadButtonConfigHandler: UIButton.ConfigurationUpdateHandler = { [weak self] button in
-            button.configuration = (self?.viewModel.isFetching.value ?? false) ? .loadingBorderless : .reloadBorderless
+    @objc private func viewFeatureDetails(_ sender: UITapGestureRecognizer? = nil) {
+        guard let featureAnime = viewModel.featureAnime.value else {
+            return
         }
-        reloadButton.configurationUpdateHandler = reloadButtonConfigHandler
+        
+        let detailsViewModel = DetailsViewModel(anime: featureAnime)
+        let detailsViewController = DetailsViewController(with: detailsViewModel)
+        
+        self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     @IBAction private func refreshAnime(_ sender: Any) {
         updateFeatureAnime()
-    }
-    
-    private func updateFeatureAnime() {
-        viewModel.newFeatureAnime()
     }
 }
 
