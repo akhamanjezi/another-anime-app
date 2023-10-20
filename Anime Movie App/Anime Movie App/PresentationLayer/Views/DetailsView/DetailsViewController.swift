@@ -24,11 +24,15 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
     }
     
     private func setupView() {
-        self.navigationItem.title = viewModel.anime.title
+        self.navigationItem.title = viewModel.anime.value.title
         self.navigationItem.largeTitleDisplayMode = .never
         
+        guard let searchTerm = viewModel.searchTerm else {
+            return
+        }
+        
         let backButton = UIBarButtonItem()
-        backButton.title = viewModel.searchTerm.truncateTo(length: 6)
+        backButton.title = searchTerm.truncateTo(length: 6)
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
@@ -55,12 +59,12 @@ extension DetailsViewController: UITableViewDataSource {
             return imageDescriptionCell(for: tableView, cellForRowAt: indexPath)
         }
         
-        return titleDescriptionCell(for: tableView, cellForRowAt: indexPath, title: viewModel.sections[indexPath.row], description: viewModel.anime.synopsis)
+        return titleDescriptionCell(for: tableView, cellForRowAt: indexPath, title: viewModel.sections[indexPath.row], description: viewModel.anime.value.synopsis)
     }
     
     private func imageDescriptionCell(for tableView: UITableView, cellForRowAt indexPath: IndexPath) -> ImageDescriptionTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImageDescriptionTableViewCell.cellIdentifier, for: indexPath) as! ImageDescriptionTableViewCell
-        cell.configureCell(for: viewModel.anime)
+        cell.configureCell(for: viewModel.anime.value)
         return cell
     }
     

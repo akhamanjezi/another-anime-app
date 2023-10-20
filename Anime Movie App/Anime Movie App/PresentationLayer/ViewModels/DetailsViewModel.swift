@@ -1,14 +1,14 @@
 import Foundation
 
 class DetailsViewModel {
-    let anime: Anime
-    let searchTerm: String
+    let anime: Observable<Anime> = Observable(Anime.placeholder)
+    let searchTerm: String?
     var sections: [String] {
-        anime.synopsis != nil ? ["Header", "Synopsis"] : ["Header"]
+        anime.value.synopsis != nil ? ["Header", "Synopsis"] : ["Header"]
     }
     
-    init(anime: Anime, searchTerm: String) {
-        self.anime = anime
+    init(anime: Anime, searchTerm: String? = nil) {
+        self.anime.value = anime
         self.searchTerm = searchTerm
     }
 }
