@@ -27,13 +27,12 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
     private func setupView() {
         self.navigationItem.title = viewModel.anime.value.title
         self.navigationItem.largeTitleDisplayMode = .never
-        
-        guard let searchTerm = viewModel.searchTerm else {
-            return
-        }
-        
+        configureBackButton()
+    }
+    
+    private func configureBackButton() {
         let backButton = UIBarButtonItem()
-        backButton.title = searchTerm.truncateTo(length: 6)
+        backButton.title = viewModel.searchTerm == nil ? "Animovie" : viewModel.searchTerm!.truncateTo(length: 6)
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
