@@ -106,6 +106,7 @@
 		19B811E42AD96B0300F3DACE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811E32AD96B0300F3DACE /* HomeViewModel.swift */; };
 		19B811E52AD96D6900F3DACE /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811DF2AD9602D00F3DACE /* Date+Extension.swift */; };
 		19F7EDDE2AE252F800405BAD /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7EDDD2AE252F800405BAD /* UITableView+Extension.swift */; };
+		19F7EDE02AE2679700405BAD /* DateComponentsFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7EDDF2AE2679700405BAD /* DateComponentsFormatter+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +189,7 @@
 		19B811E12AD9677D00F3DACE /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		19B811E32AD96B0300F3DACE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		19F7EDDD2AE252F800405BAD /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		19F7EDDF2AE2679700405BAD /* DateComponentsFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,6 +403,7 @@
 				198A26EE2ADD6E8900F5EFC5 /* UIImage+Extension.swift */,
 				1970AA022AE00489008A8377 /* UIButtonConfiguration+Extension.swift */,
 				19F7EDDD2AE252F800405BAD /* UITableView+Extension.swift */,
+				19F7EDDF2AE2679700405BAD /* DateComponentsFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				19ADAD712AD51C0E00663A6E /* LocalizedError.swift in Sources */,
 				19ADAD5F2AD4296800663A6E /* KitsuProvider.swift in Sources */,
 				1970AA0E2AE12A96008A8377 /* ImageRole.swift in Sources */,
+				19F7EDE02AE2679700405BAD /* DateComponentsFormatter+Extension.swift in Sources */,
 				19F7EDDE2AE252F800405BAD /* UITableView+Extension.swift in Sources */,
 				19ADAD7E2AD53FAD00663A6E /* Anime.swift in Sources */,
 				19B811E42AD96B0300F3DACE /* HomeViewModel.swift in Sources */,
