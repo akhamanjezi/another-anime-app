@@ -26,6 +26,10 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
     private func setupView() {
         self.navigationItem.title = viewModel.anime.title
         self.navigationItem.largeTitleDisplayMode = .never
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = viewModel.searchTerm.truncateTo(length: 6)
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
     private func registerCells() {

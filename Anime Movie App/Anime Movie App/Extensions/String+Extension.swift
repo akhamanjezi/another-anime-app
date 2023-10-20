@@ -19,4 +19,11 @@ extension String {
         ? stringWithDoubleLineBreaks.trimmingCharacters(in: .whitespacesAndNewlines)
         : stringWithDoubleLineBreaks
     }
+    
+    func truncateTo(length: Int) -> Self {
+        guard count > length else {
+            return self
+        }
+        return prefix(length).trimmingCharacters(in: .whitespacesAndNewlines) + "…"
+    }
 }

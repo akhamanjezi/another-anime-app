@@ -2,7 +2,10 @@ import UIKit
 
 class SearchViewModel {
     private let animeRepository: AnimeRepository
-    var currentSearchTerm = ""
+    private(set) var searchTerm = ""
+    var currentSearchTerm: String {
+        searchTerm.lowercased()
+    }
     
     let numberOfSections = 1
     var animeSearchResults: Observable<[String: [Anime]]> = Observable(["":[]])
@@ -15,17 +18,18 @@ class SearchViewModel {
         self.animeRepository = animeRepository
     }
     
-    func search(for searchTerm: String) {
+    func search(for term: String) {
         isSearching.value = true
         searchingError.value = nil
-        currentSearchTerm = searchTerm.lowercased()
+        searchTerm = term
+        let searchTermKey = term.lowercased()
         
-        guard nil == animeSearchResults.value[searchTerm.lowercased()] else {
+        guard nil == animeSearchResults.value[searchTermKey] else {
             isSearching.value = false
             return
         }
         
-        animeRepository.searchResults(for: searchTerm.lowercased()) { [weak self] result in
+        animeRepository.searchResults(for: searchTermKey) { [weak self] result in
             switch result {
             case .success(let results):
                 self?.updateSearchResults(results)
@@ -37,7 +41,7 @@ class SearchViewModel {
     
     func cancelSearch() {
         animeSearchResults.value = (["":[]])
-        currentSearchTerm = ""
+        searchTerm = ""
         searchingError.value = nil
         isSearching.value = false
     }

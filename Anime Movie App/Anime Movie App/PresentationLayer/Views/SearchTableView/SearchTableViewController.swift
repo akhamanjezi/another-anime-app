@@ -47,7 +47,7 @@ class SearchTableViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
-        let detailsViewModel = DetailsViewModel(anime: selectedAnime)
+        let detailsViewModel = DetailsViewModel(anime: selectedAnime, searchTerm: viewModel.searchTerm)
         let detailsViewController = DetailsViewController(with: detailsViewModel)
         
         self.presentingViewController?.navigationController?.pushViewController(detailsViewController, animated: true)
