@@ -64,11 +64,7 @@ extension DetailsViewController: UITableViewDataSource {
     
     private func titleDescriptionCell(for tableView: UITableView, cellForRowAt indexPath: IndexPath, title: String, description: String?) -> TitleDescriptionTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TitleDescriptionTableViewCell.cellIdentifier, for: indexPath) as! TitleDescriptionTableViewCell
-        guard let descriptionCleaned = try? description?.replacing(Regex("\n+"), with: "\n\n") else {
-            cell.configureCell(title: title, description: description)
-            return cell
-        }
-        cell.configureCell(title: title, description: descriptionCleaned)
+        cell.configureCell(title: title, description: description?.withDoubleLineBreaks())
         return cell
     }
 }
