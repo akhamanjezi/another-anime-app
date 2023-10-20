@@ -24,7 +24,7 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     }
     
     private func decriptionText(for anime: Anime) -> NSMutableAttributedString {
-        var descriptionParts: [TextBuilderType] = Array([
+        let descriptionParts: [TextBuilderType] = Array([
             (.subHeadingMedium, anime.title, nil),
             (.roundedCaption2, anime.styledReleaseDate, nil),
             (.roundedCaption2, anime.styledDuration, .secondaryLabel),
