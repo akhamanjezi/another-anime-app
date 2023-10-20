@@ -45,7 +45,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
 
 extension DetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        viewModel.sections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,7 +53,7 @@ extension DetailsViewController: UITableViewDataSource {
             return imageDescriptionCell(for: tableView, cellForRowAt: indexPath)
         }
         
-        return titleDescriptionCell(for: tableView, cellForRowAt: indexPath, title: "Synopsis", description: viewModel.anime.synopsis)
+        return titleDescriptionCell(for: tableView, cellForRowAt: indexPath, title: viewModel.sections[indexPath.row], description: viewModel.anime.synopsis)
     }
     
     private func imageDescriptionCell(for tableView: UITableView, cellForRowAt indexPath: IndexPath) -> ImageDescriptionTableViewCell {
