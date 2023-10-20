@@ -20,6 +20,21 @@ class Anime: Equatable, Hashable {
         releaseDate?.toStringAnimeDateStyle()
     }
     
+    var styledDuration: String? {
+        guard let duration = duration,
+                duration > 0 else {
+            return nil
+        }
+        return DateComponentsFormatter.sharedBrief.string(from: duration)
+    }
+    
+    var styledRating: String? {
+        guard let averageRating = averageRating else {
+            return nil
+        }
+        return (averageRating / 100).formatted(.percent)
+    }
+    
     init(title: String? = nil, genres: [String]? = nil, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: Data? = nil, duration: TimeInterval? = nil, externalID: String? = nil, source: AnimeSources? = nil, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
         self.title = title
         self.genres = genres

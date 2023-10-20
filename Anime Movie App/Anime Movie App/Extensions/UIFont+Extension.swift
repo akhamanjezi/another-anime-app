@@ -17,6 +17,10 @@ extension UIFont {
         UIFont.preferredFont(forTextStyle: .caption2).with(weight: .regular).rounded()
     }
     
+    static var roundedCaption2Bold: UIFont {
+        UIFont.preferredFont(forTextStyle: .caption2).with(weight: .bold).rounded()
+    }
+    
     static var roundedLargeTitle: UIFont {
         UIFont.preferredFont(forTextStyle: .largeTitle).with(weight: .bold).rounded()
     }
