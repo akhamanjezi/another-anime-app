@@ -8,7 +8,7 @@ class SearchTableViewController: UITableViewController {
         super.viewDidLoad()
         
         setupView()
-        registerCell()
+        registerCells()
         bindWithViewModel()
         setupDataSource()
     }
@@ -18,9 +18,8 @@ class SearchTableViewController: UITableViewController {
         tableView.delegate = self
     }
     
-    private func registerCell() {
-        let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: SearchTableViewCell.cellIdentifier)
+    private func registerCells() {
+        tableView.registerNib(named: SearchTableViewCell.cellIdentifier)
     }
     
     private func bindWithViewModel() {

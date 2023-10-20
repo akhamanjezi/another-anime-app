@@ -9,7 +9,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         setupView()
-        registerNibs()
+        registerCells()
         configureTableView()
     }
     
@@ -28,11 +28,9 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
         self.navigationItem.largeTitleDisplayMode = .never
     }
     
-    private func registerNibs() {
-        let titleDescriptionTableViewCellNib = UINib(nibName: "TitleDescriptionTableViewCell", bundle: nil)
-        detailsTableView.register(titleDescriptionTableViewCellNib, forCellReuseIdentifier: TitleDescriptionTableViewCell.cellIdentifier)
-        let imageDescriptionTableViewCell = UINib(nibName: "ImageDescriptionTableViewCell", bundle: nil)
-        detailsTableView.register(imageDescriptionTableViewCell, forCellReuseIdentifier: ImageDescriptionTableViewCell.cellIdentifier)
+    private func registerCells() {
+        detailsTableView.registerNib(named: TitleDescriptionTableViewCell.cellIdentifier)
+        detailsTableView.registerNib(named: ImageDescriptionTableViewCell.cellIdentifier)
     }
     
     private func configureTableView() {

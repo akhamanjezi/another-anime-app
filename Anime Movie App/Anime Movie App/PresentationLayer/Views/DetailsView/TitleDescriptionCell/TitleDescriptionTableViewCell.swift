@@ -5,7 +5,7 @@ class TitleDescriptionTableViewCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     
-    static let cellIdentifier = "titleDescriptionTableViewCell"
+    static let cellIdentifier = String(describing: TitleDescriptionTableViewCell.self)
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -5,7 +5,7 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var posterImage: UIImageView!
     
-    static let cellIdentifier = "imageDescriptionTableViewCell"
+    static let cellIdentifier = String(describing: ImageDescriptionTableViewCell.self)
     
     override func awakeFromNib() {
         super.awakeFromNib()

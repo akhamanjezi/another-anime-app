@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         setupView()
-        registerNib()
+        registerCells()
         configureTableView()
         setupSearchResultsController()
         bindWithViewModel()
@@ -29,9 +29,8 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         featureLabel.font = .subHeadingMedium
     }
     
-    private func registerNib() {
-        let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
-        favouritesTableView.register(nib, forCellReuseIdentifier: SearchTableViewCell.cellIdentifier)
+    private func registerCells() {
+        favouritesTableView.registerNib(named: SearchTableViewCell.cellIdentifier)
     }
     
     private func configureTableView() {

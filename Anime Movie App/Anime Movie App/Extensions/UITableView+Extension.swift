@@ -1,8 +1,8 @@
-//
-//  UITableView+Extension.swift
-//  Anime Movie App
-//
-//  Created by Akha Manjezi on 20/10/23.
-//
+import UIKit
 
-import Foundation
+extension UITableView {
+    func registerNib(named name: String, bundle: Bundle? = nil) {
+        let tableViewCell = UINib(nibName: name, bundle: bundle)
+        register(tableViewCell, forCellReuseIdentifier: name)
+    }
+}
