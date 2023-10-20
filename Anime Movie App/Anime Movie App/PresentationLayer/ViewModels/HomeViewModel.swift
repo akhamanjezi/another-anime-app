@@ -36,12 +36,18 @@ class HomeViewModel {
     
     private func updateDetailsAndDownloadImage(for anime: Anime) {
         featureAnime.value = anime
-        downloadImage(for: anime)
+        downloadImages()
     }
     
-    private func downloadImage(for anime: Anime) {
+    private func downloadImages() {
+        guard let anime = featureAnime.value else {
+            return
+        }
         animeRepository.downloadImage(.cover, for: anime) { [weak self] image in
-            self?.setCoverImage(for: anime, to: image)
+            self?.setImage(image, role: .cover)
+        }
+        animeRepository.downloadImage(.poster, for: anime) { [weak self] image in
+            self?.setImage(image, role: .poster)
         }
     }
     
@@ -51,9 +57,18 @@ class HomeViewModel {
         fetchingError.value = error
     }
     
-    private func setCoverImage(for anime: Anime, to image: UIImage?) {
-        anime.coverImage = image
-        self.featureAnime.value = anime
-        self.isFetching.value = false
+    private func setImage(_ image: UIImage?, role: ImageRole) {
+        switch role {
+        case .cover:
+            updateCoverImage(image)
+        case .poster:
+            featureAnime.value?.posterImage = image
+        }
+    }
+    
+    private func updateCoverImage(_ image: UIImage?) {
+        featureAnime.value?.coverImage = image
+        featureAnime.value = featureAnime.value
+        isFetching.value = false
     }
 }
