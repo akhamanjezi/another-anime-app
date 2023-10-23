@@ -54,7 +54,6 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    
     private func newFeatureAnime(with dataProvider: DataProviding) {
         initSystemUnderTest(dataProvider: dataProvider)
         systemUnderTest!.newFeatureAnime()

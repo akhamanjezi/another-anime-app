@@ -10,7 +10,6 @@ class SearchViewModel {
     var searchingError: Observable<LocalizedError?> = Observable(nil)
     var searchQueue = OperationQueue()
     
-    
     init(animeRepository: AnimeRepository = KitsuRepository()) {
         self.animeRepository = animeRepository
     }
