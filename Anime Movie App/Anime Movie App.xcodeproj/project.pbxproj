@@ -344,8 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				198A26F52ADE683000F5EFC5 /* Storing.swift */,
-				198A26FC2ADE6E2300F5EFC5 /* ImageStoring.swift */,
-				198A26F92ADE6E2100F5EFC5 /* ImageCache.swift */,
+				19D56AA52AE692BC0025003B /* Images */,
 			);
 			path = Storing;
 			sourceTree = "<group>";
@@ -481,6 +480,15 @@
 				198577862AD3E3AA0025F615 /* HomeViewController.xib */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
+		19D56AA52AE692BC0025003B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				198A26FC2ADE6E2300F5EFC5 /* ImageStoring.swift */,
+				198A26F92ADE6E2100F5EFC5 /* ImageCache.swift */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
