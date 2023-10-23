@@ -25,8 +25,10 @@ class DetailsViewModel {
     }
     
     func toggleFavorite(completion: @escaping () -> ()) {
-        animeRepository.toggleFavourite(anime.value)
-        completion()
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.animeRepository.toggleFavourite(self.anime.value)
+            completion()
+        }
     }
     
     private func downloadImage(for anime: Anime) {

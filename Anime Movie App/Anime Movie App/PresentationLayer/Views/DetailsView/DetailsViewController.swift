@@ -40,7 +40,9 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
     private func configureFavouriteButton() {
         let favouriteImage = UIImage(systemName: "star\(viewModel.isFavorite ? ".fill" : "")")?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .medium))
         let favouriteButton = UIBarButtonItem(image: favouriteImage, style: .plain, target: self, action: #selector(favouriteButtonTapped))
-        navigationItem.setRightBarButton(favouriteButton, animated: true)
+        DispatchQueue.main.async {
+            self.navigationItem.setRightBarButton(favouriteButton, animated: true)
+        }
     }
     
     @objc private func favouriteButtonTapped() {
