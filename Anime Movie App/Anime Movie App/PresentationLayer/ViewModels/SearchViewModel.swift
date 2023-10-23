@@ -5,10 +5,10 @@ class SearchViewModel {
     private(set) var searchTerm = ""
     
     let numberOfSections = 1
-    var animeSearchResults: Observable<[String: [Anime]]> = Observable(["":[]])
-    var isSearching: Observable<Bool> = Observable(false)
-    var searchingError: Observable<LocalizedError?> = Observable(nil)
-    var searchQueue = OperationQueue()
+    let animeSearchResults: Observable<[String: [Anime]]> = Observable(["":[]])
+    let isSearching: Observable<Bool> = Observable(false)
+    let searchingError: Observable<LocalizedError?> = Observable(nil)
+    let searchQueue = OperationQueue()
     
     init(animeRepository: AnimeRepository = KitsuRepository()) {
         self.animeRepository = animeRepository
