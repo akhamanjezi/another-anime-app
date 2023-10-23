@@ -5,7 +5,9 @@ class DetailsViewModel {
     let anime: Observable<Anime> = Observable(Anime.placeholder)
     let searchTerm: String?
     var sections: [String] {
-        anime.value.synopsis != nil ? ["Header", "Synopsis"] : ["Header"]
+        anime.value.synopsis != nil && !(anime.value.synopsis ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        ? ["Header", "Synopsis"]
+        : ["Header"]
     }
     
     init(animeRepository: AnimeRepository = KitsuRepository(), anime: Anime, searchTerm: String? = nil) {
