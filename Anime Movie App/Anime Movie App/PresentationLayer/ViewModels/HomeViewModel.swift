@@ -18,7 +18,7 @@ class HomeViewModel {
         animeRepository.anime(by: randomId) { [weak self] result in
             switch result {
             case .success(let anime):
-                self?.updateDetailsAndDownloadImage(for: anime)
+                self?.updateDetailsAndDownloadImages(for: anime)
             case .failure(let error):
                 self?.resetFeatureAnime(with: error)
             }
@@ -34,24 +34,22 @@ class HomeViewModel {
         fetchingError.value = nil
     }
     
-    private func updateDetailsAndDownloadImage(for anime: Anime) {
+    private func updateDetailsAndDownloadImages(for anime: Anime) {
         featureAnime.value = anime
-        downloadImages()
-    }
-    
-    private func downloadImages() {
-        animeRepository.downloadImage(.cover, for: featureAnime.value) { [weak self] image in
-            self?.setImage(image, role: .cover)
-        }
-        animeRepository.downloadImage(.poster, for: featureAnime.value) { [weak self] image in
-            self?.setImage(image, role: .poster)
-        }
+        downloadImage(role: .cover)
+        downloadImage(role: .poster)
     }
     
     private func resetFeatureAnime(with error: LocalizedError) {
-        updateDetailsAndDownloadImage(for: Anime.placeholder)
+        updateDetailsAndDownloadImages(for: Anime.placeholder)
         isFetching.value = false
         fetchingError.value = error
+    }
+    
+    private func downloadImage(role: ImageRole) {
+        animeRepository.downloadImage(role, for: featureAnime.value) { [weak self] image in
+            self?.setImage(image, role: role)
+        }
     }
     
     private func setImage(_ image: UIImage?, role: ImageRole) {
