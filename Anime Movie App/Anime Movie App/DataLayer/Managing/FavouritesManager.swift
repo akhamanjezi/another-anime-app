@@ -42,6 +42,10 @@ class FavouritesManager: FavouritesManaging {
         all.contains(anime)
     }
     
+    func resetFavourites() {
+        setFavourites([:])
+    }
+    
     private func createDictionaryIfNotPresent() {
         guard let _ = storage.object(forKey: "favourites") else {
             let favouritesDictionary: [String: StoringAnime] = [:]

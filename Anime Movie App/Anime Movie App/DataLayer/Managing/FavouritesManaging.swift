@@ -8,4 +8,6 @@ protocol FavouritesManaging {
     func removeFavourite(_ anime: Anime, forKey key: String)
     
     func isFavourite(_ anime: Anime) -> Bool
+    
+    func resetFavourites()
 }
