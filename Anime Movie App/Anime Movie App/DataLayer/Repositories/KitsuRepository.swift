@@ -4,11 +4,17 @@ class KitsuRepository: AnimeRepository {
     private let dataProvider: DataProviding
     private let responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult>
     private let imageRepository: ImageRepository
+    private let favouritesManager: any FavouritesManaging
     
-    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(), imageRepository: ImageRepository = ImageRepository()) {
+    var favourites: [Anime] {
+        favouritesManager.all
+    }
+    
+    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(), imageRepository: ImageRepository = ImageRepository(), favouritesManager: any FavouritesManaging = FavouritesManager()) {
         self.dataProvider = dataProvider
         self.responseToAnimeMapper = responseToAnimeMapper
         self.imageRepository = imageRepository
+        self.favouritesManager = favouritesManager
     }
     
     func searchResults(for term: String, completion: @escaping (Result<AnimeRepository.SearchResultsType, LocalizedError>) -> ()) {
@@ -51,6 +57,19 @@ class KitsuRepository: AnimeRepository {
         }
     }
     
+    func isFavourite(_ anime: Anime) -> Bool {
+        favouritesManager.isFavourite(anime)
+    }
+    
+    func toggleFavourite(_ anime: Anime) {
+        guard !isFavourite(anime) else {
+            favouritesManager.removeFavourite(anime, forKey: anime.source.debugDescription + (anime.externalID ?? ""))
+            return
+        }
+        
+        favouritesManager.addFavourite(anime, forKey: anime.source.debugDescription + (anime.externalID ?? ""))
+    }
+
     private func imageURL(of anime: Anime, for role: ImageRole) -> NSURL? {
         switch role {
         case .cover:
