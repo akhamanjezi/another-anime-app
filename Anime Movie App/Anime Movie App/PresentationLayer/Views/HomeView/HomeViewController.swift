@@ -46,6 +46,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         searchController.delegate = searchTableViewController
         searchController.searchBar.delegate = searchTableViewController
+        searchController.obscuresBackgroundDuringPresentation = true
         
         navigationItem.searchController = searchController
     }
@@ -73,7 +74,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     private func setupFeatureAnimeTapGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(viewFeatureDetails(_:)))
-//        featureAnimeView.isUserInteractionEnabled = true
         featureAnimeView.addGestureRecognizer(tap)
     }
     
