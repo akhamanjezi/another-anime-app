@@ -5,7 +5,7 @@ class DetailsViewModel {
     let anime: Observable<Anime> = Observable(Anime.placeholder)
     let searchTerm: String?
     var sections: [String] {
-        anime.value.synopsis != nil && !(anime.value.synopsis ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        anime.value.synopsis != nil && !anime.value.synopsis!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         ? ["Header", "Synopsis"]
         : ["Header"]
     }
