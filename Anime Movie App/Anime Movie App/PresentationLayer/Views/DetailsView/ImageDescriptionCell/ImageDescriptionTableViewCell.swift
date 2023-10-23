@@ -4,6 +4,7 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     typealias TextBuilderType = (font: UIFont, text: String?, color: UIColor?)
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var posterImage: UIImageView!
+    @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
     
     static let cellIdentifier = String(describing: ImageDescriptionTableViewCell.self)
     
@@ -13,8 +14,13 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     }
     
     func configureCell(for anime: Anime) {
-        self.descriptionLabel.attributedText = decriptionText(for: anime)
-        self.posterImage.image = anime.posterImage
+        descriptionLabel.attributedText = decriptionText(for: anime)
+        guard let posterImage = anime.posterImage else {
+            activityIndicatorView.startAnimating()
+            return
+        }
+        activityIndicatorView.stopAnimating()
+        self.posterImage.image = posterImage
     }
     
     private func setupView() {

@@ -16,6 +16,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="426" height="513"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Cbz-LE-gdJ">
+                        <rect key="frame" x="81.333333333333329" y="246.66666666666663" width="20" height="20"/>
+                    </activityIndicatorView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="g5q-Rq-ySz">
                         <rect key="frame" x="10" y="10" width="406" height="493"/>
                         <subviews>
@@ -38,6 +41,8 @@
                     </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Cbz-LE-gdJ" firstAttribute="centerY" secondItem="JEI-TG-kiR" secondAttribute="centerY" id="9GJ-9D-6fO"/>
+                    <constraint firstItem="Cbz-LE-gdJ" firstAttribute="centerX" secondItem="JEI-TG-kiR" secondAttribute="centerX" id="Ehb-PF-Irz"/>
                     <constraint firstAttribute="trailing" secondItem="g5q-Rq-ySz" secondAttribute="trailing" constant="10" id="aBg-Z8-Xnj"/>
                     <constraint firstItem="g5q-Rq-ySz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="mgg-Ix-cbL"/>
                     <constraint firstAttribute="bottom" secondItem="g5q-Rq-ySz" secondAttribute="bottom" constant="10" id="pVN-if-aMm"/>
@@ -46,6 +51,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="activityIndicatorView" destination="Cbz-LE-gdJ" id="oXX-4M-Ggg"/>
                 <outlet property="descriptionLabel" destination="x43-8w-E7f" id="IyN-0r-Rda"/>
                 <outlet property="posterImage" destination="JEI-TG-kiR" id="792-OB-ISg"/>
             </connections>
