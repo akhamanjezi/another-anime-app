@@ -28,12 +28,25 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
         navigationItem.title = viewModel.anime.value.title
         navigationItem.largeTitleDisplayMode = .never
         configureBackButton()
+        configureFavouriteButton()
     }
     
     private func configureBackButton() {
         let backButton = UIBarButtonItem()
         backButton.title = viewModel.searchTerm == nil ? "Animovie" : viewModel.searchTerm!.truncateTo(length: 6)
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+    }
+    
+    private func configureFavouriteButton() {
+        let favouriteImage = UIImage(systemName: "star\(viewModel.isFavorite ? ".fill" : "")")?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .medium))
+        let favouriteButton = UIBarButtonItem(image: favouriteImage, style: .plain, target: self, action: #selector(favouriteButtonTapped))
+        navigationItem.setRightBarButton(favouriteButton, animated: true)
+    }
+    
+    @objc private func favouriteButtonTapped() {
+        viewModel.toggleFavorite() { [weak self] in
+            self?.configureFavouriteButton()
+        }
     }
     
     private func registerCells() {

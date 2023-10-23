@@ -10,6 +10,8 @@ class DetailsViewModel {
         : ["Header"]
     }
     
+    var isFavorite: Bool = false
+    
     init(animeRepository: AnimeRepository = KitsuRepository(), anime: Anime, searchTerm: String? = nil) {
         self.animeRepository = animeRepository
         self.anime.value = anime
@@ -18,6 +20,11 @@ class DetailsViewModel {
         if anime.posterImage == nil {
             downloadImage(for: anime)
         }
+    }
+    
+    func toggleFavorite(completion: @escaping () -> ()) {
+        isFavorite.toggle()
+        completion()
     }
     
     private func downloadImage(for anime: Anime) {
