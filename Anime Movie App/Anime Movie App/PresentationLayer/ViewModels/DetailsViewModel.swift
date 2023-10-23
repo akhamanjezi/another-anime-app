@@ -10,7 +10,9 @@ class DetailsViewModel {
         : ["Header"]
     }
     
-    var isFavorite: Bool = false
+    var isFavorite: Bool {
+        animeRepository.isFavourite(anime.value)
+    }
     
     init(animeRepository: AnimeRepository = KitsuRepository(), anime: Anime, searchTerm: String? = nil) {
         self.animeRepository = animeRepository
@@ -23,7 +25,7 @@ class DetailsViewModel {
     }
     
     func toggleFavorite(completion: @escaping () -> ()) {
-        isFavorite.toggle()
+        animeRepository.toggleFavourite(anime.value)
         completion()
     }
     
