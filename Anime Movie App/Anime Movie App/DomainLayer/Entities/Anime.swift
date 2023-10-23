@@ -86,7 +86,3 @@ class Anime: Equatable, Hashable {
                                    posterImage: UIImage(named: "posterImage"),
                                    coverImage: UIImage(named: "coverImage"))
 }
-
-enum AnimeSources {
-    case kitsu
-}
