@@ -340,14 +340,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		198A26F82ADE6E1400F5EFC5 /* Caching */ = {
+		198A26F82ADE6E1400F5EFC5 /* Storing */ = {
 			isa = PBXGroup;
 			children = (
 				198A26F52ADE683000F5EFC5 /* Storing.swift */,
 				198A26FC2ADE6E2300F5EFC5 /* ImageStoring.swift */,
 				198A26F92ADE6E2100F5EFC5 /* ImageCache.swift */,
 			);
-			path = Caching;
+			path = Storing;
 			sourceTree = "<group>";
 		};
 		198A270F2ADEAFDA00F5EFC5 /* DetailsView */ = {
@@ -392,7 +392,7 @@
 				19ADAD9C2AD5E8B200663A6E /* Repositories */,
 				19ADAD5B2AD427EE00663A6E /* Networking */,
 				198577842AD3E1960025F615 /* Models */,
-				198A26F82ADE6E1400F5EFC5 /* Caching */,
+				198A26F82ADE6E1400F5EFC5 /* Storing */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
