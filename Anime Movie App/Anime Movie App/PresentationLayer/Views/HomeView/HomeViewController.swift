@@ -95,7 +95,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         let detailsViewModel = DetailsViewModel(anime: viewModel.featureAnime.value)
         let detailsViewController = DetailsViewController(with: detailsViewModel)
         
-        self.navigationController?.pushViewController(detailsViewController, animated: true)
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     @IBAction private func refreshAnime(_ sender: Any) {

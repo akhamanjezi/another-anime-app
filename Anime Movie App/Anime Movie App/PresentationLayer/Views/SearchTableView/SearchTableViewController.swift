@@ -50,7 +50,7 @@ class SearchTableViewController: UITableViewController {
         let detailsViewModel = DetailsViewModel(anime: selectedAnime, searchTerm: viewModel.searchTerm)
         let detailsViewController = DetailsViewController(with: detailsViewModel)
         
-        self.presentingViewController?.navigationController?.pushViewController(detailsViewController, animated: true)
+        presentingViewController?.navigationController?.pushViewController(detailsViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

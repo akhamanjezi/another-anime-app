@@ -25,12 +25,12 @@ class SearchTableViewCell: UITableViewCell {
         thumbnailView.contentMode = .scaleAspectFill
         
         guard let displayReleaseDate = anime.styledReleaseDate else {
-            self.releaseDateLabel.isHidden = true
+            releaseDateLabel.isHidden = true
             return
         }
         
-        self.releaseDateLabel.isHidden = false
-        self.releaseDateLabel.text = displayReleaseDate
+        releaseDateLabel.isHidden = false
+        releaseDateLabel.text = displayReleaseDate
     }
     
     private func setupView() {
@@ -41,7 +41,7 @@ class SearchTableViewCell: UITableViewCell {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .placeholderText
         backgroundView.layer.cornerRadius = 8
-        self.selectedBackgroundView = backgroundView
+        selectedBackgroundView = backgroundView
         
         titleLabel.font = .roundedCallout
         releaseDateLabel.font = .roundedCaption2

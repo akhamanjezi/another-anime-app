@@ -25,15 +25,15 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
     }
     
     private func setupView() {
-        self.navigationItem.title = viewModel.anime.value.title
-        self.navigationItem.largeTitleDisplayMode = .never
+        navigationItem.title = viewModel.anime.value.title
+        navigationItem.largeTitleDisplayMode = .never
         configureBackButton()
     }
     
     private func configureBackButton() {
         let backButton = UIBarButtonItem()
         backButton.title = viewModel.searchTerm == nil ? "Animovie" : viewModel.searchTerm!.truncateTo(length: 6)
-        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
     private func registerCells() {

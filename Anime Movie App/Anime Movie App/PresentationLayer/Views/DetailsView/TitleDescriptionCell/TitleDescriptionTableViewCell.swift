@@ -13,8 +13,8 @@ class TitleDescriptionTableViewCell: UITableViewCell {
     }
     
     func configureCell(title: String?, description: String?) {
-        self.titleLabel.text = title
-        self.descriptionLabel.text = description
+        titleLabel.text = title
+        descriptionLabel.text = description
     }
     
     private func setupView() {
