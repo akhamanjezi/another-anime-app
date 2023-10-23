@@ -46,6 +46,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
     }
     
     @objc private func favouriteButtonTapped() {
+        navigationItem.rightBarButtonItem?.isEnabled = false
         viewModel.toggleFavorite() { [weak self] in
             self?.configureFavouriteButton()
         }
