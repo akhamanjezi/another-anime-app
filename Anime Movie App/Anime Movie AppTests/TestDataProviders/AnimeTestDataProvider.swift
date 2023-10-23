@@ -10,7 +10,7 @@ class AnimeTestDataProvider {
                                                   averageRating: 82.59,
                                                   ageRating: "G",
                                                   thumbnail: nil,
-                                                  duration: 60 * 125,
+                                                  duration: 7500,
                                                   externalID: "176",
                                                   source: .kitsu)
     
@@ -23,7 +23,7 @@ class AnimeTestDataProvider {
                                    posterImageURL: "https://media.kitsu.io/anime/poster_images/176/original.jpg",
                                    coverImageURL: "https://media.kitsu.io/anime/poster_images/176/original.jpg",
                                    thumbnail: nil,
-                                   duration: 60 * 125,
+                                   duration: 7500,
                                    externalID: "176",
                                    source: .kitsu)
     
