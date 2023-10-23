@@ -3,7 +3,7 @@ import UIKit
 class HomeViewModel {
     private let animeRepository: AnimeRepository
     
-    var featureAnime: Observable<Anime?> = Observable(nil)
+    var featureAnime: Observable<Anime> = Observable(Anime.placeholder)
     var isFetching: Observable<Bool> = Observable(false)
     var fetchingError: Observable<LocalizedError?> = Observable(nil)
     var favourites: Observable<[Anime]> = Observable(Array(repeating: Anime.placeholder, count: 6))
@@ -40,13 +40,10 @@ class HomeViewModel {
     }
     
     private func downloadImages() {
-        guard let anime = featureAnime.value else {
-            return
-        }
-        animeRepository.downloadImage(.cover, for: anime) { [weak self] image in
+        animeRepository.downloadImage(.cover, for: featureAnime.value) { [weak self] image in
             self?.setImage(image, role: .cover)
         }
-        animeRepository.downloadImage(.poster, for: anime) { [weak self] image in
+        animeRepository.downloadImage(.poster, for: featureAnime.value) { [weak self] image in
             self?.setImage(image, role: .poster)
         }
     }
@@ -62,12 +59,12 @@ class HomeViewModel {
         case .cover:
             updateCoverImage(image)
         case .poster:
-            featureAnime.value?.posterImage = image
+            featureAnime.value.posterImage = image
         }
     }
     
     private func updateCoverImage(_ image: UIImage?) {
-        featureAnime.value?.coverImage = image
+        featureAnime.value.coverImage = image
         featureAnime.value = featureAnime.value
         isFetching.value = false
     }

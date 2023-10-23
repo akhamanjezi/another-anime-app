@@ -52,7 +52,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     private func bindWithViewModel() {
         viewModel.featureAnime.bind { [weak self] anime in
-            self?.updateFeatureAnimeDisplay(with: anime ?? Anime.placeholder)
+            self?.updateFeatureAnimeDisplay(with: anime)
         }
         
         viewModel.isFetching.bind { [weak self] fetching in
@@ -92,11 +92,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
     
     @objc private func viewFeatureDetails(_ sender: UITapGestureRecognizer? = nil) {
-        guard let featureAnime = viewModel.featureAnime.value else {
-            return
-        }
-        
-        let detailsViewModel = DetailsViewModel(anime: featureAnime)
+        let detailsViewModel = DetailsViewModel(anime: viewModel.featureAnime.value)
         let detailsViewController = DetailsViewController(with: detailsViewModel)
         
         self.navigationController?.pushViewController(detailsViewController, animated: true)
