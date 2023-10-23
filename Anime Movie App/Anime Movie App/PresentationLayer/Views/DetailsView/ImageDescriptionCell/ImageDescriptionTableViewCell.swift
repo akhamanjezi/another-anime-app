@@ -46,16 +46,16 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     private func buildText(from parts: [TextBuilderType]) -> NSMutableAttributedString {
         let text = NSMutableAttributedString()
         for part in parts {
-            text.append(attributedString(part.text, font: part.font, color: part.color ?? .label))
+            text.append(attributedString(part.text, font: part.font, color: part.color))
         }
         return text
     }
     
-    private func attributedString(_ string: String?, font: UIFont, color: UIColor = .label) -> NSMutableAttributedString {
+    private func attributedString(_ string: String?, font: UIFont, color: UIColor?) -> NSMutableAttributedString {
         return NSMutableAttributedString(
             string: string ?? "",
             attributes: [NSAttributedString.Key.font: font,
-                         NSAttributedString.Key.foregroundColor: color]
+                         NSAttributedString.Key.foregroundColor: color ?? .label]
         )
     }
 }
