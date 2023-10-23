@@ -80,7 +80,7 @@ class Anime: Equatable, Hashable {
                                    posterImageURL: "https://media.kitsu.io/anime/poster_images/176/large.jpg",
                                    coverImageURL: "https://media.kitsu.io/anime/cover_images/176/original.jpg",
                                    thumbnail: nil,
-                                   duration: 60 * 125,
+                                   duration: 7500,
                                    externalID: "176",
                                    source: .kitsu,
                                    posterImage: UIImage(named: "posterImage"),
