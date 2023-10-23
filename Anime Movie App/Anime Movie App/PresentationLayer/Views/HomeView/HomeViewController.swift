@@ -22,6 +22,25 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         setupFeatureAnimeTapGesture()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.updateFavourites()
+        favouritesTableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let selectedAnime = viewModel.favourites.value[safe: indexPath.row] else {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
+        
+        let detailsViewModel = DetailsViewModel(anime: selectedAnime)
+        let detailsViewController = DetailsViewController(with: detailsViewModel)
+        
+        navigationController?.pushViewController(detailsViewController, animated: true)
+        favouritesTableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     private func setupView() {
         title = "Animovie"
         featureImageView.layer.cornerRadius = 8

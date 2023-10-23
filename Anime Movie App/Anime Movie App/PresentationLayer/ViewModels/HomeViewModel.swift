@@ -10,6 +10,7 @@ class HomeViewModel {
     
     init(animeRepository: AnimeRepository = KitsuRepository()) {
         self.animeRepository = animeRepository
+        updateFavourites()
     }
     
     func newFeatureAnime() {
@@ -23,6 +24,10 @@ class HomeViewModel {
                 self?.resetFeatureAnime(with: error)
             }
         }
+    }
+    
+    func updateFavourites() {
+        favourites.value = animeRepository.favourites
     }
     
     private var randomId: String {
