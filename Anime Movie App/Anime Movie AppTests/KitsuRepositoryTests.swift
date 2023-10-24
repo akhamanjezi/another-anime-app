@@ -233,7 +233,7 @@ final class KitsuRepositoryTests: XCTestCase {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         let expected = AnimeTestDataProvider.popcornPlaceholderImage
         
-        systemUnderTest?.downloadImage(.cover, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
+        systemUnderTest?.downloadImage(.poster, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
             let actual = image
             XCTAssertEqual(expected, actual)
         }
