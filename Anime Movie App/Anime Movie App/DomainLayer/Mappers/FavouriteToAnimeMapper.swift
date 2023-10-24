@@ -2,13 +2,9 @@ import UIKit
 
 class FavouriteToAnimeMapper: ResponseToAnimeMapper {
     func mapToAnime(from favourite: StoringAnime) -> Anime? {
-        let posterImage = favourite.posterImageData == nil
+        let thumbnail = favourite.thumbnail == nil
         ? nil
-        : UIImage(data: favourite.posterImageData!)
-        
-        let coverImage = favourite.coverImageData == nil
-        ? nil
-        : UIImage(data: favourite.coverImageData!)
+        : UIImage(data: favourite.thumbnail!)
         
         return Anime(title: favourite.title,
                      genres: favourite.genres,
@@ -18,12 +14,9 @@ class FavouriteToAnimeMapper: ResponseToAnimeMapper {
                      ageRating: favourite.ageRating,
                      posterImageURL: favourite.posterImageURL,
                      coverImageURL: favourite.coverImageURL,
-                     thumbnail: favourite.thumbnail,
+                     thumbnail: thumbnail,
                      duration: favourite.duration,
                      externalID: favourite.externalID,
-                     source: favourite.source,
-                     posterImage: posterImage,
-                     coverImage: coverImage
-        )
+                     source: favourite.source)
     }
 }

@@ -21,7 +21,7 @@ class SearchTableViewCell: UITableViewCell {
     func configureCell(for anime: Anime) {
         titleLabel.text = anime.title
         releaseDateLabel.text = anime.styledReleaseDate
-        thumbnailView.image = anime.posterImage
+        thumbnailView.image = anime.posterImage ?? anime.thumbnail
         thumbnailView.contentMode = .scaleAspectFill
         
         guard let displayReleaseDate = anime.styledReleaseDate else {

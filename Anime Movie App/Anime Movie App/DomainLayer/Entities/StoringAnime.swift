@@ -13,8 +13,6 @@ struct StoringAnime: Codable, Comparable {
     var duration: TimeInterval?
     var externalID: String?
     var source: AnimeSources?
-    var posterImageData: Data?
-    var coverImageData: Data?
     var creationDate: Date?
     
     var key: String {
@@ -30,12 +28,10 @@ struct StoringAnime: Codable, Comparable {
         ageRating = anime.ageRating
         posterImageURL = anime.posterImageURL
         coverImageURL = anime.coverImageURL
-        thumbnail = anime.thumbnail
+        thumbnail = anime.posterImage?.jpegData(compressionQuality: 0)
         duration = anime.duration
         externalID = anime.externalID
         source = anime.source
-        posterImageData = anime.posterImage?.pngData()
-        coverImageData = anime.coverImage?.pngData()
         self.creationDate = creationDate
     }
     

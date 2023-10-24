@@ -9,7 +9,7 @@ class Anime: Equatable, Hashable {
     var ageRating: String?
     var posterImageURL: String?
     var coverImageURL: String?
-    var thumbnail: Data?
+    var thumbnail: UIImage?
     var duration: TimeInterval?
     var externalID: String?
     var source: AnimeSources?
@@ -39,7 +39,7 @@ class Anime: Equatable, Hashable {
         source.debugDescription + (externalID ?? "")
     }
     
-    init(title: String? = nil, genres: [String]? = nil, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: Data? = nil, duration: TimeInterval? = nil, externalID: String? = nil, source: AnimeSources? = nil, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
+    init(title: String? = nil, genres: [String]? = nil, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: UIImage? = nil, duration: TimeInterval? = nil, externalID: String? = nil, source: AnimeSources? = nil, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
         self.title = title
         self.genres = genres
         self.releaseDate = releaseDate
@@ -65,7 +65,6 @@ class Anime: Equatable, Hashable {
         lhs.ageRating == rhs.ageRating &&
         lhs.posterImageURL == rhs.posterImageURL &&
         lhs.coverImageURL == rhs.coverImageURL &&
-        lhs.thumbnail == rhs.thumbnail &&
         lhs.duration == rhs.duration &&
         lhs.externalID == rhs.externalID &&
         lhs.source == rhs.source
