@@ -18,7 +18,7 @@ class DetailsViewModel {
         self.animeRepository = animeRepository
         self.anime.value = anime
         self.searchTerm = searchTerm
-        downloadImage(for: anime)
+        updatePosterImage()
     }
     
     func toggleFavorite(completion: @escaping () -> ()) {
@@ -28,18 +28,24 @@ class DetailsViewModel {
         }
     }
     
-    private func downloadImage(for anime: Anime) {
-        guard anime.posterImage == nil else {
+    private func updatePosterImage() {
+        guard anime.value.posterImage == nil else {
             return
         }
         
-        animeRepository.downloadImage(.poster, for: anime) { [weak self] image in
-            self?.setPosterImage(for: anime, to: image)
+        if let thumbnail = anime.value.thumbnail {
+            setPosterImage(thumbnail)
+        }
+        
+        DispatchQueue.global(qos: .userInitiated).async { [self] in
+            animeRepository.downloadImage(.poster, for: self.anime.value) { [weak self] image in
+                self?.setPosterImage(image)
+            }
         }
     }
     
-    private func setPosterImage(for anime: Anime, to image: UIImage?) {
-        anime.posterImage = image
-        self.anime.value = anime
+    private func setPosterImage(_ image: UIImage?) {
+        anime.value.posterImage = image
+        anime.value = anime.value
     }
 }
