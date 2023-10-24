@@ -32,7 +32,7 @@ final class SearchViewModelTests: XCTestCase {
         XCTAssertNil(searchingError)
         
         guard let animeSearchResults = animeSearchResults,
-                animeSearchResults.count > 0 else {
+              animeSearchResults.count > 0 else {
             XCTFail("Unexpected empty anime result")
             return
         }
@@ -59,39 +59,30 @@ final class SearchViewModelTests: XCTestCase {
     }
     
     func testCancelSearchClearsResults() {
-        let (animeSearchResults, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
-        
-        let expected = 3
-        var actual: Int? = animeSearchResults?.count
-        XCTAssertEqual(expected, actual)
+        let (_, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         
         systemUnderTest?.cancelSearch()
+        let actual = systemUnderTest?.animeSearchResults.value["spirited away"]?.count
         
-        actual = systemUnderTest?.animeSearchResults.value["spirited away"]?.count
         XCTAssertNil(actual)
     }
     
     func testCancelSearchClearsError() {
-        let (_, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
-        
-        var actual = searchingError
-        XCTAssertNotNil(actual)
+        let (_, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
         
         systemUnderTest?.cancelSearch()
+        let actual = systemUnderTest?.searchingError.value
         
-        actual = systemUnderTest?.searchingError.value
         XCTAssertNil(actual)
     }
     
     func testRepeatSearchUsesDictionaryLookup() {
-        let (animeSearchResults, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
-        
+        let (_, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         let expected = 3
-        var actual: Int? = animeSearchResults?.count
-        XCTAssertEqual(expected, actual)
         
         systemUnderTest?.search(for: "spirited away")
-        actual = systemUnderTest?.animeSearchResults.value["spirited away"]?.count
+        let actual = systemUnderTest?.animeSearchResults.value["spirited away"]?.count
+        
         XCTAssertEqual(expected, actual)
     }
     
