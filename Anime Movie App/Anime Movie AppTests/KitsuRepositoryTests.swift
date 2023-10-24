@@ -8,11 +8,6 @@ final class KitsuRepositoryTests: XCTestCase {
         super.tearDown()
     }
     
-    private func initSystemUnderTest(dataProvider: DataProviding) {
-        systemUnderTest = KitsuRepository(dataProvider: dataProvider, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
-        XCTAssertNotNil(systemUnderTest)
-    }
-    
     // MARK: Search
     
     func testSuccessfulSearchWithNotNullData() {
@@ -237,5 +232,58 @@ final class KitsuRepositoryTests: XCTestCase {
             let actual = image
             XCTAssertEqual(expected, actual)
         }
+    }
+    
+    // MARK: Favourites
+    
+    func testIsFavouriteFalse() {
+        initSystemUnderTest()
+        
+        let expected = false
+        let actual = systemUnderTest?.isFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testIsFavouriteTrue() {
+        initSystemUnderTest(storage: dataStorge(with: [AnimeTestDataProvider.animeFavouritedNow.key: AnimeTestDataProvider.animeFavouritedNow]))
+        
+        let expected = true
+        let actual = systemUnderTest?.isFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testToggleFavouriteTrue() {
+        initSystemUnderTest()
+        systemUnderTest?.toggleFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        let expected = true
+        let actual = systemUnderTest?.isFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testToggleFavouriteFalse() {
+        initSystemUnderTest(storage: dataStorge(with: [AnimeTestDataProvider.animeFavouritedNow.key: AnimeTestDataProvider.animeFavouritedNow]))
+        systemUnderTest?.toggleFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        let expected = false
+        let actual = systemUnderTest?.isFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    // MARK: Helper Functions
+    
+    private func dataStorge(with dictionary: [String: StoringAnime]?) -> any DataStoring<String, Data> {
+        return TestDataStorage(storage: dictionary)
+    }
+    
+    private func initSystemUnderTest(dataProvider: DataProviding = AnimeTestDataProvider.successfulKitsuSearchDataProvider, storage: any DataStoring<String, Data> = TestDataStorage()) {
+        systemUnderTest = KitsuRepository(dataProvider: dataProvider,
+                                          imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()),
+                                          favouritesManager: FavouritesManager(storage: storage))
+        XCTAssertNotNil(systemUnderTest)
     }
 }
