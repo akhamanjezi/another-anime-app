@@ -2,58 +2,152 @@ import XCTest
 
 final class FavouritesManagerTests: XCTestCase {
     private var systemUnderTest: FavouritesManager? = nil
-    private let animeForTest = AnimeTestDataProvider.validAnimeInstance
     
-    override func setUpWithError() throws {
-        systemUnderTest = FavouritesManager(storage: TestDataStorage())
+    override func tearDown() {
+        systemUnderTest = nil
+        super.tearDown()
     }
     
-    override func tearDownWithError() throws {
-        systemUnderTest = nil
+    func testAllFavourites() {
+        initSystemUnderTest()
+        
+        let expected: [Anime] = []
+        let actual = systemUnderTest?.all
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testAllFavouritesNilStorage() {
+        initSystemUnderTest(storage: TestDataNilStorage())
+        
+        let expected: [Anime] = []
+        let actual = systemUnderTest?.all
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testAddFavouriteSuccess() {
+        initSystemUnderTest()
+        
+        let expected = true
+        let actual = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testAddFavouriteFailure() {
+        initSystemUnderTest(storage: TestDataNilStorage())
+        
+        let expected = false
+        let actual = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        
+        XCTAssertEqual(expected, actual)
     }
     
     func testAddFavourite() {
-        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
-        let actual = systemUnderTest?.all
+        initSystemUnderTest()
+        
+        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
         
         let expected = [Anime.placeholder]
+        let actual = systemUnderTest?.all
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testAddFavouriteNilStorage() {
+        initSystemUnderTest(storage: TestDataNilStorage())
+        
+        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        
+        let expected: [Anime] = []
+        let actual = systemUnderTest?.all
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testRemoveFavouriteSuccess() {
+        initSystemUnderTest()
+        
+        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        
+        let expected = true
+        let actual = systemUnderTest?.removeFavourite(Anime.placeholder, forKey: "favourite")
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testRemoveFavouriteFailure() {
+        initSystemUnderTest(storage: TestDataNilStorage())
+        
+        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        
+        let expected = false
+        let actual = systemUnderTest?.removeFavourite(Anime.placeholder, forKey: "favourite")
         
         XCTAssertEqual(expected, actual)
     }
     
     func testRemoveFavourite() {
-        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
-        systemUnderTest?.removeFavourite(Anime.placeholder, forKey: "favourite")
+        initSystemUnderTest()
         
-        let actual = systemUnderTest?.all
+        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        let _ = systemUnderTest?.removeFavourite(Anime.placeholder, forKey: "favourite")
+        
         let expected: [Anime] = []
+        let actual = systemUnderTest?.all
         
         XCTAssertEqual(expected, actual)
     }
     
     func testIsFavouriteTrue() {
-        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        initSystemUnderTest()
+        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
         
-        let actual = systemUnderTest?.isFavourite(Anime.placeholder)
         let expected = true
+        let actual = systemUnderTest?.isFavourite(Anime.placeholder)
         
         XCTAssertEqual(expected, actual)
     }
     
     func testIsFavouriteFalse() {
-        let actual = systemUnderTest?.isFavourite(Anime.placeholder)
+        initSystemUnderTest()
+        
         let expected = false
+        let actual = systemUnderTest?.isFavourite(Anime.placeholder)
         
         XCTAssertEqual(expected, actual)
     }
     
     func testResetFavourites() {
-        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
-        systemUnderTest?.resetFavourites()
+        initSystemUnderTest()
         
-        let actual = systemUnderTest?.all
+        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        let _ = systemUnderTest?.resetFavourites()
+        
         let expected: [Anime] = []
+        let actual = systemUnderTest?.all
         
         XCTAssertEqual(expected, actual)
+    }
+    
+    func testResetFavouritesNilStorage() {
+        initSystemUnderTest(storage: TestDataNilStorage())
+        
+        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        let _ = systemUnderTest?.resetFavourites()
+        
+        let expected: [Anime] = []
+        let actual = systemUnderTest?.all
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testInitNilStorage() {
+        initSystemUnderTest(storage: TestDataNilStorage())
+    }
+    
+    private func initSystemUnderTest(storage: any DataStoring<String, Data> = TestDataStorage()) {
+        systemUnderTest = FavouritesManager(storage: storage)
     }
 }
