@@ -53,7 +53,7 @@
             <connections>
                 <outlet property="activityIndicatorView" destination="Cbz-LE-gdJ" id="oXX-4M-Ggg"/>
                 <outlet property="descriptionLabel" destination="x43-8w-E7f" id="IyN-0r-Rda"/>
-                <outlet property="posterImage" destination="JEI-TG-kiR" id="792-OB-ISg"/>
+                <outlet property="posterImageView" destination="JEI-TG-kiR" id="792-OB-ISg"/>
             </connections>
             <point key="canvasLocation" x="46" y="489"/>
         </tableViewCell>
