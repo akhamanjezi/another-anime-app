@@ -17,7 +17,7 @@ struct StoringAnime: Codable, Comparable {
     var coverImageData: Data?
     var creationDate: Date?
     
-    init(anime: Anime) {
+    init(anime: Anime, creationDate: Date = .now) {
         title = anime.title
         genres = anime.genres
         releaseDate = anime.releaseDate
@@ -32,10 +32,10 @@ struct StoringAnime: Codable, Comparable {
         source = anime.source
         posterImageData = anime.posterImage?.pngData()
         coverImageData = anime.coverImage?.pngData()
-        creationDate = .now
+        self.creationDate = creationDate
     }
     
-    static func <(lhs: StoringAnime, rhs: StoringAnime) -> Bool {
+    static func < (lhs: StoringAnime, rhs: StoringAnime) -> Bool {
         lhs.creationDate ?? .distantPast < rhs.creationDate ?? .distantPast
     }
 }
