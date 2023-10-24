@@ -9,9 +9,9 @@ class FavouritesManager: FavouritesManaging {
             return []
         }
         
-        let favorites = favouritesDictionary.compactMap { $0.value }
+        let favorites = sortedValues(favouritesDictionary)
         
-        return favorites.sorted(by: >).compactMap { mapper.mapToAnime(from: $0) }
+        return convertToAnime(favorites)
     }
     
     init(storage: any DataStoring<String, Data> = FavouritesStorage.shared, mapper: any ResponseToAnimeMapper<StoringAnime> = FavouriteToAnimeMapper()) {
@@ -20,41 +20,47 @@ class FavouritesManager: FavouritesManaging {
         createDictionaryIfNotPresent()
     }
     
-    func addFavourite(_ anime: Anime, forKey key: String) {
+    func addFavourite(_ anime: Anime, forKey key: String) -> Bool {
         guard var favouritesDictionary = favouritesDictionary else {
-            return
+            return false
         }
         
         favouritesDictionary[key] = StoringAnime(anime: anime)
-        setFavourites(favouritesDictionary)
+        return setFavourites(favouritesDictionary)
     }
     
-    func removeFavourite(_ anime: Anime, forKey key: String) {
+    func removeFavourite(_ anime: Anime, forKey key: String) -> Bool {
         guard var favouritesDictionary = favouritesDictionary else {
-            return
+            return false
         }
         
         favouritesDictionary.removeValue(forKey: key)
-        setFavourites(favouritesDictionary)
+        return setFavourites(favouritesDictionary)
     }
     
     func isFavourite(_ anime: Anime) -> Bool {
         all.contains(anime)
     }
     
-    func resetFavourites() {
-        setFavourites([:])
+    func resetFavourites() -> Bool {
+        return setFavourites([:])
+    }
+    
+    private func convertToAnime(_ saved: [StoringAnime]) -> [Anime] {
+        return saved.compactMap { mapper.mapToAnime(from: $0) }
+    }
+    
+    private func sortedValues(_ favouritesDictionary: [String: StoringAnime]) -> [StoringAnime] {
+        let favorites = favouritesDictionary.compactMap { $0.value }
+        return favorites
     }
     
     private func createDictionaryIfNotPresent() {
-        guard let _ = storage.object(forKey: "favourites") else {
-            let favouritesDictionary: [String: StoringAnime] = [:]
-            guard let objData = try? JSONEncoder().encode(favouritesDictionary) else {
-                return
-            }
-            storage.setObject(objData, forKey: "favourites")
+        guard favouritesDictionary == nil else {
             return
         }
+        
+        let _ = resetFavourites()
     }
     
     private var favouritesDictionary: [String: StoringAnime]? {
@@ -66,11 +72,12 @@ class FavouritesManager: FavouritesManaging {
         return favourites
     }
     
-    private func setFavourites(_ favouritesDictionary: [String: StoringAnime]) {
+    private func setFavourites(_ favouritesDictionary: [String: StoringAnime]) -> Bool {
         guard let objData = try? JSONEncoder().encode(favouritesDictionary) else {
-            return
+            return false
         }
         
         storage.setObject(objData, forKey: "favourites")
+        return true
     }
 }
