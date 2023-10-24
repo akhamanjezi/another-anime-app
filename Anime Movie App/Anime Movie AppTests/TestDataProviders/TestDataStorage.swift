@@ -1,16 +1,20 @@
 import Foundation
 
 class TestDataStorage: DataStoring {
-    private let storage = NSCache<NSString, NSData>()
-        
-    func object(forKey key: String) -> Data? {
-        guard let nsdata = storage.object(forKey: NSString(string: key)) else {
-            return nil
-        }
-        return Data(referencing: nsdata)
+    private var storage: [String: StoringAnime]?
+    
+    init(storage: [String : StoringAnime]? = [:]) {
+        self.storage = storage
     }
     
-    func setObject(_ obj: Data, forKey key: String) {
-        storage.setObject(NSData(data: obj), forKey: NSString(string: key))
+    func object(forKey _: String) -> Data? {
+        return try? JSONEncoder().encode(storage)
+    }
+    
+    func setObject(_ obj: Data, forKey _: String) {
+        guard let data = try? JSONDecoder().decode([String: StoringAnime].self, from: obj) else {
+            return
+        }
+        storage = data
     }
 }
