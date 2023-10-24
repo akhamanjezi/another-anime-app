@@ -3,7 +3,7 @@ import UIKit
 class HomeViewModel {
     private let animeRepository: AnimeRepository
     
-    var featureAnime: Observable<Anime?> = Observable(nil)
+    var featureAnime: Observable<Anime> = Observable(Anime.placeholder)
     var isFetching: Observable<Bool> = Observable(false)
     var fetchingError: Observable<LocalizedError?> = Observable(nil)
     var favourites: Observable<[Anime]> = Observable(Array(repeating: Anime.placeholder, count: 6))
@@ -18,7 +18,7 @@ class HomeViewModel {
         animeRepository.anime(by: randomId) { [weak self] result in
             switch result {
             case .success(let anime):
-                self?.updateDetailsAndDownloadImage(for: anime)
+                self?.updateDetailsAndDownloadImages(for: anime)
             case .failure(let error):
                 self?.resetFeatureAnime(with: error)
             }
@@ -34,26 +34,36 @@ class HomeViewModel {
         fetchingError.value = nil
     }
     
-    private func updateDetailsAndDownloadImage(for anime: Anime) {
+    private func updateDetailsAndDownloadImages(for anime: Anime) {
         featureAnime.value = anime
-        downloadImage(for: anime)
-    }
-    
-    private func downloadImage(for anime: Anime) {
-        animeRepository.downloadImage(.poster, for: anime) { [weak self] image in
-            self?.setCoverImage(for: anime, to: image)
-        }
+        downloadImage(role: .cover)
+        downloadImage(role: .poster)
     }
     
     private func resetFeatureAnime(with error: LocalizedError) {
-        updateDetailsAndDownloadImage(for: Anime.placeholder)
+        updateDetailsAndDownloadImages(for: Anime.placeholder)
         isFetching.value = false
         fetchingError.value = error
     }
     
-    private func setCoverImage(for anime: Anime, to image: UIImage?) {
-        anime.coverImage = image
-        self.featureAnime.value = anime
-        self.isFetching.value = false
+    private func downloadImage(role: ImageRole) {
+        animeRepository.downloadImage(role, for: featureAnime.value) { [weak self] image in
+            self?.setImage(image, role: role)
+        }
+    }
+    
+    private func setImage(_ image: UIImage?, role: ImageRole) {
+        switch role {
+        case .cover:
+            updateCoverImage(image)
+        case .poster:
+            featureAnime.value.posterImage = image
+        }
+    }
+    
+    private func updateCoverImage(_ image: UIImage?) {
+        featureAnime.value.coverImage = image
+        featureAnime.value = featureAnime.value
+        isFetching.value = false
     }
 }

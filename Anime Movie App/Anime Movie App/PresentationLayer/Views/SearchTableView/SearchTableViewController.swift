@@ -8,33 +8,61 @@ class SearchTableViewController: UITableViewController {
         super.viewDidLoad()
         
         setupView()
-        registerCell()
+        registerCells()
         bindWithViewModel()
         setupDataSource()
     }
     
     private func setupView() {
         tableView = UITableView(frame: tableView.frame, style: .insetGrouped)
+        tableView.delegate = self
     }
     
-    private func registerCell() {
-        let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: SearchTableViewCell.cellIdentifier)
+    private func registerCells() {
+        tableView.registerNib(named: SearchTableViewCell.cellIdentifier)
     }
     
     private func bindWithViewModel() {
         viewModel.animeSearchResults.bind { [weak self] searchResults in
-            guard self?.viewModel.currentSearchTerm == searchResults.term else {
+            guard let searchTermKey = self?.searchTermKey,
+                  searchResults[searchTermKey] != nil else {
                 return
             }
             self?.updateDataSource()
         }
+        
+        viewModel.isSearching.bind { [weak self] isSearching in
+            if !isSearching {
+                self?.updateDataSource()
+            }
+        }
+    }
+    
+    private var searchTermKey: String {
+        viewModel.searchTerm.lowercased()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let selectedAnime = viewModel.animeSearchResults.value[searchTermKey]?[indexPath.row] else {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
+        let detailsViewModel = DetailsViewModel(anime: selectedAnime, searchTerm: viewModel.searchTerm)
+        let detailsViewController = DetailsViewController(with: detailsViewModel)
+        
+        presentingViewController?.navigationController?.pushViewController(detailsViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     private func updateDataSource() {
+        guard let newResults = viewModel.animeSearchResults.value[searchTermKey] else {
+            return
+        }
+        
         var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Anime>()
         initialSnapshot.appendSections([.main])
-        initialSnapshot.appendItems(viewModel.animeSearchResults.value.results)
+        initialSnapshot.appendItems(newResults)
+        
         DispatchQueue.main.async {
             self.dataSource.apply(initialSnapshot, animatingDifferences: true)
         }
@@ -66,11 +94,11 @@ class SearchTableViewController: UITableViewController {
         
         var updatedSnapshot = dataSource.snapshot()
         
-        guard let datasourceIndex = updatedSnapshot.indexOfItem(anime) else {
+        guard let dataSourceIndex = updatedSnapshot.indexOfItem(anime) else {
             return
         }
         
-        guard let item = viewModel.animeSearchResults.value.results[safe: datasourceIndex],
+        guard let item = viewModel.animeSearchResults.value[searchTermKey]?[safe: dataSourceIndex],
               item == anime else {
             return
         }
@@ -88,7 +116,10 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.animeSearchResults.value.results.count
+        guard let count =  viewModel.animeSearchResults.value[searchTermKey]?.count else {
+            return 0
+        }
+        return count
     }
 }
 

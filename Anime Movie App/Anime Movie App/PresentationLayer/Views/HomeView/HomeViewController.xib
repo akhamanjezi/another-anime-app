@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="favouritesLabel" destination="APw-SB-52N" id="rQh-ce-Zab"/>
                 <outlet property="favouritesTableView" destination="Anf-7f-OKk" id="Xh9-6l-qqD"/>
+                <outlet property="featureAnimeView" destination="ZoQ-dD-hqN" id="P4o-I3-HHK"/>
                 <outlet property="featureImageView" destination="M7K-6u-P3h" id="UcA-Xa-MLS"/>
                 <outlet property="featureLabel" destination="cQq-ko-PM7" id="ZOR-kR-5gS"/>
                 <outlet property="reloadButton" destination="dZP-7I-Usd" id="24v-tZ-M4x"/>
@@ -87,7 +88,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Anf-7f-OKk">
+                                        <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Anf-7f-OKk">
                                             <rect key="frame" x="0.0" y="46.333333333333286" width="353" height="462.66666666666674"/>
                                         </tableView>
                                     </subviews>

@@ -11,7 +11,7 @@ final class SearchViewModelTests: XCTestCase {
     func testSuccessfulCallWithNotNullData() {
         let (animeSearchResults, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         let expected = 3
-        let actual = animeSearchResults.count
+        let actual = animeSearchResults?.count
         
         XCTAssertNil(searchingError)
         XCTAssertEqual(expected, actual)
@@ -19,11 +19,10 @@ final class SearchViewModelTests: XCTestCase {
     
     func testSuccessfulCallWithNullData() {
         let (animeSearchResults, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.nullKitsuDataProvider)
-        let expected = 0
-        let actual = animeSearchResults.count
+        let actual = animeSearchResults?.count
         
         XCTAssertNotNil(searchingError)
-        XCTAssertEqual(expected, actual)
+        XCTAssertNil(actual)
     }
     
     func testSuccessfulAnimeReturn() {
@@ -32,7 +31,8 @@ final class SearchViewModelTests: XCTestCase {
         
         XCTAssertNil(searchingError)
         
-        guard animeSearchResults.count > 0 else {
+        guard let animeSearchResults = animeSearchResults,
+              animeSearchResults.count > 0 else {
             XCTFail("Unexpected empty anime result")
             return
         }
@@ -44,7 +44,7 @@ final class SearchViewModelTests: XCTestCase {
     func testSuccessfulAnimeReturnNoResults() {
         let (animeSearchResults, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulNoResultKitsuSearchDataProvider)
         let expected = 0
-        let actual = animeSearchResults.count
+        let actual = animeSearchResults?.count
         
         XCTAssertNil(searchingError)
         XCTAssertEqual(expected, actual)
@@ -52,37 +52,38 @@ final class SearchViewModelTests: XCTestCase {
     
     func testUnsuccessfulCall() {
         let (animeSearchResults, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
-        let expected = 0
-        let actual = animeSearchResults.count
+        let actual = animeSearchResults?.count
         
         XCTAssertNotNil(searchingError)
-        XCTAssertEqual(expected, actual)
+        XCTAssertNil(actual)
     }
     
     func testCancelSearchClearsResults() {
-        let (animeSearchResults, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
-        
-        var expected = 3
-        var actual: Int? = animeSearchResults.count
-        XCTAssertEqual(expected, actual)
+        let (_, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
         
         systemUnderTest?.cancelSearch()
+        let actual = systemUnderTest?.animeSearchResults.value["spirited away"]?.count
         
-        expected = 0
-        actual = systemUnderTest?.animeSearchResults.value.results.count
-        XCTAssertEqual(expected, actual)
+        XCTAssertNil(actual)
     }
     
     func testCancelSearchClearsError() {
-        let (_, searchingError) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
-        
-        var actual = searchingError
-        XCTAssertNotNil(actual)
+        let (_, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.unsuccessfulKitsuDataProvider)
         
         systemUnderTest?.cancelSearch()
+        let actual = systemUnderTest?.searchingError.value
         
-        actual = systemUnderTest?.searchingError.value
         XCTAssertNil(actual)
+    }
+    
+    func testRepeatSearchUsesDictionaryLookup() {
+        let (_, _) = searchSearchViewModelWith(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
+        let expected = 3
+        
+        systemUnderTest?.search(for: "spirited away")
+        let actual = systemUnderTest?.animeSearchResults.value["spirited away"]?.count
+        
+        XCTAssertEqual(expected, actual)
     }
     
     func testSuccessfulImageDownload() {
@@ -111,10 +112,10 @@ final class SearchViewModelTests: XCTestCase {
         XCTAssertNotNil(systemUnderTest)
     }
     
-    private func searchSearchViewModelWith(dataProvider: DataProviding) -> ([Anime], LocalizedError?) {
+    private func searchSearchViewModelWith(dataProvider: DataProviding) -> ([Anime]?, LocalizedError?) {
         initSystemUnderTest(dataProvider: dataProvider)
-        systemUnderTest!.search(for: "")
+        systemUnderTest!.search(for: "spirited away")
         
-        return (systemUnderTest!.animeSearchResults.value.results, systemUnderTest!.searchingError.value)
+        return (systemUnderTest!.animeSearchResults.value["spirited away"], systemUnderTest!.searchingError.value)
     }
 }

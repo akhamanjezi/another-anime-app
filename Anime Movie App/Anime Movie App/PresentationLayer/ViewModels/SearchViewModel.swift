@@ -2,25 +2,30 @@ import UIKit
 
 class SearchViewModel {
     private let animeRepository: AnimeRepository
-    var currentSearchTerm = ""
+    private(set) var searchTerm = ""
     
     let numberOfSections = 1
-    var animeSearchResults: Observable<AnimeRepository.SearchResultsType> = Observable(("", []))
-    var isSearching: Observable<Bool> = Observable(false)
-    var searchingError: Observable<LocalizedError?> = Observable(nil)
-    var searchQueue = OperationQueue()
-    
+    let animeSearchResults: Observable<[String: [Anime]]> = Observable(["":[]])
+    let isSearching: Observable<Bool> = Observable(false)
+    let searchingError: Observable<LocalizedError?> = Observable(nil)
+    let searchQueue = OperationQueue()
     
     init(animeRepository: AnimeRepository = KitsuRepository()) {
         self.animeRepository = animeRepository
     }
     
-    func search(for searchTerm: String) {
+    func search(for term: String) {
         isSearching.value = true
         searchingError.value = nil
-        currentSearchTerm = searchTerm
+        searchTerm = term
+        let searchTermKey = term.lowercased()
         
-        animeRepository.searchResults(for: searchTerm) { [weak self] result in
+        guard nil == animeSearchResults.value[searchTermKey] else {
+            isSearching.value = false
+            return
+        }
+        
+        animeRepository.searchResults(for: searchTermKey) { [weak self] result in
             switch result {
             case .success(let results):
                 self?.updateSearchResults(results)
@@ -31,7 +36,8 @@ class SearchViewModel {
     }
     
     func cancelSearch() {
-        updateSearchResults(("", []))
+        animeSearchResults.value = (["":[]])
+        searchTerm = ""
         searchingError.value = nil
         isSearching.value = false
     }
@@ -42,8 +48,8 @@ class SearchViewModel {
         }
     }
     
-    private func updateSearchResults(_ results: AnimeRepository.SearchResultsType) {
-        animeSearchResults.value = results
+    private func updateSearchResults(_ search: AnimeRepository.SearchResultsType) {
+        animeSearchResults.value[search.term] = search.results
         isSearching.value = false
     }
     

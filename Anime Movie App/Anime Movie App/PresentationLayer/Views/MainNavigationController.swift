@@ -13,5 +13,8 @@ class MainNavigationController: UINavigationController {
         navigationBar.largeTitleTextAttributes = [
             .font: UIFont.roundedLargeTitle
         ]
+        navigationBar.titleTextAttributes = [
+            .font: UIFont.roundedHeadline
+        ]
     }
 }

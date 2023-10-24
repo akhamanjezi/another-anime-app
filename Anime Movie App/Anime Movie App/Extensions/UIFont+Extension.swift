@@ -17,8 +17,16 @@ extension UIFont {
         UIFont.preferredFont(forTextStyle: .caption2).with(weight: .regular).rounded()
     }
     
+    static var roundedCaption2Bold: UIFont {
+        UIFont.preferredFont(forTextStyle: .caption2).with(weight: .bold).rounded()
+    }
+    
     static var roundedLargeTitle: UIFont {
         UIFont.preferredFont(forTextStyle: .largeTitle).with(weight: .bold).rounded()
+    }
+    
+    static var roundedHeadline: UIFont {
+        UIFont.preferredFont(forTextStyle: .headline).with(weight: .semibold).rounded()
     }
     
     private func with(weight: UIFont.Weight) -> UIFont {

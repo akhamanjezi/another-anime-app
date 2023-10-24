@@ -6,18 +6,20 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet private weak var favouritesLabel: UILabel!
     @IBOutlet private weak var featureLabel: UILabel!
     @IBOutlet private weak var reloadButton: UIButton!
+    @IBOutlet private weak var featureAnimeView: UIView!
     private let viewModel = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
-        registerNib()
+        registerCells()
         configureTableView()
         setupSearchResultsController()
         bindWithViewModel()
         configureReloadButton()
         updateFeatureAnime()
+        setupFeatureAnimeTapGesture()
     }
     
     private func setupView() {
@@ -29,9 +31,8 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         featureLabel.font = .subHeadingMedium
     }
     
-    private func registerNib() {
-        let nib = UINib(nibName: "SearchTableViewCell", bundle: nil)
-        favouritesTableView.register(nib, forCellReuseIdentifier: SearchTableViewCell.cellIdentifier)
+    private func registerCells() {
+        favouritesTableView.registerNib(named: SearchTableViewCell.cellIdentifier)
     }
     
     private func configureTableView() {
@@ -45,18 +46,35 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         searchController.delegate = searchTableViewController
         searchController.searchBar.delegate = searchTableViewController
+        searchController.obscuresBackgroundDuringPresentation = true
         
         navigationItem.searchController = searchController
     }
     
     private func bindWithViewModel() {
         viewModel.featureAnime.bind { [weak self] anime in
-            self?.updateFeatureAnimeDisplay(with: anime ?? Anime.placeholder)
+            self?.updateFeatureAnimeDisplay(with: anime)
         }
         
         viewModel.isFetching.bind { [weak self] fetching in
             self?.toggleFetching(fetching)
         }
+    }
+    
+    private func configureReloadButton() {
+        let reloadButtonConfigHandler: UIButton.ConfigurationUpdateHandler = { [weak self] button in
+            button.configuration = (self?.viewModel.isFetching.value ?? false) ? .loadingBorderless : .reloadBorderless
+        }
+        reloadButton.configurationUpdateHandler = reloadButtonConfigHandler
+    }
+    
+    private func updateFeatureAnime() {
+        viewModel.newFeatureAnime()
+    }
+    
+    private func setupFeatureAnimeTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(viewFeatureDetails(_:)))
+        featureAnimeView.addGestureRecognizer(tap)
     }
     
     private func updateFeatureAnimeDisplay(with anime: Anime) {
@@ -73,19 +91,15 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         }
     }
     
-    private func configureReloadButton() {
-        let reloadButtonConfigHandler: UIButton.ConfigurationUpdateHandler = { [weak self] button in
-            button.configuration = (self?.viewModel.isFetching.value ?? false) ? .loadingBorderless : .reloadBorderless
-        }
-        reloadButton.configurationUpdateHandler = reloadButtonConfigHandler
+    @objc private func viewFeatureDetails(_ sender: UITapGestureRecognizer? = nil) {
+        let detailsViewModel = DetailsViewModel(anime: viewModel.featureAnime.value)
+        let detailsViewController = DetailsViewController(with: detailsViewModel)
+        
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     @IBAction private func refreshAnime(_ sender: Any) {
         updateFeatureAnime()
-    }
-    
-    private func updateFeatureAnime() {
-        viewModel.newFeatureAnime()
     }
 }
 
