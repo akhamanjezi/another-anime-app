@@ -38,7 +38,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         let detailsViewController = DetailsViewController(with: detailsViewModel)
         
         navigationController?.pushViewController(detailsViewController, animated: true)
-        favouritesTableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     private func setupView() {
