@@ -246,7 +246,7 @@ final class KitsuRepositoryTests: XCTestCase {
     }
     
     func testIsFavouriteTrue() {
-        initSystemUnderTest(storage: dataStorge(with: [AnimeTestDataProvider.animeFavouritedNow.key: AnimeTestDataProvider.animeFavouritedNow]))
+        initSystemUnderTest(storage: AnimeTestDataProvider.validFavouritesDictionryDataStoragePopulated)
         
         let expected = true
         let actual = systemUnderTest?.isFavourite(AnimeTestDataProvider.validAnimeInstance)
@@ -265,7 +265,7 @@ final class KitsuRepositoryTests: XCTestCase {
     }
     
     func testToggleFavouriteFalse() {
-        initSystemUnderTest(storage: dataStorge(with: [AnimeTestDataProvider.animeFavouritedNow.key: AnimeTestDataProvider.animeFavouritedNow]))
+        initSystemUnderTest(storage: AnimeTestDataProvider.validFavouritesDictionryDataStoragePopulated)
         systemUnderTest?.toggleFavourite(AnimeTestDataProvider.validAnimeInstance)
         
         let expected = false
@@ -276,11 +276,9 @@ final class KitsuRepositoryTests: XCTestCase {
     
     // MARK: Helper Functions
     
-    private func dataStorge(with dictionary: [String: StoringAnime]?) -> any DataStoring<String, Data> {
-        return TestDataStorage(storage: dictionary)
-    }
-    
-    private func initSystemUnderTest(dataProvider: DataProviding = AnimeTestDataProvider.successfulKitsuSearchDataProvider, storage: any DataStoring<String, Data> = TestDataStorage()) {
+    private func initSystemUnderTest(dataProvider: DataProviding = AnimeTestDataProvider.successfulKitsuSearchDataProvider, 
+                                     storage: any DataStoring<String, Data> = TestDataStorage()) {
+        
         systemUnderTest = KitsuRepository(dataProvider: dataProvider,
                                           imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()),
                                           favouritesManager: FavouritesManager(storage: storage))

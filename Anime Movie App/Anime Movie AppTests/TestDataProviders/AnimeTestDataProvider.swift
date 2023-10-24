@@ -224,4 +224,10 @@ class AnimeTestDataProvider {
     static let animeFavouritedInTheDistantFuture = StoringAnime(anime: validAnimeInstance, creationDate: .distantFuture)
     
     static let animeFavouritedNow = StoringAnime(anime: validAnimeInstance)
+    
+    static var validFavouritesDictionryDataStoragePopulated: TestDataStorage {
+        TestDataStorage(storage: [AnimeTestDataProvider.animeFavouritedNow.key: AnimeTestDataProvider.animeFavouritedNow])
+    }
+    
+    static let validFavouritesDictionryDataStorageEmpty = TestDataStorage(storage: [:])
 }
