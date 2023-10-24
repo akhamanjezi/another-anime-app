@@ -35,6 +35,10 @@ class Anime: Equatable, Hashable {
         return (averageRating / 100).formatted(.percent)
     }
     
+    var key: String {
+        source.debugDescription + (externalID ?? "")
+    }
+    
     init(title: String? = nil, genres: [String]? = nil, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: Data? = nil, duration: TimeInterval? = nil, externalID: String? = nil, source: AnimeSources? = nil, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
         self.title = title
         self.genres = genres
@@ -68,7 +72,7 @@ class Anime: Equatable, Hashable {
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(source.debugDescription + (externalID ?? ""))
+        hasher.combine(key)
     }
     
     static let placeholder = Anime(title: "Spirited Away",

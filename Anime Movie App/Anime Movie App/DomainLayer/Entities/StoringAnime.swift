@@ -17,6 +17,10 @@ struct StoringAnime: Codable, Comparable {
     var coverImageData: Data?
     var creationDate: Date?
     
+    var key: String {
+        source.debugDescription + (externalID ?? "")
+    }
+    
     init(anime: Anime, creationDate: Date = .now) {
         title = anime.title
         genres = anime.genres
