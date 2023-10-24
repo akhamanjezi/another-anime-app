@@ -22,7 +22,7 @@ class DetailsViewModel {
     }
     
     func toggleFavorite(completion: @escaping () -> ()) {
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).sync {
             self.animeRepository.toggleFavourite(self.anime.value)
             completion()
         }
