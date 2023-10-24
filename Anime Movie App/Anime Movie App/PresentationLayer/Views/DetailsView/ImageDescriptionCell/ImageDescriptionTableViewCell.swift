@@ -3,7 +3,7 @@ import UIKit
 class ImageDescriptionTableViewCell: UITableViewCell {
     typealias TextBuilderType = (font: UIFont, text: String?, color: UIColor?)
     @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var posterImage: UIImageView!
+    @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
     
     static let cellIdentifier = String(describing: ImageDescriptionTableViewCell.self)
@@ -20,13 +20,13 @@ class ImageDescriptionTableViewCell: UITableViewCell {
             return
         }
         activityIndicatorView.stopAnimating()
-        self.posterImage.image = posterImage
+        posterImageView.image = posterImage
     }
     
     private func setupView() {
         descriptionLabel.font = .roundedCallout
-        posterImage.layer.cornerRadius = 7
-        posterImage.contentMode = .scaleAspectFill
+        posterImageView.layer.cornerRadius = 7
+        posterImageView.contentMode = .scaleAspectFill
     }
     
     private func decriptionText(for anime: Anime) -> NSMutableAttributedString {

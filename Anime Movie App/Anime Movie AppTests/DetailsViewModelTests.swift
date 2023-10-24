@@ -28,6 +28,7 @@ final class DetailsViewModelTests: XCTestCase {
     
     func testCorrectSectionsIfSynopsisNotNil() {
         initSystemUnderTest()
+        
         let expected = ["Header", "Synopsis"]
         let actual = systemUnderTest?.sections
         
@@ -36,6 +37,7 @@ final class DetailsViewModelTests: XCTestCase {
     
     func testCorrectSectionsIfSynopsisNil() {
         initSystemUnderTest(anime: AnimeTestDataProvider.animeInstanceNilSynopsis)
+        
         let expected = ["Header"]
         let actual = systemUnderTest?.sections
         
