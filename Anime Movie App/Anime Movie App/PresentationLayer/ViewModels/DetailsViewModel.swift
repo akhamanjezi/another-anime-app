@@ -14,13 +14,14 @@ class DetailsViewModel {
         self.animeRepository = animeRepository
         self.anime.value = anime
         self.searchTerm = searchTerm
-        
-        if anime.posterImage == nil {
-            downloadImage(for: anime)
-        }
+        downloadImage(for: anime)
     }
     
     private func downloadImage(for anime: Anime) {
+        guard anime.posterImage == nil else {
+            return
+        }
+        
         animeRepository.downloadImage(.poster, for: anime) { [weak self] image in
             self?.setPosterImage(for: anime, to: image)
         }
