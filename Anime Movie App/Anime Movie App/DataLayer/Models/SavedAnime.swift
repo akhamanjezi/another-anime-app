@@ -13,13 +13,13 @@ struct SavedAnime: Codable, Comparable {
     var duration: TimeInterval?
     var externalID: String?
     var source: AnimeSources?
-    var creationDate: Date? = .now
+    var creationDate: Date = .now
     
     var key: String {
         source.debugDescription + (externalID ?? "")
     }
     
     static func < (lhs: SavedAnime, rhs: SavedAnime) -> Bool {
-        lhs.creationDate ?? .distantPast < rhs.creationDate ?? .distantPast
+        lhs.creationDate < rhs.creationDate
     }
 }
