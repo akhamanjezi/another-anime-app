@@ -2,7 +2,7 @@ import Foundation
 
 class FavouritesManager: FavouritesManaging {
     private let storage: any DataStoring<String, Data>
-    private let mapper: any ResponseToAnimeMapper<StoringAnime>
+    private let mapper: any ResponseToAnimeMapper<SavedAnime>
     
     var all: [Anime] {
         guard let favouritesDictionary = favouritesDictionary,
@@ -13,7 +13,7 @@ class FavouritesManager: FavouritesManaging {
         return convertToAnime(favorites)
     }
     
-    init(storage: any DataStoring<String, Data> = FavouritesStorage.shared, mapper: any ResponseToAnimeMapper<StoringAnime> = FavouriteToAnimeMapper()) {
+    init(storage: any DataStoring<String, Data> = FavouritesStorage.shared, mapper: any ResponseToAnimeMapper<SavedAnime> = FavouriteToAnimeMapper()) {
         self.storage = storage
         self.mapper = mapper
         createDictionaryIfNotPresent()
@@ -24,7 +24,7 @@ class FavouritesManager: FavouritesManaging {
             return false
         }
         
-        favouritesDictionary[key] = StoringAnime(anime: anime)
+        favouritesDictionary[key] = SavedAnime(anime: anime)
         return setFavourites(favouritesDictionary)
     }
     
@@ -45,11 +45,11 @@ class FavouritesManager: FavouritesManaging {
         return setFavourites([:])
     }
     
-    private func convertToAnime(_ saved: [StoringAnime]) -> [Anime] {
+    private func convertToAnime(_ saved: [SavedAnime]) -> [Anime] {
         return saved.compactMap { mapper.mapToAnime(from: $0) }
     }
     
-    private func sortedValues(_ favouritesDictionary: [String: StoringAnime], by areInIncreasingOrder: (StoringAnime, StoringAnime) throws -> Bool) throws -> [StoringAnime] {
+    private func sortedValues(_ favouritesDictionary: [String: SavedAnime], by areInIncreasingOrder: (SavedAnime, SavedAnime) throws -> Bool) throws -> [SavedAnime] {
         let favorites = favouritesDictionary.compactMap { $0.value }
         return try favorites.sorted(by: areInIncreasingOrder)
     }
@@ -62,16 +62,16 @@ class FavouritesManager: FavouritesManaging {
         let _ = resetFavourites()
     }
     
-    private var favouritesDictionary: [String: StoringAnime]? {
+    private var favouritesDictionary: [String: SavedAnime]? {
         guard let data = storage.object(forKey: "favourites"),
-              let favourites = try? JSONDecoder().decode([String: StoringAnime].self, from: data) else {
+              let favourites = try? JSONDecoder().decode([String: SavedAnime].self, from: data) else {
             return nil
         }
         
         return favourites
     }
     
-    private func setFavourites(_ favouritesDictionary: [String: StoringAnime]) -> Bool {
+    private func setFavourites(_ favouritesDictionary: [String: SavedAnime]) -> Bool {
         guard let objData = try? JSONEncoder().encode(favouritesDictionary) else {
             return false
         }

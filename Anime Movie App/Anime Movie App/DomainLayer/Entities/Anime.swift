@@ -22,7 +22,7 @@ class Anime: Equatable, Hashable {
     
     var styledDuration: String? {
         guard let duration = duration,
-                duration > 0 else {
+              duration > 0 else {
             return nil
         }
         return DateComponentsFormatter.sharedBrief.string(from: duration)

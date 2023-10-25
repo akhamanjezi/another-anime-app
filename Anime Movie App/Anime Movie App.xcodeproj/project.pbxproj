@@ -115,15 +115,15 @@
 		19D56AB02AE693830025003B /* FavouritesManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AAE2AE693830025003B /* FavouritesManaging.swift */; };
 		19D56AB22AE693A00025003B /* FavouritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AB12AE693A00025003B /* FavouritesManager.swift */; };
 		19D56AB32AE693A00025003B /* FavouritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AB12AE693A00025003B /* FavouritesManager.swift */; };
-		19D56AB52AE69F250025003B /* StoringAnime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AB42AE69F250025003B /* StoringAnime.swift */; };
-		19D56AB62AE69F250025003B /* StoringAnime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AB42AE69F250025003B /* StoringAnime.swift */; };
+		19D56AB52AE69F250025003B /* SavedAnime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AB42AE69F250025003B /* SavedAnime.swift */; };
+		19D56AB62AE69F250025003B /* SavedAnime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AB42AE69F250025003B /* SavedAnime.swift */; };
 		19D56AB82AE6A1820025003B /* AnimeSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AB72AE6A1820025003B /* AnimeSources.swift */; };
 		19D56AB92AE6A1820025003B /* AnimeSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AB72AE6A1820025003B /* AnimeSources.swift */; };
 		19D56ABE2AE704720025003B /* FavouritesManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56ABD2AE704720025003B /* FavouritesManagerTests.swift */; };
 		19D56AC02AE707950025003B /* TestDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56ABF2AE707950025003B /* TestDataStorage.swift */; };
 		19D56AC12AE707950025003B /* TestDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56ABF2AE707950025003B /* TestDataStorage.swift */; };
 		19D56AC32AE794040025003B /* TestDataNilStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AC22AE793E90025003B /* TestDataNilStorage.swift */; };
-		19D56AC52AE7A1340025003B /* StoringAnimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AC42AE7A1340025003B /* StoringAnimeTests.swift */; };
+		19D56AC52AE7A1340025003B /* SavedAnimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AC42AE7A1340025003B /* SavedAnimeTests.swift */; };
 		19F7EDDE2AE252F800405BAD /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7EDDD2AE252F800405BAD /* UITableView+Extension.swift */; };
 		19F7EDE02AE2679700405BAD /* DateComponentsFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7EDDF2AE2679700405BAD /* DateComponentsFormatter+Extension.swift */; };
 		19F7EDE12AE28E1F00405BAD /* DateComponentsFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7EDDF2AE2679700405BAD /* DateComponentsFormatter+Extension.swift */; };
@@ -215,12 +215,12 @@
 		19D56AAA2AE6934E0025003B /* FavouritesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesStorage.swift; sourceTree = "<group>"; };
 		19D56AAE2AE693830025003B /* FavouritesManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesManaging.swift; sourceTree = "<group>"; };
 		19D56AB12AE693A00025003B /* FavouritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesManager.swift; sourceTree = "<group>"; };
-		19D56AB42AE69F250025003B /* StoringAnime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoringAnime.swift; sourceTree = "<group>"; };
+		19D56AB42AE69F250025003B /* SavedAnime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAnime.swift; sourceTree = "<group>"; };
 		19D56AB72AE6A1820025003B /* AnimeSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeSources.swift; sourceTree = "<group>"; };
 		19D56ABD2AE704720025003B /* FavouritesManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesManagerTests.swift; sourceTree = "<group>"; };
 		19D56ABF2AE707950025003B /* TestDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataStorage.swift; sourceTree = "<group>"; };
 		19D56AC22AE793E90025003B /* TestDataNilStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataNilStorage.swift; sourceTree = "<group>"; };
-		19D56AC42AE7A1340025003B /* StoringAnimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoringAnimeTests.swift; sourceTree = "<group>"; };
+		19D56AC42AE7A1340025003B /* SavedAnimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAnimeTests.swift; sourceTree = "<group>"; };
 		19F7EDDD2AE252F800405BAD /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		19F7EDDF2AE2679700405BAD /* DateComponentsFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+Extension.swift"; sourceTree = "<group>"; };
 		19F7EDE22AE2902100405BAD /* DetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModelTests.swift; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 				198A27052ADE8DC900F5EFC5 /* ImageRepositoryTests.swift */,
 				198A27072ADE8F4500F5EFC5 /* ImageDownloaderStub.swift */,
 				19D56ABD2AE704720025003B /* FavouritesManagerTests.swift */,
-				19D56AC42AE7A1340025003B /* StoringAnimeTests.swift */,
+				19D56AC42AE7A1340025003B /* SavedAnimeTests.swift */,
 			);
 			path = "Anime Movie AppTests";
 			sourceTree = "<group>";
@@ -368,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				19ADAD5A2AD426EA00663A6E /* Kitsu */,
+				19D56AB42AE69F250025003B /* SavedAnime.swift */,
 				19ADAD6E2AD491AA00663A6E /* JSONNull.swift */,
 			);
 			path = Models;
@@ -496,7 +497,6 @@
 				19ADAD7D2AD53FAD00663A6E /* Anime.swift */,
 				198A26F02ADD86DD00F5EFC5 /* Section.swift */,
 				1970AA0D2AE12A96008A8377 /* ImageRole.swift */,
-				19D56AB42AE69F250025003B /* StoringAnime.swift */,
 				19D56AB72AE6A1820025003B /* AnimeSources.swift */,
 			);
 			path = Entities;
@@ -704,7 +704,7 @@
 				198577872AD3E3AA0025F615 /* HomeViewController.swift in Sources */,
 				19ADAD632AD48C2A00663A6E /* KitsuAttributes.swift in Sources */,
 				1970AA032AE00489008A8377 /* UIButtonConfiguration+Extension.swift in Sources */,
-				19D56AB52AE69F250025003B /* StoringAnime.swift in Sources */,
+				19D56AB52AE69F250025003B /* SavedAnime.swift in Sources */,
 				19B811CF2AD813F900F3DACE /* KitsuTitles.swift in Sources */,
 				19ADAD6D2AD490A700663A6E /* KitsuRelationshipTypes.swift in Sources */,
 				1970A9F62ADEB2CF008A8377 /* TitleDescriptionTableViewCell.swift in Sources */,
@@ -726,7 +726,7 @@
 				19D56AA42AE691A40025003B /* FavouriteToAnimeMapper.swift in Sources */,
 				1970AA0F2AE12B9E008A8377 /* ImageRole.swift in Sources */,
 				198A27062ADE8DC900F5EFC5 /* ImageRepositoryTests.swift in Sources */,
-				19D56AC52AE7A1340025003B /* StoringAnimeTests.swift in Sources */,
+				19D56AC52AE7A1340025003B /* SavedAnimeTests.swift in Sources */,
 				198A26E82ADD470500F5EFC5 /* HomeViewModelTests.swift in Sources */,
 				19ADAD742AD5250300663A6E /* LocalizedError.swift in Sources */,
 				19F7EDE42AE2903800405BAD /* DetailsViewModel.swift in Sources */,
@@ -765,7 +765,7 @@
 				198A26FD2ADE6E2300F5EFC5 /* ImageStoring.swift in Sources */,
 				19B811D82AD81F1A00F3DACE /* DateFormatter+Extension.swift in Sources */,
 				191774002AD7352E00AF1FAD /* KitsuResultToAnimeMapper.swift in Sources */,
-				19D56AB62AE69F250025003B /* StoringAnime.swift in Sources */,
+				19D56AB62AE69F250025003B /* SavedAnime.swift in Sources */,
 				198A26E02ADD01FB00F5EFC5 /* Array+Extension.swift in Sources */,
 				19ADADAA2AD6A23A00663A6E /* SearchViewModelTests.swift in Sources */,
 				19ADAD782AD5255300663A6E /* KitsuImageTypes.swift in Sources */,

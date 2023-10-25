@@ -1,6 +1,6 @@
 import Foundation
 
-struct StoringAnime: Codable, Comparable {
+struct SavedAnime: Codable, Comparable {
     var title: String?
     var genres: [String]?
     var releaseDate: Date?
@@ -35,7 +35,7 @@ struct StoringAnime: Codable, Comparable {
         self.creationDate = creationDate
     }
     
-    static func < (lhs: StoringAnime, rhs: StoringAnime) -> Bool {
+    static func < (lhs: SavedAnime, rhs: SavedAnime) -> Bool {
         lhs.creationDate ?? .distantPast < rhs.creationDate ?? .distantPast
     }
 }

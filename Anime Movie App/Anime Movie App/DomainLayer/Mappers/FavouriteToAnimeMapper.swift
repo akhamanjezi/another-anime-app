@@ -1,7 +1,7 @@
 import UIKit
 
 class FavouriteToAnimeMapper: ResponseToAnimeMapper {
-    func mapToAnime(from favourite: StoringAnime) -> Anime? {
+    func mapToAnime(from favourite: SavedAnime) -> Anime? {
         let thumbnail = favourite.thumbnail == nil
         ? nil
         : UIImage(data: favourite.thumbnail!)

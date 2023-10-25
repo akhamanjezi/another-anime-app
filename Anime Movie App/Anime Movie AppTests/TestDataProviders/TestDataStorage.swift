@@ -1,9 +1,9 @@
 import Foundation
 
 class TestDataStorage: DataStoring {
-    private var storage: [String: StoringAnime]?
+    private var storage: [String: SavedAnime]?
     
-    init(storage: [String : StoringAnime]? = [:]) {
+    init(storage: [String : SavedAnime]? = [:]) {
         self.storage = storage
     }
     
@@ -12,7 +12,7 @@ class TestDataStorage: DataStoring {
     }
     
     func setObject(_ obj: Data, forKey _: String) {
-        guard let data = try? JSONDecoder().decode([String: StoringAnime].self, from: obj) else {
+        guard let data = try? JSONDecoder().decode([String: SavedAnime].self, from: obj) else {
             return
         }
         storage = data
