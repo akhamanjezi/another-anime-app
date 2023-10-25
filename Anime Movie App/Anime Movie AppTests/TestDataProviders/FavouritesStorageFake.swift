@@ -1,6 +1,6 @@
 import Foundation
 
-class TestDataStorage: DataStoring {
+class FavouritesStorageFake: DataStoring {
     private var storage: [String: SavedAnime]?
     
     init(storage: [String : SavedAnime]? = [:]) {

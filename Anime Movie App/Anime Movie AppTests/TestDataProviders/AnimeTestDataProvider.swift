@@ -273,9 +273,9 @@ class AnimeTestDataProvider {
                                                externalID: "176",
                                                source: .kitsu)
     
-    static var validFavouritesDictionryDataStoragePopulated: TestDataStorage {
-        TestDataStorage(storage: [AnimeTestDataProvider.animeFavouritedNow.key: AnimeTestDataProvider.animeFavouritedNow])
+    static var validFavouritesDictionryDataStoragePopulated: FavouritesStorageFake {
+        FavouritesStorageFake(storage: [AnimeTestDataProvider.animeFavouritedNow.key: AnimeTestDataProvider.animeFavouritedNow])
     }
     
-    static let validFavouritesDictionryDataStorageEmpty = TestDataStorage(storage: [:])
+    static let validFavouritesDictionryDataStorageEmpty = FavouritesStorageFake(storage: [:])
 }
