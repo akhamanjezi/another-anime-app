@@ -246,7 +246,6 @@ class AnimeTestDataProvider {
                                                             source: .kitsu,
                                                             creationDate: .distantPast)
     
-    
     static let animeFavouritedInTheDistantFuture = SavedAnime(title: "Spirited Away",
                                                               genres: nil,
                                                               releaseDate: "2001-07-20".toDate(),
