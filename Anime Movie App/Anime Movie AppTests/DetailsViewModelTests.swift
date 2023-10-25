@@ -85,6 +85,15 @@ final class DetailsViewModelTests: XCTestCase {
         }
     }
     
+    func testSuccessfulInitWithPosterImageFromStoredAnime() {
+        initSystemUnderTest(anime: AnimeTestDataProvider.validAnimeInstanceFromStoredAnime,
+                            storage: AnimeTestDataProvider.validFavouritesDictionryDataStoragePopulated)
+        
+        let actual = systemUnderTest?.anime.value.posterImage
+        
+        XCTAssertNotNil(actual)
+    }
+    
     private func initSystemUnderTest(anime: Anime = AnimeTestDataProvider.validAnimeInstance,
                                      searchTerm: String? = "Spirited Away",
                                      storage: any DataStoring<String, Data> = TestDataStorage(),
@@ -94,7 +103,7 @@ final class DetailsViewModelTests: XCTestCase {
                                         imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()),
                                         favouritesManager: FavouritesManager(storage: storage))
         
-        systemUnderTest = DetailsViewModel(animeRepository: kitsuRepo, 
+        systemUnderTest = DetailsViewModel(animeRepository: kitsuRepo,
                                            anime: anime,
                                            searchTerm: searchTerm)
         
