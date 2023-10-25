@@ -2,7 +2,7 @@ import Foundation
 
 class FavouritesManager: FavouritesManaging {
     private let storage: any DataStoring<String, Data>
-    private let mapper: any ResponseToAnimeMapper<SavedAnime>
+    private let mapper: any BidirectionalAnimeMapping<SavedAnime>
     
     var all: [Anime] {
         guard let favouritesDictionary = favouritesDictionary,
@@ -13,7 +13,7 @@ class FavouritesManager: FavouritesManaging {
         return convertToAnime(favorites)
     }
     
-    init(storage: any DataStoring<String, Data> = FavouritesStorage.shared, mapper: any ResponseToAnimeMapper<SavedAnime> = FavouriteToAnimeMapper()) {
+    init(storage: any DataStoring<String, Data> = FavouritesStorage.shared, mapper: any BidirectionalAnimeMapping<SavedAnime> = FavouriteToAnimeMapper()) {
         self.storage = storage
         self.mapper = mapper
         createDictionaryIfNotPresent()
@@ -24,7 +24,7 @@ class FavouritesManager: FavouritesManaging {
             return false
         }
         
-        favouritesDictionary[key] = SavedAnime(anime: anime)
+        favouritesDictionary[key] = mapper.mapFromAnime(anime)
         return setFavourites(favouritesDictionary)
     }
     

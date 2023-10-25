@@ -13,26 +13,10 @@ struct SavedAnime: Codable, Comparable {
     var duration: TimeInterval?
     var externalID: String?
     var source: AnimeSources?
-    var creationDate: Date?
+    var creationDate: Date? = .now
     
     var key: String {
         source.debugDescription + (externalID ?? "")
-    }
-    
-    init(anime: Anime, creationDate: Date = .now) {
-        title = anime.title
-        genres = anime.genres
-        releaseDate = anime.releaseDate
-        synopsis = anime.synopsis
-        averageRating = anime.averageRating
-        ageRating = anime.ageRating
-        posterImageURL = anime.posterImageURL
-        coverImageURL = anime.coverImageURL
-        thumbnail = anime.posterImage?.jpegData(compressionQuality: 0)
-        duration = anime.duration
-        externalID = anime.externalID
-        source = anime.source
-        self.creationDate = creationDate
     }
     
     static func < (lhs: SavedAnime, rhs: SavedAnime) -> Bool {
