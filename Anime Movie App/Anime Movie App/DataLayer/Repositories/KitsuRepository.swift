@@ -10,9 +10,12 @@ class KitsuRepository: AnimeRepository {
         favouritesManager.all
     }
     
-    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: any ToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(), imageRepository: ImageRepository = ImageRepository(), favouritesManager: any FavouritesManaging = FavouritesManager()) {
+    init(dataProvider: DataProviding = KitsuProvider(), 
+         toAnimeMapper: any ToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(),
+         imageRepository: ImageRepository = ImageRepository(),
+         favouritesManager: any FavouritesManaging = FavouritesManager()) {
         self.dataProvider = dataProvider
-        self.toAnimeMapper = responseToAnimeMapper
+        self.toAnimeMapper = toAnimeMapper
         self.imageRepository = imageRepository
         self.favouritesManager = favouritesManager
     }

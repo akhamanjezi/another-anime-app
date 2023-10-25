@@ -2,6 +2,7 @@ import UIKit
 
 class DetailsViewModel {
     private let animeRepository: AnimeRepository
+    
     let anime: Observable<Anime> = Observable(Anime.placeholder)
     let searchTerm: String?
     var sections: [String] {
