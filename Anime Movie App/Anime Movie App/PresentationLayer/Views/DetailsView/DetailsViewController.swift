@@ -31,6 +31,24 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
         configureFavouriteButton()
     }
     
+    private func registerCells() {
+        detailsTableView.registerNib(named: TitleDescriptionTableViewCell.cellIdentifier)
+        detailsTableView.registerNib(named: ImageDescriptionTableViewCell.cellIdentifier)
+    }
+    
+    private func configureTableView() {
+        detailsTableView.delegate = self
+        detailsTableView.dataSource = self
+    }
+    
+    private func bindWithViewModel() {
+        viewModel.anime.bind { [weak self] anime in
+            DispatchQueue.main.async {
+                self?.detailsTableView.reloadData()
+            }
+        }
+    }
+    
     private func configureBackButton() {
         let backButton = UIBarButtonItem()
         backButton.title = viewModel.searchTerm == nil ? "Animovie" : viewModel.searchTerm!.truncateTo(length: 6)
@@ -49,24 +67,6 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
         navigationItem.rightBarButtonItem?.isEnabled = false
         viewModel.toggleFavorite() { [weak self] in
             self?.configureFavouriteButton()
-        }
-    }
-    
-    private func registerCells() {
-        detailsTableView.registerNib(named: TitleDescriptionTableViewCell.cellIdentifier)
-        detailsTableView.registerNib(named: ImageDescriptionTableViewCell.cellIdentifier)
-    }
-    
-    private func configureTableView() {
-        detailsTableView.delegate = self
-        detailsTableView.dataSource = self
-    }
-    
-    private func bindWithViewModel() {
-        viewModel.anime.bind { [weak self] anime in
-            DispatchQueue.main.async {
-                self?.detailsTableView.reloadData()
-            }
         }
     }
 }
