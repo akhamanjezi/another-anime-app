@@ -18,7 +18,7 @@ final class FavouritesManagerTests: XCTestCase {
     }
     
     func testAllFavouritesNilStorage() {
-        initSystemUnderTest(storage: UnavailableFavouritesStorageFake())
+        initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
         let expected: [Anime] = []
         let actual = systemUnderTest?.all
@@ -36,7 +36,7 @@ final class FavouritesManagerTests: XCTestCase {
     }
     
     func testAddFavouriteFailure() {
-        initSystemUnderTest(storage: UnavailableFavouritesStorageFake())
+        initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
         let expected = false
         let actual = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
@@ -56,7 +56,7 @@ final class FavouritesManagerTests: XCTestCase {
     }
     
     func testAddFavouriteNilStorage() {
-        initSystemUnderTest(storage: UnavailableFavouritesStorageFake())
+        initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
         let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
         
@@ -78,7 +78,7 @@ final class FavouritesManagerTests: XCTestCase {
     }
     
     func testRemoveFavouriteFailure() {
-        initSystemUnderTest(storage: UnavailableFavouritesStorageFake())
+        initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
         let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
         
@@ -132,7 +132,7 @@ final class FavouritesManagerTests: XCTestCase {
     }
     
     func testResetFavouritesNilStorage() {
-        initSystemUnderTest(storage: UnavailableFavouritesStorageFake())
+        initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
         let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
         let _ = systemUnderTest?.resetFavourites()
@@ -144,7 +144,7 @@ final class FavouritesManagerTests: XCTestCase {
     }
     
     func testInitNilStorage() {
-        initSystemUnderTest(storage: UnavailableFavouritesStorageFake())
+        initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
     }
     
     private func initSystemUnderTest(storage: any DataStoring<String, Data> = FavouritesStorageFake()) {

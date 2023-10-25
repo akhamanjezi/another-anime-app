@@ -1,6 +1,6 @@
 import Foundation
 
-class UnavailableFavouritesStorageFake: DataStoring {
+class UnavailableFavouritesStorageStub: DataStoring {
     func object(forKey key: String) -> Data? {
         return nil
     }
