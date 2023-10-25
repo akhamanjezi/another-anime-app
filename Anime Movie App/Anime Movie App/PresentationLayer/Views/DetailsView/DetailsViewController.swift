@@ -1,7 +1,6 @@
 import UIKit
 
 class DetailsViewController: UIViewController, UITableViewDelegate {
-    
     @IBOutlet private weak var detailsTableView: UITableView!
     private let viewModel: DetailsViewModel
     

@@ -1,7 +1,6 @@
 import UIKit
 
 class SearchTableViewCell: UITableViewCell {
-    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var thumbnailView: UIImageView!
     @IBOutlet private weak var releaseDateLabel: UILabel!

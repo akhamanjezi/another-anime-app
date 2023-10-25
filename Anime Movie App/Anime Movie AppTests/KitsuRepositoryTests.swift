@@ -278,7 +278,6 @@ final class KitsuRepositoryTests: XCTestCase {
     
     private func initSystemUnderTest(dataProvider: DataProviding = AnimeTestDataProvider.successfulKitsuSearchDataProvider, 
                                      storage: any DataStoring<String, Data> = TestDataStorage()) {
-        
         systemUnderTest = KitsuRepository(dataProvider: dataProvider,
                                           imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()),
                                           favouritesManager: FavouritesManager(storage: storage))

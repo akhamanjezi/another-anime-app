@@ -98,7 +98,6 @@ final class DetailsViewModelTests: XCTestCase {
                                      searchTerm: String? = "Spirited Away",
                                      storage: any DataStoring<String, Data> = TestDataStorage(),
                                      dataProvider: DataProviding = AnimeTestDataProvider.successfulKitsuSearchDataProvider) {
-        
         let kitsuRepo = KitsuRepository(dataProvider: dataProvider,
                                         imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()),
                                         favouritesManager: FavouritesManager(storage: storage))
