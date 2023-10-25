@@ -1,3 +1,3 @@
 import Foundation
 
-protocol BidirectionalAnimeMapping<T>: ResponseToAnimeMapping, FromAnimeMapping { }
+protocol BidirectionalAnimeMapping<T>: ToAnimeMapping, FromAnimeMapping { }

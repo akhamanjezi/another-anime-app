@@ -2,7 +2,7 @@ import UIKit
 
 class KitsuRepository: AnimeRepository {
     private let dataProvider: DataProviding
-    private let responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult>
+    private let toAnimeMapper: any ToAnimeMapper<KitsuResult>
     private let imageRepository: ImageRepository
     private let favouritesManager: any FavouritesManaging
     
@@ -10,9 +10,9 @@ class KitsuRepository: AnimeRepository {
         favouritesManager.all
     }
     
-    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(), imageRepository: ImageRepository = ImageRepository(), favouritesManager: any FavouritesManaging = FavouritesManager()) {
+    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: any ToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(), imageRepository: ImageRepository = ImageRepository(), favouritesManager: any FavouritesManaging = FavouritesManager()) {
         self.dataProvider = dataProvider
-        self.responseToAnimeMapper = responseToAnimeMapper
+        self.toAnimeMapper = responseToAnimeMapper
         self.imageRepository = imageRepository
         self.favouritesManager = favouritesManager
     }
@@ -107,7 +107,7 @@ class KitsuRepository: AnimeRepository {
             return []
         }
         
-        return [responseToAnimeMapper.mapToAnime(from: kitsuResult)].compactMap { $0 }
+        return [toAnimeMapper.mapToAnime(from: kitsuResult)].compactMap { $0 }
     }
     
     private func convertToAnime(from response: KitsuResponse) -> [Anime] {
@@ -116,7 +116,7 @@ class KitsuRepository: AnimeRepository {
         }
         
         let converted = kitsuResults.compactMap { kitsuResult in
-            responseToAnimeMapper.mapToAnime(from: kitsuResult)
+            toAnimeMapper.mapToAnime(from: kitsuResult)
         }
         
         return converted
