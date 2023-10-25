@@ -22,4 +22,19 @@ struct SavedAnime: Codable, Comparable {
     static func < (lhs: SavedAnime, rhs: SavedAnime) -> Bool {
         lhs.creationDate < rhs.creationDate
     }
+    
+    static func == (lhs: SavedAnime, rhs: SavedAnime) -> Bool {
+        return lhs.title == rhs.title &&
+        lhs.genres == rhs.genres &&
+        lhs.releaseDate == rhs.releaseDate &&
+        lhs.synopsis == rhs.synopsis &&
+        lhs.averageRating == rhs.averageRating &&
+        lhs.ageRating == rhs.ageRating &&
+        lhs.posterImageURL == rhs.posterImageURL &&
+        lhs.coverImageURL == rhs.coverImageURL &&
+        lhs.thumbnail == rhs.thumbnail &&
+        lhs.duration == rhs.duration &&
+        lhs.externalID == rhs.externalID &&
+        lhs.source == rhs.source
+    }
 }
