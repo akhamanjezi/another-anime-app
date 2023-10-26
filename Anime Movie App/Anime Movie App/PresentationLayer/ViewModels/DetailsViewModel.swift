@@ -35,10 +35,6 @@ class DetailsViewModel {
             return
         }
         
-        if let thumbnail = anime.value.thumbnail {
-            setPosterImage(thumbnail)
-        }
-        
         DispatchQueue.global(qos: .userInitiated).async { [self] in
             animeRepository.downloadImage(.poster, for: self.anime.value) { [weak self] image in
                 self?.setPosterImage(image)
