@@ -12,7 +12,7 @@ class DetailsViewModel {
         : ["Header"]
     }
     
-    var isFavorite: Bool {
+    var isFavourite: Bool {
         animeRepository.isFavourite(anime.value)
     }
     
@@ -23,7 +23,7 @@ class DetailsViewModel {
         updatePosterImage()
     }
     
-    func toggleFavorite(completion: @escaping () -> ()) {
+    func toggleFavourite(completion: @escaping () -> ()) {
         DispatchQueue.global(qos: .userInitiated).sync {
             self.animeRepository.toggleFavourite(self.anime.value)
             completion()
