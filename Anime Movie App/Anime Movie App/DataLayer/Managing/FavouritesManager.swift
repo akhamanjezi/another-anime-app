@@ -6,7 +6,7 @@ class FavouritesManager: FavouritesManaging {
     
     var all: [Anime] {
         guard let favouritesDictionary = favouritesDictionary,
-              let favourites = sortedValues(favouritesDictionary, by: >) else {
+              let favourites = sortedValues(favouritesDictionary) else {
             return []
         }
         
@@ -50,9 +50,9 @@ class FavouritesManager: FavouritesManaging {
         return saved.compactMap { mapper.mapToAnime(from: $0) }
     }
     
-    private func sortedValues(_ favouritesDictionary: [String: SavedAnime], by areInIncreasingOrder: (SavedAnime, SavedAnime) throws -> Bool) -> [SavedAnime]? {
+    private func sortedValues(_ favouritesDictionary: [String: SavedAnime]) -> [SavedAnime]? {
         let favourites = favouritesDictionary.compactMap { $0.value }
-        return try? favourites.sorted(by: areInIncreasingOrder)
+        return favourites.sorted(by: >)
     }
     
     private func createDictionaryIfNotPresent() {
