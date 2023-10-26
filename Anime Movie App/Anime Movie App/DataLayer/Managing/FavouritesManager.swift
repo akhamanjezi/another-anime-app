@@ -20,30 +20,30 @@ class FavouritesManager: FavouritesManaging {
         createDictionaryIfNotPresent()
     }
     
-    func addFavourite(_ anime: Anime, forKey key: String) -> Bool {
+    func addFavourite(_ anime: Anime, forKey key: String) {
         guard var favouritesDictionary = favouritesDictionary else {
-            return false
+            return
         }
         
         favouritesDictionary[key] = mapper.mapFromAnime(anime)
-        return setFavourites(favouritesDictionary)
+        setFavourites(favouritesDictionary)
     }
     
-    func removeFavourite(_ anime: Anime, forKey key: String) -> Bool {
+    func removeFavourite(_ anime: Anime, forKey key: String) {
         guard var favouritesDictionary = favouritesDictionary else {
-            return false
+            return
         }
         
         favouritesDictionary.removeValue(forKey: key)
-        return setFavourites(favouritesDictionary)
+        setFavourites(favouritesDictionary)
     }
     
     func isFavourite(_ anime: Anime) -> Bool {
         all.contains(anime)
     }
     
-    func resetFavourites() -> Bool {
-        return setFavourites([:])
+    func resetFavourites() {
+        setFavourites([:])
     }
     
     private func convertToAnime(_ saved: [SavedAnime]) -> [Anime] {
@@ -60,7 +60,7 @@ class FavouritesManager: FavouritesManaging {
             return
         }
         
-        let _ = resetFavourites()
+        resetFavourites()
     }
     
     private var favouritesDictionary: [String: SavedAnime]? {
@@ -72,12 +72,11 @@ class FavouritesManager: FavouritesManaging {
         return favourites
     }
     
-    private func setFavourites(_ favouritesDictionary: [String: SavedAnime]) -> Bool {
+    private func setFavourites(_ favouritesDictionary: [String: SavedAnime]) {
         guard let objData = try? JSONEncoder().encode(favouritesDictionary) else {
-            return false
+            return
         }
         
         storage.setObject(objData, forKey: "favourites")
-        return true
     }
 }

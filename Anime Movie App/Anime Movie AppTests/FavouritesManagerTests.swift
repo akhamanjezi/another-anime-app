@@ -26,20 +26,13 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testAddFavouriteSuccess() {
-        initSystemUnderTest()
-        
-        let expected = true
-        let actual = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
-        
-        XCTAssertEqual(expected, actual)
-    }
-    
     func testAddFavouriteFailure() {
         initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
-        let expected = false
-        let actual = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        let expected: [Anime] = []
+        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        
+        let actual = systemUnderTest?.all
         
         XCTAssertEqual(expected, actual)
     }
@@ -47,7 +40,7 @@ final class FavouritesManagerTests: XCTestCase {
     func testAddFavourite() {
         initSystemUnderTest()
         
-        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
         
         let expected = [Anime.placeholder]
         let actual = systemUnderTest?.all
@@ -58,7 +51,7 @@ final class FavouritesManagerTests: XCTestCase {
     func testAddFavouriteNilStorage() {
         initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
-        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
         
         let expected: [Anime] = []
         let actual = systemUnderTest?.all
@@ -66,24 +59,12 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testRemoveFavouriteSuccess() {
-        initSystemUnderTest()
-        
-        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
-        
-        let expected = true
-        let actual = systemUnderTest?.removeFavourite(Anime.placeholder, forKey: "favourite")
-        
-        XCTAssertEqual(expected, actual)
-    }
-    
     func testRemoveFavouriteFailure() {
         initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
+        systemUnderTest?.removeFavourite(Anime.placeholder, forKey: "favourite")
         
-        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
-        
-        let expected = false
-        let actual = systemUnderTest?.removeFavourite(Anime.placeholder, forKey: "favourite")
+        let expected: [Anime] = []
+        let actual = systemUnderTest?.all
         
         XCTAssertEqual(expected, actual)
     }
@@ -91,8 +72,8 @@ final class FavouritesManagerTests: XCTestCase {
     func testRemoveFavourite() {
         initSystemUnderTest()
         
-        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
-        let _ = systemUnderTest?.removeFavourite(Anime.placeholder, forKey: "favourite")
+        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        systemUnderTest?.removeFavourite(Anime.placeholder, forKey: "favourite")
         
         let expected: [Anime] = []
         let actual = systemUnderTest?.all
@@ -102,7 +83,7 @@ final class FavouritesManagerTests: XCTestCase {
     
     func testIsFavouriteTrue() {
         initSystemUnderTest()
-        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        systemUnderTest?.addFavourite(Anime.placeholder, forKey: Anime.placeholder.key)
         
         let expected = true
         let actual = systemUnderTest?.isFavourite(Anime.placeholder)
@@ -122,8 +103,8 @@ final class FavouritesManagerTests: XCTestCase {
     func testResetFavourites() {
         initSystemUnderTest()
         
-        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
-        let _ = systemUnderTest?.resetFavourites()
+        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        systemUnderTest?.resetFavourites()
         
         let expected: [Anime] = []
         let actual = systemUnderTest?.all
@@ -134,8 +115,8 @@ final class FavouritesManagerTests: XCTestCase {
     func testResetFavouritesNilStorage() {
         initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
-        let _ = systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
-        let _ = systemUnderTest?.resetFavourites()
+        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
+        systemUnderTest?.resetFavourites()
         
         let expected: [Anime] = []
         let actual = systemUnderTest?.all

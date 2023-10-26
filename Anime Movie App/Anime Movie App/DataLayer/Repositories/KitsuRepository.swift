@@ -66,13 +66,13 @@ class KitsuRepository: AnimeRepository {
     
     func toggleFavourite(_ anime: Anime) {
         guard !isFavourite(anime) else {
-            let _ = favouritesManager.removeFavourite(anime, forKey: anime.key)
+            favouritesManager.removeFavourite(anime, forKey: anime.key)
             return
         }
         
-        let _ = favouritesManager.addFavourite(anime, forKey: anime.key)
+        favouritesManager.addFavourite(anime, forKey: anime.key)
     }
-
+    
     private func imageURL(of anime: Anime, for role: ImageRole) -> NSURL? {
         switch role {
         case .cover:
