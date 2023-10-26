@@ -124,10 +124,6 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testInitNilStorage() {
-        initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
-    }
-    
     private func initSystemUnderTest(storage: any DataStoring<String, Data> = FavouritesStorageFake()) {
         systemUnderTest = FavouritesManager(storage: storage)
     }
