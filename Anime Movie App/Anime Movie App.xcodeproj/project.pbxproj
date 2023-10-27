@@ -128,6 +128,8 @@
 		19D56ACA2AE910C10025003B /* BidirectionalAnimeMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AC92AE910C10025003B /* BidirectionalAnimeMapping.swift */; };
 		19D56ACB2AE910C10025003B /* BidirectionalAnimeMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AC92AE910C10025003B /* BidirectionalAnimeMapping.swift */; };
 		19D56ACD2AE914710025003B /* SavedAnimeToAnimeMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56ACC2AE914710025003B /* SavedAnimeToAnimeMapperTests.swift */; };
+		19F01E7F2AEB7E510074E4DB /* ImageRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F01E7E2AEB7E510074E4DB /* ImageRepo.swift */; };
+		19F01E802AEB7E510074E4DB /* ImageRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F01E7E2AEB7E510074E4DB /* ImageRepo.swift */; };
 		19F7EDDE2AE252F800405BAD /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7EDDD2AE252F800405BAD /* UITableView+Extension.swift */; };
 		19F7EDE02AE2679700405BAD /* DateComponentsFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7EDDF2AE2679700405BAD /* DateComponentsFormatter+Extension.swift */; };
 		19F7EDE12AE28E1F00405BAD /* DateComponentsFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F7EDDF2AE2679700405BAD /* DateComponentsFormatter+Extension.swift */; };
@@ -228,6 +230,7 @@
 		19D56AC62AE90B5E0025003B /* FromAnimeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromAnimeMapper.swift; sourceTree = "<group>"; };
 		19D56AC92AE910C10025003B /* BidirectionalAnimeMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidirectionalAnimeMapping.swift; sourceTree = "<group>"; };
 		19D56ACC2AE914710025003B /* SavedAnimeToAnimeMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAnimeToAnimeMapperTests.swift; sourceTree = "<group>"; };
+		19F01E7E2AEB7E510074E4DB /* ImageRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepo.swift; sourceTree = "<group>"; };
 		19F7EDDD2AE252F800405BAD /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		19F7EDDF2AE2679700405BAD /* DateComponentsFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+Extension.swift"; sourceTree = "<group>"; };
 		19F7EDE22AE2902100405BAD /* DetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModelTests.swift; sourceTree = "<group>"; };
@@ -482,6 +485,7 @@
 				19ADAD812AD542DD00663A6E /* AnimeRepository.swift */,
 				19ADAD832AD5447600663A6E /* KitsuRepository.swift */,
 				198A26FF2ADE72D800F5EFC5 /* ImageRepository.swift */,
+				19F01E7E2AEB7E510074E4DB /* ImageRepo.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -690,6 +694,7 @@
 				1970AA0E2AE12A96008A8377 /* ImageRole.swift in Sources */,
 				19F7EDE02AE2679700405BAD /* DateComponentsFormatter+Extension.swift in Sources */,
 				19F7EDDE2AE252F800405BAD /* UITableView+Extension.swift in Sources */,
+				19F01E802AEB7E510074E4DB /* ImageRepo.swift in Sources */,
 				19ADAD7E2AD53FAD00663A6E /* Anime.swift in Sources */,
 				19B811E42AD96B0300F3DACE /* HomeViewModel.swift in Sources */,
 				198A26DF2ADD015200F5EFC5 /* Array+Extension.swift in Sources */,
@@ -738,6 +743,7 @@
 				19D56ACD2AE914710025003B /* SavedAnimeToAnimeMapperTests.swift in Sources */,
 				19D56AA42AE691A40025003B /* SavedAnimeToAnimeMapper.swift in Sources */,
 				1970AA0F2AE12B9E008A8377 /* ImageRole.swift in Sources */,
+				19F01E7F2AEB7E510074E4DB /* ImageRepo.swift in Sources */,
 				198A27062ADE8DC900F5EFC5 /* ImageRepositoryTests.swift in Sources */,
 				19D56AC52AE7A1340025003B /* SavedAnimeTests.swift in Sources */,
 				198A26E82ADD470500F5EFC5 /* HomeViewModelTests.swift in Sources */,

@@ -1,7 +1,7 @@
 import XCTest
 
 final class ImageRepositoryTests: XCTestCase {
-    private let systemUnderTest = ImageRepository(imageDownloader: ImageDownloaderStub())
+    private let systemUnderTest = ImageRepo(imageDownloader: ImageDownloaderStub())
     private let animeForTest = AnimeTestDataProvider.validAnimeInstance
     
     func testSuccessfulPosterImageDownload() {

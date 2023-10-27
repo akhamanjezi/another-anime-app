@@ -90,7 +90,7 @@ final class DetailsViewModelTests: XCTestCase {
                                      storage: any DataStoring<String, Data> = FavouritesStorageFake(),
                                      dataProvider: DataProviding = AnimeTestDataProvider.successfulKitsuSearchDataProvider) {
         let kitsuRepo = KitsuRepository(dataProvider: dataProvider,
-                                        imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()),
+                                        imageRepository: ImageRepo(imageDownloader: ImageDownloaderStub()),
                                         favouritesManager: FavouritesManager(storage: storage))
         
         systemUnderTest = DetailsViewModel(animeRepository: kitsuRepo,

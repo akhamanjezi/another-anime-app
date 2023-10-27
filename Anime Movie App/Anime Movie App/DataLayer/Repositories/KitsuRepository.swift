@@ -3,16 +3,16 @@ import UIKit
 class KitsuRepository: AnimeRepository {
     private let dataProvider: DataProviding
     private let toAnimeMapper: any ToAnimeMapper<KitsuResult>
-    private let imageRepository: ImageRepository
+    private let imageRepository: any ImageRepository
     private let favouritesManager: any FavouritesManaging
     
     var favourites: [Anime] {
         favouritesManager.all
     }
     
-    init(dataProvider: DataProviding = KitsuProvider(), 
+    init(dataProvider: DataProviding = KitsuProvider(),
          toAnimeMapper: any ToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(),
-         imageRepository: ImageRepository = ImageRepository(),
+         imageRepository: any ImageRepository = ImageRepo(),
          favouritesManager: any FavouritesManaging = FavouritesManager()) {
         self.dataProvider = dataProvider
         self.toAnimeMapper = toAnimeMapper
