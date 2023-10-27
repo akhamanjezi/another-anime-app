@@ -46,7 +46,7 @@ final class DetailsViewModelTests: XCTestCase {
     
     // MARK: Favourites
     
-    func testIsFavouriteFalse() {
+    func testWhenInitedThenFavouriteFalse() {
         initSystemUnderTest()
         
         let expected = false
@@ -55,7 +55,7 @@ final class DetailsViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testIsFavouriteTrue() {
+    func testWhenInitedWithFavouriteThenFavouriteTrue() {
         initSystemUnderTest(storage: AnimeTestDataProvider.validFavouritesDictionryDataStoragePopulated)
         
         let expected = true
@@ -64,7 +64,7 @@ final class DetailsViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testToggleFavouriteTrue() {
+    func testWhenToggleFavouriteOfNotFavouriteThenTrue() {
         initSystemUnderTest()
         systemUnderTest?.toggleFavourite()
         
@@ -74,7 +74,7 @@ final class DetailsViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testToggleFavouriteFalse() {
+    func testWhenToggleFavouriteOfFavouriteThenFalse() {
         initSystemUnderTest(storage: AnimeTestDataProvider.validFavouritesDictionryDataStoragePopulated)
         systemUnderTest?.toggleFavourite()
         

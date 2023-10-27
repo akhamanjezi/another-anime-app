@@ -8,7 +8,7 @@ final class FavouritesManagerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testAllFavourites() {
+    func testWhenInitThenAllFavouritesEmpty() {
         initSystemUnderTest()
         
         let expected: [Anime] = []
@@ -17,7 +17,7 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testAllFavouritesNilStorage() {
+    func testWhenInitWithUnavailableStorageThenAllFavouritesEmpty() {
         initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
         let expected: [Anime] = []
@@ -26,7 +26,7 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testAddFavouriteFailure() {
+    func testWhenAddFavouriteWithUnavailableStorageThenAllFavouritesEmpty() {
         initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
         let expected: [Anime] = []
@@ -37,7 +37,7 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testAddFavourite() {
+    func testWhenAddFavouriteThenAllFavouritesContainsPlaceholder() {
         initSystemUnderTest()
         
         systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
@@ -48,18 +48,7 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testAddFavouriteNilStorage() {
-        initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
-        
-        systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
-        
-        let expected: [Anime] = []
-        let actual = systemUnderTest?.all
-        
-        XCTAssertEqual(expected, actual)
-    }
-    
-    func testRemoveFavouriteFailure() {
+    func testWhenRemoveFavouriteWithUnavailableStorageThenAllFavouritesEmpty() {
         initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         systemUnderTest?.removeFavourite(Anime.placeholder, forKey: "favourite")
         
@@ -69,7 +58,7 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testRemoveFavourite() {
+    func testWhenAddThenRemoveFavouriteThenAllFavouritesEmpty() {
         initSystemUnderTest()
         
         systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
@@ -81,7 +70,7 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testIsFavouriteTrue() {
+    func testWhenAddFavouriteThenIsFavouriteTrue() {
         initSystemUnderTest()
         systemUnderTest?.addFavourite(Anime.placeholder, forKey: Anime.placeholder.key)
         
@@ -91,7 +80,7 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testIsFavouriteFalse() {
+    func testWhenInitThenIsFavouriteFalse() {
         initSystemUnderTest()
         
         let expected = false
@@ -100,7 +89,7 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testResetFavourites() {
+    func testWhenResetFavouritesThenAllFavouritesEmpty() {
         initSystemUnderTest()
         
         systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
