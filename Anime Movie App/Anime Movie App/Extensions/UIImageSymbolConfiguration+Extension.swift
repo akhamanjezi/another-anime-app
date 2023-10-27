@@ -7,5 +7,6 @@ extension UIImage.SymbolConfiguration {
     
     struct Scale {
         static let large = UIImage.SymbolConfiguration(scale: .large)
+        static let medium = UIImage.SymbolConfiguration(scale: .medium)
     }
 }
