@@ -1,7 +1,7 @@
 import UIKit
 
 class SavedAnimeToAnimeMapper: BidirectionalAnimeMapping {
-    func mapFromAnime(_ anime: Anime) -> SavedAnime? {
+    func mapFromAnime(_ anime: Anime) -> SavedAnime {
         SavedAnime(title: anime.title,
                    genres: anime.genres,
                    releaseDate: anime.releaseDate,
@@ -17,7 +17,7 @@ class SavedAnimeToAnimeMapper: BidirectionalAnimeMapping {
                    creationDate: .now)
     }
     
-    func mapToAnime(from savedAnime: SavedAnime) -> Anime? {
+    func mapToAnime(from savedAnime: SavedAnime) -> Anime {
         let thumbnail = savedAnime.thumbnail == nil
         ? nil
         : UIImage(data: savedAnime.thumbnail!)
