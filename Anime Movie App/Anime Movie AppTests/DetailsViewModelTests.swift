@@ -66,23 +66,22 @@ final class DetailsViewModelTests: XCTestCase {
     
     func testToggleFavouriteTrue() {
         initSystemUnderTest()
-        systemUnderTest?.toggleFavourite { [weak self] in
-            let expected = true
-            let actual = self?.systemUnderTest?.isFavourite
-            
-            XCTAssertEqual(expected, actual)
-        }
+        systemUnderTest?.toggleFavourite()
+        
+        let expected = true
+        let actual = systemUnderTest?.isFavourite
+        
+        XCTAssertEqual(expected, actual)
     }
     
     func testToggleFavouriteFalse() {
         initSystemUnderTest(storage: AnimeTestDataProvider.validFavouritesDictionryDataStoragePopulated)
+        systemUnderTest?.toggleFavourite()
         
-        systemUnderTest?.toggleFavourite { [weak self] in
-            let expected = false
-            let actual = self?.systemUnderTest?.isFavourite
-            
-            XCTAssertEqual(expected, actual)
-        }
+        let expected = false
+        let actual = systemUnderTest?.isFavourite
+        
+        XCTAssertEqual(expected, actual)
     }
     
     private func initSystemUnderTest(anime: Anime = AnimeTestDataProvider.validAnimeInstance,

@@ -25,11 +25,8 @@ class DetailsViewModel {
         updatePosterImage()
     }
     
-    func toggleFavourite(completion: @escaping () -> ()) {
-        DispatchQueue.global(qos: .userInitiated).sync {
+    func toggleFavourite() {
             self.animeRepository.toggleFavourite(self.anime.value)
-            completion()
-        }
     }
     
     private func updatePosterImage() {
