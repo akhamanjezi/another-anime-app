@@ -93,8 +93,8 @@ final class DetailsViewModelTests: XCTestCase {
                                         imageRepository: ImageRepo(imageDownloader: ImageDownloaderStub()),
                                         favouritesManager: FavouritesManager(storage: storage))
         
-        systemUnderTest = DetailsViewModel(animeRepository: kitsuRepo,
-                                           anime: anime,
+        systemUnderTest = DetailsViewModel(anime: anime,
+                                           animeRepository: kitsuRepo,
                                            searchTerm: searchTerm)
         
         XCTAssertNotNil(systemUnderTest)

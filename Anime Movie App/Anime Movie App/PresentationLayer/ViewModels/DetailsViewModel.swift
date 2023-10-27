@@ -16,9 +16,11 @@ class DetailsViewModel {
         animeRepository.isFavourite(anime.value)
     }
     
-    init(animeRepository: AnimeRepository = KitsuRepository(), anime: Anime, searchTerm: String? = nil) {
-        self.animeRepository = animeRepository
+    init(anime: Anime,
+         animeRepository: AnimeRepository = KitsuRepository(),
+         searchTerm: String? = nil) {
         self.anime.value = anime
+        self.animeRepository = animeRepository
         self.searchTerm = searchTerm
         updatePosterImage()
     }
