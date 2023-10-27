@@ -15,7 +15,7 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     
     func configureCell(for anime: Anime) {
         descriptionLabel.attributedText = decriptionText(for: anime)
-        guard let posterImage = (anime.posterImage ?? anime.coverImage) else {
+        guard let posterImage = (anime.posterImage ?? anime.thumbnail) else {
             activityIndicatorView.startAnimating()
             return
         }
