@@ -1,7 +1,7 @@
 import UIKit
 
 class Anime: Equatable, Hashable {
-    var title: String?
+    var title: String
     var genres: [String]?
     var releaseDate: Date?
     var synopsis: String?
@@ -11,8 +11,8 @@ class Anime: Equatable, Hashable {
     var coverImageURL: String?
     var thumbnail: UIImage?
     var duration: TimeInterval?
-    var externalID: String?
-    var source: AnimeSources?
+    var externalID: String
+    var source: AnimeSources
     var posterImage: UIImage?
     var coverImage: UIImage?
     
@@ -36,10 +36,10 @@ class Anime: Equatable, Hashable {
     }
     
     var key: String {
-        source.debugDescription + (externalID ?? "")
+        source.rawValue.description + externalID
     }
     
-    init(title: String? = nil, genres: [String]? = nil, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: UIImage? = nil, duration: TimeInterval? = nil, externalID: String? = nil, source: AnimeSources? = nil, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
+    init(title: String, genres: [String]? = nil, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: UIImage? = nil, duration: TimeInterval? = nil, externalID: String, source: AnimeSources, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
         self.title = title
         self.genres = genres
         self.releaseDate = releaseDate

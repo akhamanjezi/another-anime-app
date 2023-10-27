@@ -1,6 +1,6 @@
 import Foundation
 
-enum AnimeSources {
+enum AnimeSources: Int {
     case kitsu
 }
 

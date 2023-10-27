@@ -1,7 +1,7 @@
 import Foundation
 
 struct SavedAnime: Codable, Comparable {
-    var title: String?
+    var title: String
     var genres: [String]?
     var releaseDate: Date?
     var synopsis: String?
@@ -11,12 +11,12 @@ struct SavedAnime: Codable, Comparable {
     var coverImageURL: String?
     var thumbnail: Data?
     var duration: TimeInterval?
-    var externalID: String?
-    var source: AnimeSources?
+    var externalID: String
+    var source: AnimeSources
     var creationDate: Date = .now
     
     var key: String {
-        source.debugDescription + (externalID ?? "")
+        source.rawValue.description + externalID
     }
     
     static func < (lhs: SavedAnime, rhs: SavedAnime) -> Bool {

@@ -23,4 +23,10 @@ final class KitsuResultToAnimeMapperTests: XCTestCase {
         
         XCTAssertEqual(expected, actual)
     }
+    
+    func testUnsuccessfulKitsuMapToAnime() {
+        let actual = systemUnderTest.mapToAnime(from: AnimeTestDataProvider.invalidKitsuResult)
+        
+        XCTAssertNil(actual)
+    }
 }
