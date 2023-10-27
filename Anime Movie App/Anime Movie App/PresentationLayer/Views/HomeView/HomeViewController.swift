@@ -39,8 +39,8 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     private func setupView() {
         title = "Animovie"
-        featureImageView.layer.cornerRadius = 8
-        reloadButton.layer.cornerRadius = 8
+        featureImageView.layer.cornerRadius = Constants.standardCornerRadius
+        reloadButton.layer.cornerRadius = Constants.standardCornerRadius
         featureImageView.contentMode = .scaleAspectFill
         favouritesLabel.font = .headingBold
         featureLabel.font = .subHeadingMedium
