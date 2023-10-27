@@ -34,10 +34,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             return
         }
         
-        let detailsViewModel = DetailsViewModel(anime: selectedAnime)
-        let detailsViewController = DetailsViewController(with: detailsViewModel)
-        
-        navigationController?.pushViewController(detailsViewController, animated: true)
+        pushDetailsView(for: selectedAnime)
     }
     
     private func setupView() {
@@ -110,14 +107,18 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
     
     @objc private func viewFeatureDetails(_ sender: UITapGestureRecognizer? = nil) {
-        let detailsViewModel = DetailsViewModel(anime: viewModel.featureAnime.value)
-        let detailsViewController = DetailsViewController(with: detailsViewModel)
-        
-        navigationController?.pushViewController(detailsViewController, animated: true)
+        pushDetailsView(for: viewModel.featureAnime.value)
     }
     
     @IBAction private func refreshAnime(_ sender: Any) {
         updateFeatureAnime()
+    }
+    
+    private func pushDetailsView(for anime: Anime) {
+        let detailsViewModel = DetailsViewModel(anime: anime)
+        let detailsViewController = DetailsViewController(with: detailsViewModel)
+        
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }
 
