@@ -37,7 +37,7 @@ final class ImageRepositoryTests: XCTestCase {
         
         systemUnderTest.image(from: NSURL(), for: animeForTest) { anime, image in
             let actual = image
-            XCTAssertEqual(expected, actual)
+            XCTAssertNil(actual)
         }
     }
 }

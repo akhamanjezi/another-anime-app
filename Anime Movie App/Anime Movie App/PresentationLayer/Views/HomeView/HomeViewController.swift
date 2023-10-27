@@ -94,8 +94,14 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     private func updateFeatureAnimeDisplay(with anime: Anime) {
         DispatchQueue.main.async {
-            self.featureLabel.text = "\(anime.title ?? "") - \(anime.styledReleaseDate ?? "")"
-            self.featureImageView.image = anime.coverImage
+            self.featureLabel.text = "\(anime.title) - \(anime.styledReleaseDate ?? "")"
+            
+            guard let coverImage = anime.coverImage else {
+                self.featureImageView.configureWith(image: .defaultPlaceholder, contentMode: .center)
+                return
+            }
+            
+            self.featureImageView.configureWith(image: coverImage, contentMode: .scaleAspectFill)
         }
     }
     

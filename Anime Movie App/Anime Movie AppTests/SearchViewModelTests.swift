@@ -98,11 +98,10 @@ final class SearchViewModelTests: XCTestCase {
     
     func testUnSuccessfulImageDownload() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
-        let expected = AnimeTestDataProvider.popcornPlaceholderImage
         
         systemUnderTest?.downloadImage(for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
             let actual = image
-            XCTAssertEqual(expected, actual)
+            XCTAssertNil(actual)
         }
     }
     

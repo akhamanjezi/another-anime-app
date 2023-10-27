@@ -51,7 +51,7 @@ class KitsuRepository: AnimeRepository {
     
     func downloadImage(_ role: ImageRole, for anime: Anime, completion: @escaping (UIImage?) -> ()) {
         guard let imageURL = imageURL(of: anime, for: role) else {
-            completion(UIImage(systemName: "popcorn.circle"))
+            completion(nil)
             return
         }
         

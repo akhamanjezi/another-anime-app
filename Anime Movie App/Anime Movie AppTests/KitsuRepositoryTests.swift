@@ -157,7 +157,7 @@ final class KitsuRepositoryTests: XCTestCase {
             case .success(_):
                 XCTFail("Unexpected successful call")
             case .failure(let actual):
-               XCTAssertEqual(expected, actual)
+                XCTAssertEqual(expected, actual)
             }
         }
     }
@@ -216,21 +216,19 @@ final class KitsuRepositoryTests: XCTestCase {
     
     func testUnsuccessfulCoverImageDownload() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
-        let expected = AnimeTestDataProvider.popcornPlaceholderImage
         
         systemUnderTest?.downloadImage(.cover, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
             let actual = image
-            XCTAssertEqual(expected, actual)
+            XCTAssertNil(actual)
         }
     }
     
     func testUnsuccessfulPosterImageDownload() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
-        let expected = AnimeTestDataProvider.popcornPlaceholderImage
         
         systemUnderTest?.downloadImage(.poster, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
             let actual = image
-            XCTAssertEqual(expected, actual)
+            XCTAssertNil(actual)
         }
     }
     
@@ -276,7 +274,7 @@ final class KitsuRepositoryTests: XCTestCase {
     
     // MARK: Helper Functions
     
-    private func initSystemUnderTest(dataProvider: DataProviding = AnimeTestDataProvider.successfulKitsuSearchDataProvider, 
+    private func initSystemUnderTest(dataProvider: DataProviding = AnimeTestDataProvider.successfulKitsuSearchDataProvider,
                                      storage: any DataStoring<String, Data> = FavouritesStorageFake()) {
         systemUnderTest = KitsuRepository(dataProvider: dataProvider,
                                           imageRepository: ImageRepo(imageDownloader: ImageDownloaderStub()),

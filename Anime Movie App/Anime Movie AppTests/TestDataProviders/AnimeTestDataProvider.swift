@@ -230,8 +230,6 @@ class AnimeTestDataProvider {
     
     static let spiritedAwayCoverImage = UIImage(named: "coverImage", in: Bundle(for: Anime_Movie_AppTests.self), with: nil)
     
-    static let popcornPlaceholderImage = UIImage(systemName: "popcorn.circle")
-    
     static let animeFavouritedInTheDistantPast = SavedAnime(title: "Spirited Away",
                                                             genres: nil,
                                                             releaseDate: "2001-07-20".toDate(),

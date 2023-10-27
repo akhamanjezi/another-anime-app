@@ -11,6 +11,7 @@ class SearchTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
+        setupSelectedBackgorundView()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -19,17 +20,8 @@ class SearchTableViewCell: UITableViewCell {
     
     func configureCell(for anime: Anime) {
         titleLabel.text = anime.title
-        releaseDateLabel.text = anime.styledReleaseDate
-        thumbnailView.image = anime.posterImage ?? anime.thumbnail
-        thumbnailView.contentMode = .scaleAspectFill
-        
-        guard let displayReleaseDate = anime.styledReleaseDate else {
-            releaseDateLabel.isHidden = true
-            return
-        }
-        
-        releaseDateLabel.isHidden = false
-        releaseDateLabel.text = displayReleaseDate
+        configureThumbnailView(for: anime)
+        configureReleaseDateLabel(for: anime)
     }
     
     private func setupView() {
@@ -37,14 +29,34 @@ class SearchTableViewCell: UITableViewCell {
         layer.cornerRadius = 8
         layer.masksToBounds = true
         
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = .placeholderText
-        backgroundView.layer.cornerRadius = 8
-        selectedBackgroundView = backgroundView
-        
         titleLabel.font = .roundedCallout
         releaseDateLabel.font = .roundedCaption2
         
         thumbnailView.contentMode = .scaleAspectFill
     }
+    
+    private func setupSelectedBackgorundView() {
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .placeholderText
+        backgroundView.layer.cornerRadius = 8
+        selectedBackgroundView = backgroundView
+    }
+    
+    private func configureThumbnailView(for anime: Anime) {
+        guard let thumbnailImage = anime.posterImage ?? anime.thumbnail else {
+            thumbnailView.configureWith(image: .defaultPlaceholder, contentMode: .center)
+            return
+        }
+        thumbnailView.configureWith(image: thumbnailImage, contentMode: .scaleAspectFill)
+    }
+    
+    private func configureReleaseDateLabel(for anime: Anime) {
+        guard let displayReleaseDate = anime.styledReleaseDate else {
+            releaseDateLabel.isHidden = true
+            return
+        }
+        releaseDateLabel.isHidden = false
+        releaseDateLabel.text = displayReleaseDate
+    }
 }
+
