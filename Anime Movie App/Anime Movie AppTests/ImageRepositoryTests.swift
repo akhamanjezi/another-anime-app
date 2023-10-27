@@ -33,8 +33,6 @@ final class ImageRepositoryTests: XCTestCase {
     }
     
     func testUnsuccessfulImageDownload() {
-        let expected = UIImage(systemName: "popcorn.circle")
-        
         systemUnderTest.image(from: NSURL(), for: animeForTest) { anime, image in
             let actual = image
             XCTAssertNil(actual)
