@@ -101,7 +101,7 @@ final class FavouritesManagerTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testResetFavouritesNilStorage() {
+    func testWhenResetFavouritesWithUnavailableStorageThenAllFavouritesEmpty() {
         initSystemUnderTest(storage: UnavailableFavouritesStorageStub())
         
         systemUnderTest?.addFavourite(Anime.placeholder, forKey: "favourite")
