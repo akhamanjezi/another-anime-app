@@ -2,7 +2,6 @@ import UIKit
 
 class Anime: Equatable, Hashable {
     var title: String
-    var genres: [String]?
     var releaseDate: Date?
     var synopsis: String?
     var averageRating: Double?
@@ -39,9 +38,8 @@ class Anime: Equatable, Hashable {
         source.rawValue.description + externalID
     }
     
-    init(title: String, genres: [String]? = nil, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: UIImage? = nil, duration: TimeInterval? = nil, externalID: String, source: AnimeSources, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
+    init(title: String, releaseDate: Date? = nil, synopsis: String? = nil, averageRating: Double? = nil, ageRating: String? = nil, posterImageURL: String? = nil, coverImageURL: String? = nil, thumbnail: UIImage? = nil, duration: TimeInterval? = nil, externalID: String, source: AnimeSources, posterImage: UIImage? = nil, coverImage: UIImage? = nil) {
         self.title = title
-        self.genres = genres
         self.releaseDate = releaseDate
         self.synopsis = synopsis
         self.averageRating = averageRating
@@ -58,7 +56,6 @@ class Anime: Equatable, Hashable {
     
     static func == (lhs: Anime, rhs: Anime) -> Bool {
         return lhs.title == rhs.title &&
-        lhs.genres == rhs.genres &&
         lhs.releaseDate == rhs.releaseDate &&
         lhs.synopsis == rhs.synopsis &&
         lhs.averageRating == rhs.averageRating &&
@@ -75,7 +72,6 @@ class Anime: Equatable, Hashable {
     }
     
     static let placeholder = Anime(title: "Spirited Away",
-                                   genres: nil,
                                    releaseDate: "2001-07-20".toDate(),
                                    synopsis: "Stubborn, spoiled, and naïve, 10-year-old Chihiro Ogino is less than pleased when she and her parents discover an abandoned amusement park on the way to their new house. Cautiously venturing inside, she realizes that there is more to this place than meets the eye, as strange things begin to happen once dusk falls. Ghostly apparitions and food that turns her parents into pigs are just the start—Chihiro has unwittingly crossed over into the spirit world. Now trapped, she must summon the courage to live and work amongst spirits, with the help of the enigmatic Haku and the cast of unique characters she meets along the way.\nVivid and intriguing, Sen to Chihiro no Kamikakushi tells the story of Chihiro's journey through an unfamiliar world as she strives to save her parents and return home.\n[Written by MAL Rewrite]",
                                    averageRating: 82.59,

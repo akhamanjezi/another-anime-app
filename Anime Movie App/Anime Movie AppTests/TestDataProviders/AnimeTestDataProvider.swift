@@ -4,7 +4,6 @@ class AnimeTestDataProvider {
     static let validAnimeInstance = Anime.placeholder
     
     static let validAnimeInstanceNoImageInfo = Anime(title: "Spirited Away",
-                                                     genres: nil,
                                                      releaseDate: "2001-07-20".toDate(),
                                                      synopsis: "Stubborn, spoiled, and naïve, 10-year-old Chihiro Ogino is less than pleased when she and her parents discover an abandoned amusement park on the way to their new house. Cautiously venturing inside, she realizes that there is more to this place than meets the eye, as strange things begin to happen once dusk falls. Ghostly apparitions and food that turns her parents into pigs are just the start—Chihiro has unwittingly crossed over into the spirit world. Now trapped, she must summon the courage to live and work amongst spirits, with the help of the enigmatic Haku and the cast of unique characters she meets along the way.\nVivid and intriguing, Sen to Chihiro no Kamikakushi tells the story of Chihiro's journey through an unfamiliar world as she strives to save her parents and return home.\n[Written by MAL Rewrite]",
                                                      averageRating: 82.59,
@@ -15,7 +14,6 @@ class AnimeTestDataProvider {
                                                      source: .kitsu)
     
     static let validAnimeInstanceFallbackImageInfo = Anime(title: "Spirited Away",
-                                                           genres: nil,
                                                            releaseDate: "2001-07-20".toDate(),
                                                            synopsis: "Stubborn, spoiled, and naïve, 10-year-old Chihiro Ogino is less than pleased when she and her parents discover an abandoned amusement park on the way to their new house. Cautiously venturing inside, she realizes that there is more to this place than meets the eye, as strange things begin to happen once dusk falls. Ghostly apparitions and food that turns her parents into pigs are just the start—Chihiro has unwittingly crossed over into the spirit world. Now trapped, she must summon the courage to live and work amongst spirits, with the help of the enigmatic Haku and the cast of unique characters she meets along the way.\nVivid and intriguing, Sen to Chihiro no Kamikakushi tells the story of Chihiro's journey through an unfamiliar world as she strives to save her parents and return home.\n[Written by MAL Rewrite]",
                                                            averageRating: 82.59,
@@ -28,7 +26,6 @@ class AnimeTestDataProvider {
                                                            source: .kitsu)
     
     static let validAnimeInstanceZeroDuration = Anime(title: "Spirited Away",
-                                                      genres: nil,
                                                       releaseDate: "2001-07-20".toDate(),
                                                       synopsis: "Stubborn, spoiled, and naïve, 10-year-old Chihiro Ogino is less than pleased when she and her parents discover an abandoned amusement park on the way to their new house. Cautiously venturing inside, she realizes that there is more to this place than meets the eye, as strange things begin to happen once dusk falls. Ghostly apparitions and food that turns her parents into pigs are just the start—Chihiro has unwittingly crossed over into the spirit world. Now trapped, she must summon the courage to live and work amongst spirits, with the help of the enigmatic Haku and the cast of unique characters she meets along the way.\nVivid and intriguing, Sen to Chihiro no Kamikakushi tells the story of Chihiro's journey through an unfamiliar world as she strives to save her parents and return home.\n[Written by MAL Rewrite]",
                                                       averageRating: 82.59,
@@ -41,7 +38,6 @@ class AnimeTestDataProvider {
                                                       source: .kitsu)
     
     static let animeInstanceNilSynopsis = Anime(title: "Spirited Away",
-                                                genres: nil,
                                                 releaseDate: "2001-07-20".toDate(),
                                                 synopsis: nil,
                                                 averageRating: 82.59,
@@ -54,7 +50,6 @@ class AnimeTestDataProvider {
                                                 source: .kitsu)
     
     static let validAnimeInstanceFromStoredAnime = Anime(title: "Spirited Away",
-                                                         genres: nil,
                                                          releaseDate: "2001-07-20".toDate(),
                                                          synopsis: "Stubborn, spoiled, and naïve, 10-year-old Chihiro Ogino is less than pleased when she and her parents discover an abandoned amusement park on the way to their new house. Cautiously venturing inside, she realizes that there is more to this place than meets the eye, as strange things begin to happen once dusk falls. Ghostly apparitions and food that turns her parents into pigs are just the start—Chihiro has unwittingly crossed over into the spirit world. Now trapped, she must summon the courage to live and work amongst spirits, with the help of the enigmatic Haku and the cast of unique characters she meets along the way.\nVivid and intriguing, Sen to Chihiro no Kamikakushi tells the story of Chihiro's journey through an unfamiliar world as she strives to save her parents and return home.\n[Written by MAL Rewrite]",
                                                          averageRating: 82.59,
@@ -231,7 +226,6 @@ class AnimeTestDataProvider {
     static let spiritedAwayCoverImage = UIImage(named: "coverImage", in: Bundle(for: Anime_Movie_AppTests.self), with: nil)
     
     static let animeFavouritedInTheDistantPast = SavedAnime(title: "Spirited Away",
-                                                            genres: nil,
                                                             releaseDate: "2001-07-20".toDate(),
                                                             synopsis: "Stubborn, spoiled, and naïve, 10-year-old Chihiro Ogino is less than pleased when she and her parents discover an abandoned amusement park on the way to their new house. Cautiously venturing inside, she realizes that there is more to this place than meets the eye, as strange things begin to happen once dusk falls. Ghostly apparitions and food that turns her parents into pigs are just the start—Chihiro has unwittingly crossed over into the spirit world. Now trapped, she must summon the courage to live and work amongst spirits, with the help of the enigmatic Haku and the cast of unique characters she meets along the way.\nVivid and intriguing, Sen to Chihiro no Kamikakushi tells the story of Chihiro's journey through an unfamiliar world as she strives to save her parents and return home.\n[Written by MAL Rewrite]",
                                                             averageRating: 82.59,
@@ -245,7 +239,6 @@ class AnimeTestDataProvider {
                                                             creationDate: .distantPast)
     
     static let animeFavouritedInTheDistantFuture = SavedAnime(title: "Spirited Away",
-                                                              genres: nil,
                                                               releaseDate: "2001-07-20".toDate(),
                                                               synopsis: "Stubborn, spoiled, and naïve, 10-year-old Chihiro Ogino is less than pleased when she and her parents discover an abandoned amusement park on the way to their new house. Cautiously venturing inside, she realizes that there is more to this place than meets the eye, as strange things begin to happen once dusk falls. Ghostly apparitions and food that turns her parents into pigs are just the start—Chihiro has unwittingly crossed over into the spirit world. Now trapped, she must summon the courage to live and work amongst spirits, with the help of the enigmatic Haku and the cast of unique characters she meets along the way.\nVivid and intriguing, Sen to Chihiro no Kamikakushi tells the story of Chihiro's journey through an unfamiliar world as she strives to save her parents and return home.\n[Written by MAL Rewrite]",
                                                               averageRating: 82.59,
@@ -259,7 +252,6 @@ class AnimeTestDataProvider {
                                                               creationDate: .distantFuture)
     
     static let animeFavouritedNow = SavedAnime(title: "Spirited Away",
-                                               genres: nil,
                                                releaseDate: "2001-07-20".toDate(),
                                                synopsis: "Stubborn, spoiled, and naïve, 10-year-old Chihiro Ogino is less than pleased when she and her parents discover an abandoned amusement park on the way to their new house. Cautiously venturing inside, she realizes that there is more to this place than meets the eye, as strange things begin to happen once dusk falls. Ghostly apparitions and food that turns her parents into pigs are just the start—Chihiro has unwittingly crossed over into the spirit world. Now trapped, she must summon the courage to live and work amongst spirits, with the help of the enigmatic Haku and the cast of unique characters she meets along the way.\nVivid and intriguing, Sen to Chihiro no Kamikakushi tells the story of Chihiro's journey through an unfamiliar world as she strives to save her parents and return home.\n[Written by MAL Rewrite]",
                                                averageRating: 82.59,

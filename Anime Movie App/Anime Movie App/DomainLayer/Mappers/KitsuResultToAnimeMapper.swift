@@ -9,7 +9,6 @@ class KitsuResultToAnimeMapper: ToAnimeMapper {
         }
         
         return Anime(title: title,
-                     genres: nil,
                      releaseDate: attributes.startDate?.toDate(),
                      synopsis: attributes.synopsis,
                      averageRating: attributes.averageRating != nil ? Double(attributes.averageRating!) : nil,

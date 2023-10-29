@@ -2,7 +2,6 @@ import Foundation
 
 struct SavedAnime: Codable, Comparable {
     var title: String
-    var genres: [String]?
     var releaseDate: Date?
     var synopsis: String?
     var averageRating: Double?
@@ -25,7 +24,6 @@ struct SavedAnime: Codable, Comparable {
     
     static func == (lhs: SavedAnime, rhs: SavedAnime) -> Bool {
         return lhs.title == rhs.title &&
-        lhs.genres == rhs.genres &&
         lhs.releaseDate == rhs.releaseDate &&
         lhs.synopsis == rhs.synopsis &&
         lhs.averageRating == rhs.averageRating &&

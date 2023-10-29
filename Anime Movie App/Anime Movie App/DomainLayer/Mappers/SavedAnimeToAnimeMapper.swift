@@ -3,7 +3,6 @@ import UIKit
 class SavedAnimeToAnimeMapper: BidirectionalAnimeMapping {
     func mapFromAnime(_ anime: Anime) -> SavedAnime {
         SavedAnime(title: anime.title,
-                   genres: anime.genres,
                    releaseDate: anime.releaseDate,
                    synopsis: anime.synopsis,
                    averageRating: anime.averageRating,
@@ -23,7 +22,6 @@ class SavedAnimeToAnimeMapper: BidirectionalAnimeMapping {
         : UIImage(data: savedAnime.thumbnail!)
         
         return Anime(title: savedAnime.title,
-                     genres: savedAnime.genres,
                      releaseDate: savedAnime.releaseDate,
                      synopsis: savedAnime.synopsis,
                      averageRating: savedAnime.averageRating,
