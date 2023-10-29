@@ -25,7 +25,7 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     
     private func setupView() {
         descriptionLabel.font = .roundedCallout
-        posterImageView.layer.cornerRadius = Constants.standardCornerRadius - 1
+        posterImageView.layer.cornerRadius = Constants.secondaryCornerRadius
         posterImageView.contentMode = .scaleAspectFill
     }
     

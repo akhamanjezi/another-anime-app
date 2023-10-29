@@ -25,8 +25,8 @@ class SearchTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
-        thumbnailView.layer.cornerRadius = Constants.standardCornerRadius
-        layer.cornerRadius = Constants.standardCornerRadius
+        thumbnailView.layer.cornerRadius = Constants.primaryCornerRadius
+        layer.cornerRadius = Constants.primaryCornerRadius
         layer.masksToBounds = true
         
         titleLabel.font = .roundedCallout
@@ -38,7 +38,7 @@ class SearchTableViewCell: UITableViewCell {
     private func setupSelectedBackgorundView() {
         let backgroundView = UIView()
         backgroundView.backgroundColor = .placeholderText
-        backgroundView.layer.cornerRadius = Constants.standardCornerRadius
+        backgroundView.layer.cornerRadius = Constants.primaryCornerRadius
         selectedBackgroundView = backgroundView
     }
     
