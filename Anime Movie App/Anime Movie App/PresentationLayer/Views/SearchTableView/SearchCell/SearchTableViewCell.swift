@@ -1,7 +1,6 @@
 import UIKit
 
 class SearchTableViewCell: UITableViewCell {
-    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var thumbnailView: UIImageView!
     @IBOutlet private weak var releaseDateLabel: UILabel!
@@ -12,6 +11,7 @@ class SearchTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
+        setupSelectedBackgorundView()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -20,32 +20,43 @@ class SearchTableViewCell: UITableViewCell {
     
     func configureCell(for anime: Anime) {
         titleLabel.text = anime.title
-        releaseDateLabel.text = anime.styledReleaseDate
-        thumbnailView.image = anime.posterImage
-        thumbnailView.contentMode = .scaleAspectFill
-        
-        guard let displayReleaseDate = anime.styledReleaseDate else {
-            releaseDateLabel.isHidden = true
-            return
-        }
-        
-        releaseDateLabel.isHidden = false
-        releaseDateLabel.text = displayReleaseDate
+        configureThumbnailView(for: anime)
+        configureReleaseDateLabel(for: anime)
     }
     
     private func setupView() {
-        thumbnailView.layer.cornerRadius = 8
-        layer.cornerRadius = 8
+        thumbnailView.layer.cornerRadius = Constants.primaryCornerRadius
+        layer.cornerRadius = Constants.primaryCornerRadius
         layer.masksToBounds = true
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = .placeholderText
-        backgroundView.layer.cornerRadius = 8
-        selectedBackgroundView = backgroundView
         
         titleLabel.font = .roundedCallout
         releaseDateLabel.font = .roundedCaption2
         
         thumbnailView.contentMode = .scaleAspectFill
     }
+    
+    private func setupSelectedBackgorundView() {
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .placeholderText
+        backgroundView.layer.cornerRadius = Constants.primaryCornerRadius
+        selectedBackgroundView = backgroundView
+    }
+    
+    private func configureThumbnailView(for anime: Anime) {
+        guard let thumbnailImage = anime.posterImage ?? anime.thumbnail else {
+            thumbnailView.configureWith(image: .defaultPlaceholder, contentMode: .center)
+            return
+        }
+        thumbnailView.configureWith(image: thumbnailImage, contentMode: .scaleAspectFill)
+    }
+    
+    private func configureReleaseDateLabel(for anime: Anime) {
+        guard let displayReleaseDate = anime.styledReleaseDate else {
+            releaseDateLabel.isHidden = true
+            return
+        }
+        releaseDateLabel.isHidden = false
+        releaseDateLabel.text = displayReleaseDate
+    }
 }
+

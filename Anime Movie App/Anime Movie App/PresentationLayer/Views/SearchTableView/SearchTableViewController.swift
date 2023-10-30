@@ -43,15 +43,14 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         guard let selectedAnime = viewModel.animeSearchResults.value[searchTermKey]?[indexPath.row] else {
-            tableView.deselectRow(at: indexPath, animated: true)
             return
         }
         let detailsViewModel = DetailsViewModel(anime: selectedAnime, searchTerm: viewModel.searchTerm)
         let detailsViewController = DetailsViewController(with: detailsViewModel)
         
         presentingViewController?.navigationController?.pushViewController(detailsViewController, animated: true)
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     private func updateDataSource() {

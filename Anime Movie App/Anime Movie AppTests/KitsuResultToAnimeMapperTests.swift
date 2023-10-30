@@ -10,12 +10,6 @@ final class KitsuResultToAnimeMapperTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    func testUnsccessfulKitsuMapToAnime() {
-        let actual = systemUnderTest.mapToAnime(from: AnimeTestDataProvider.invalidKitsuResult)
-        
-        XCTAssertNil(actual)
-    }
-    
     func testSuccessfulKitsuMapToAnimeFallbackImages() {
         let expected = AnimeTestDataProvider.validAnimeInstanceFallbackImageInfo
         let actual = systemUnderTest.mapToAnime(from: AnimeTestDataProvider.validKitsuResultFallbackImages)
@@ -28,5 +22,11 @@ final class KitsuResultToAnimeMapperTests: XCTestCase {
         let actual = systemUnderTest.mapToAnime(from: AnimeTestDataProvider.validKitsuResultNilDuration)
         
         XCTAssertEqual(expected, actual)
+    }
+    
+    func testUnsuccessfulKitsuMapToAnime() {
+        let actual = systemUnderTest.mapToAnime(from: AnimeTestDataProvider.invalidKitsuResult)
+        
+        XCTAssertNil(actual)
     }
 }

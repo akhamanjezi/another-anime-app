@@ -2,13 +2,22 @@ import UIKit
 
 class KitsuRepository: AnimeRepository {
     private let dataProvider: DataProviding
-    private let responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult>
-    private let imageRepository: ImageRepository
+    private let toAnimeMapper: any ToAnimeMapper<KitsuResult>
+    private let imageRepository: any ImageRepository
+    private let favouritesManager: any FavouritesManaging
     
-    init(dataProvider: DataProviding = KitsuProvider(), responseToAnimeMapper: any ResponseToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(), imageRepository: ImageRepository = ImageRepository()) {
+    var favourites: [Anime] {
+        favouritesManager.all
+    }
+    
+    init(dataProvider: DataProviding = KitsuProvider(),
+         toAnimeMapper: any ToAnimeMapper<KitsuResult> = KitsuResultToAnimeMapper(),
+         imageRepository: any ImageRepository = ImageRepo(),
+         favouritesManager: any FavouritesManaging = FavouritesManager()) {
         self.dataProvider = dataProvider
-        self.responseToAnimeMapper = responseToAnimeMapper
+        self.toAnimeMapper = toAnimeMapper
         self.imageRepository = imageRepository
+        self.favouritesManager = favouritesManager
     }
     
     func searchResults(for term: String, completion: @escaping (Result<AnimeRepository.SearchResultsType, LocalizedError>) -> ()) {
@@ -42,13 +51,26 @@ class KitsuRepository: AnimeRepository {
     
     func downloadImage(_ role: ImageRole, for anime: Anime, completion: @escaping (UIImage?) -> ()) {
         guard let imageURL = imageURL(of: anime, for: role) else {
-            completion(UIImage(systemName: "popcorn.circle"))
+            completion(nil)
             return
         }
         
         imageRepository.image(from: imageURL, for: anime) { anime, image in
             completion(image)
         }
+    }
+    
+    func isFavourite(_ anime: Anime) -> Bool {
+        favouritesManager.isFavourite(anime)
+    }
+    
+    func toggleFavourite(_ anime: Anime) {
+        guard !isFavourite(anime) else {
+            favouritesManager.removeFavourite(anime, forKey: anime.key)
+            return
+        }
+        
+        favouritesManager.addFavourite(anime, forKey: anime.key)
     }
     
     private func imageURL(of anime: Anime, for role: ImageRole) -> NSURL? {
@@ -88,7 +110,7 @@ class KitsuRepository: AnimeRepository {
             return []
         }
         
-        return [responseToAnimeMapper.mapToAnime(from: kitsuResult)].compactMap { $0 }
+        return [toAnimeMapper.mapToAnime(from: kitsuResult)].compactMap { $0 }
     }
     
     private func convertToAnime(from response: KitsuResponse) -> [Anime] {
@@ -97,7 +119,7 @@ class KitsuRepository: AnimeRepository {
         }
         
         let converted = kitsuResults.compactMap { kitsuResult in
-            responseToAnimeMapper.mapToAnime(from: kitsuResult)
+            toAnimeMapper.mapToAnime(from: kitsuResult)
         }
         
         return converted

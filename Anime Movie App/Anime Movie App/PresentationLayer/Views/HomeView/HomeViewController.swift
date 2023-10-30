@@ -22,10 +22,25 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         setupFeatureAnimeTapGesture()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.updateFavourites()
+        favouritesTableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let selectedAnime = viewModel.favourites.value[safe: indexPath.row] else {
+            return
+        }
+        
+        pushDetailsView(for: selectedAnime)
+    }
+    
     private func setupView() {
         title = "Animovie"
-        featureImageView.layer.cornerRadius = 8
-        reloadButton.layer.cornerRadius = 8
+        featureImageView.layer.cornerRadius = Constants.primaryCornerRadius
+        reloadButton.layer.cornerRadius = Constants.primaryCornerRadius
         featureImageView.contentMode = .scaleAspectFill
         favouritesLabel.font = .headingBold
         featureLabel.font = .subHeadingMedium
@@ -79,8 +94,14 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     private func updateFeatureAnimeDisplay(with anime: Anime) {
         DispatchQueue.main.async {
-            self.featureLabel.text = "\(anime.title ?? "") - \(anime.styledReleaseDate ?? "")"
-            self.featureImageView.image = anime.coverImage
+            self.featureLabel.text = "\(anime.title) - \(anime.styledReleaseDate ?? "")"
+            
+            guard let coverImage = anime.coverImage else {
+                self.featureImageView.configureWith(image: .defaultPlaceholder, contentMode: .center)
+                return
+            }
+            
+            self.featureImageView.configureWith(image: coverImage, contentMode: .scaleAspectFill)
         }
     }
     
@@ -92,14 +113,18 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
     
     @objc private func viewFeatureDetails(_ sender: UITapGestureRecognizer? = nil) {
-        let detailsViewModel = DetailsViewModel(anime: viewModel.featureAnime.value)
-        let detailsViewController = DetailsViewController(with: detailsViewModel)
-        
-        navigationController?.pushViewController(detailsViewController, animated: true)
+        pushDetailsView(for: viewModel.featureAnime.value)
     }
     
     @IBAction private func refreshAnime(_ sender: Any) {
         updateFeatureAnime()
+    }
+    
+    private func pushDetailsView(for anime: Anime) {
+        let detailsViewModel = DetailsViewModel(anime: anime)
+        let detailsViewController = DetailsViewController(with: detailsViewModel)
+        
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }
 

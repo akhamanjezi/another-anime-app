@@ -8,11 +8,6 @@ final class KitsuRepositoryTests: XCTestCase {
         super.tearDown()
     }
     
-    private func initSystemUnderTest(dataProvider: DataProviding) {
-        systemUnderTest = KitsuRepository(dataProvider: dataProvider, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
-        XCTAssertNotNil(systemUnderTest)
-    }
-    
     // MARK: Search
     
     func testSuccessfulSearchWithNotNullData() {
@@ -162,7 +157,7 @@ final class KitsuRepositoryTests: XCTestCase {
             case .success(_):
                 XCTFail("Unexpected successful call")
             case .failure(let actual):
-               XCTAssertEqual(expected, actual)
+                XCTAssertEqual(expected, actual)
             }
         }
     }
@@ -221,21 +216,69 @@ final class KitsuRepositoryTests: XCTestCase {
     
     func testUnsuccessfulCoverImageDownload() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
-        let expected = AnimeTestDataProvider.popcornPlaceholderImage
         
         systemUnderTest?.downloadImage(.cover, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
             let actual = image
-            XCTAssertEqual(expected, actual)
+            XCTAssertNil(actual)
         }
     }
     
     func testUnsuccessfulPosterImageDownload() {
         initSystemUnderTest(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider)
-        let expected = AnimeTestDataProvider.popcornPlaceholderImage
         
-        systemUnderTest?.downloadImage(.cover, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
+        systemUnderTest?.downloadImage(.poster, for: AnimeTestDataProvider.validAnimeInstanceNoImageInfo) { image in
             let actual = image
-            XCTAssertEqual(expected, actual)
+            XCTAssertNil(actual)
         }
+    }
+    
+    // MARK: Favourites
+    
+    func testWhenInitedThenFavouriteFalse() {
+        initSystemUnderTest()
+        
+        let expected = false
+        let actual = systemUnderTest?.isFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testWhenInitedWithFavouriteThenFavouriteTrue() {
+        initSystemUnderTest(storage: AnimeTestDataProvider.validFavouritesDictionryDataStoragePopulated)
+        
+        let expected = true
+        let actual = systemUnderTest?.isFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testWhenToggleFavouriteOfNotFavouriteThenTrue() {
+        initSystemUnderTest()
+        systemUnderTest?.toggleFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        let expected = true
+        let actual = systemUnderTest?.isFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testWhenToggleFavouriteOfFavouriteThenFalse() {
+        initSystemUnderTest(storage: AnimeTestDataProvider.validFavouritesDictionryDataStoragePopulated)
+        systemUnderTest?.toggleFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        let expected = false
+        let actual = systemUnderTest?.isFavourite(AnimeTestDataProvider.validAnimeInstance)
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    // MARK: Helper Functions
+    
+    private func initSystemUnderTest(dataProvider: DataProviding = AnimeTestDataProvider.successfulKitsuSearchDataProvider,
+                                     storage: any DataStoring<String, Data> = FavouritesStorageFake()) {
+        systemUnderTest = KitsuRepository(dataProvider: dataProvider,
+                                          imageRepository: ImageRepo(imageDownloader: ImageDownloaderStub()),
+                                          favouritesManager: FavouritesManager(storage: storage))
+        XCTAssertNotNil(systemUnderTest)
     }
 }

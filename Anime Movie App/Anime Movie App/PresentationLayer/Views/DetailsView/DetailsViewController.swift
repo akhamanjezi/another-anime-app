@@ -1,7 +1,6 @@
 import UIKit
 
 class DetailsViewController: UIViewController, UITableViewDelegate {
-    
     @IBOutlet private weak var detailsTableView: UITableView!
     private let viewModel: DetailsViewModel
     
@@ -28,12 +27,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
         navigationItem.title = viewModel.anime.value.title
         navigationItem.largeTitleDisplayMode = .never
         configureBackButton()
-    }
-    
-    private func configureBackButton() {
-        let backButton = UIBarButtonItem()
-        backButton.title = viewModel.searchTerm == nil ? "Animovie" : viewModel.searchTerm!.truncateTo(length: 6)
-        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        configureFavouriteButton()
     }
     
     private func registerCells() {
@@ -52,6 +46,24 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
                 self?.detailsTableView.reloadData()
             }
         }
+    }
+    
+    private func configureBackButton() {
+        let backButton = UIBarButtonItem()
+        backButton.title = viewModel.searchTerm == nil ? "Animovie" : viewModel.searchTerm!.truncateTo(length: 6)
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+    }
+    
+    private func configureFavouriteButton() {
+        let favouriteImage = UIImage(systemName: "star\(viewModel.isFavourite ? ".fill" : "")")?.applyingSymbolConfiguration(.Scale.medium)
+        let favouriteButton = UIBarButtonItem(image: favouriteImage, style: .plain, target: self, action: #selector(favouriteButtonTapped))
+        navigationItem.setRightBarButton(favouriteButton, animated: true)
+    }
+    
+    @objc private func favouriteButtonTapped() {
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        viewModel.toggleFavourite()
+        configureFavouriteButton()
     }
 }
 

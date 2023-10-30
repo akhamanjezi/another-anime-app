@@ -1,7 +1,7 @@
 import XCTest
 
 final class ImageRepositoryTests: XCTestCase {
-    private let systemUnderTest = ImageRepository(imageDownloader: ImageDownloaderStub())
+    private let systemUnderTest = ImageRepo(imageDownloader: ImageDownloaderStub())
     private let animeForTest = AnimeTestDataProvider.validAnimeInstance
     
     func testSuccessfulPosterImageDownload() {
@@ -33,11 +33,9 @@ final class ImageRepositoryTests: XCTestCase {
     }
     
     func testUnsuccessfulImageDownload() {
-        let expected = UIImage(systemName: "popcorn.circle")
-        
         systemUnderTest.image(from: NSURL(), for: animeForTest) { anime, image in
             let actual = image
-            XCTAssertEqual(expected, actual)
+            XCTAssertNil(actual)
         }
     }
 }

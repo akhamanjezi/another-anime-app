@@ -44,9 +44,57 @@ final class DetailsViewModelTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
     
-    private func initSystemUnderTest(anime: Anime = AnimeTestDataProvider.validAnimeInstance, searchTerm: String? = "Spirited Away") {
-        let kitsuRepo = KitsuRepository(dataProvider: AnimeTestDataProvider.successfulKitsuSearchDataProvider, imageRepository: ImageRepository(imageDownloader: ImageDownloaderStub()))
-        systemUnderTest = DetailsViewModel(animeRepository: kitsuRepo, anime: anime, searchTerm: searchTerm)
+    // MARK: Favourites
+    
+    func testWhenInitedThenFavouriteFalse() {
+        initSystemUnderTest()
+        
+        let expected = false
+        let actual = systemUnderTest?.isFavourite
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testWhenInitedWithFavouriteThenFavouriteTrue() {
+        initSystemUnderTest(storage: AnimeTestDataProvider.validFavouritesDictionryDataStoragePopulated)
+        
+        let expected = true
+        let actual = systemUnderTest?.isFavourite
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testWhenToggleFavouriteOfNotFavouriteThenTrue() {
+        initSystemUnderTest()
+        systemUnderTest?.toggleFavourite()
+        
+        let expected = true
+        let actual = systemUnderTest?.isFavourite
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    func testWhenToggleFavouriteOfFavouriteThenFalse() {
+        initSystemUnderTest(storage: AnimeTestDataProvider.validFavouritesDictionryDataStoragePopulated)
+        systemUnderTest?.toggleFavourite()
+        
+        let expected = false
+        let actual = systemUnderTest?.isFavourite
+        
+        XCTAssertEqual(expected, actual)
+    }
+    
+    private func initSystemUnderTest(anime: Anime = AnimeTestDataProvider.validAnimeInstance,
+                                     searchTerm: String? = "Spirited Away",
+                                     storage: any DataStoring<String, Data> = FavouritesStorageFake(),
+                                     dataProvider: DataProviding = AnimeTestDataProvider.successfulKitsuSearchDataProvider) {
+        let kitsuRepo = KitsuRepository(dataProvider: dataProvider,
+                                        imageRepository: ImageRepo(imageDownloader: ImageDownloaderStub()),
+                                        favouritesManager: FavouritesManager(storage: storage))
+        
+        systemUnderTest = DetailsViewModel(anime: anime,
+                                           animeRepository: kitsuRepo,
+                                           searchTerm: searchTerm)
         
         XCTAssertNotNil(systemUnderTest)
     }

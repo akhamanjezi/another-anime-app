@@ -15,7 +15,7 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     
     func configureCell(for anime: Anime) {
         descriptionLabel.attributedText = decriptionText(for: anime)
-        guard let posterImage = anime.posterImage else {
+        guard let posterImage = (anime.posterImage ?? anime.thumbnail) else {
             activityIndicatorView.startAnimating()
             return
         }
@@ -25,7 +25,7 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     
     private func setupView() {
         descriptionLabel.font = .roundedCallout
-        posterImageView.layer.cornerRadius = 7
+        posterImageView.layer.cornerRadius = Constants.secondaryCornerRadius
         posterImageView.contentMode = .scaleAspectFill
     }
     

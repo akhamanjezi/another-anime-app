@@ -1,11 +1,11 @@
 import Foundation
 
-protocol ResponseToAnimeMapping {
+protocol ToAnimeMapping {
     associatedtype T
     
     func mapToAnime(from response: T) -> Anime?
 }
 
-protocol ResponseToAnimeMapper<T>: ResponseToAnimeMapping {
+protocol ToAnimeMapper<T>: ToAnimeMapping {
     func mapToAnime(from response: T) -> Anime?
 }
