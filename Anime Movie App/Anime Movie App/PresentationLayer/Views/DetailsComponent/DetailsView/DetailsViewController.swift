@@ -16,7 +16,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate {
     init(with viewModel: DetailsViewModel) {
         self.viewModel = viewModel
         
-        super.init(nibName: "DetailsViewController", bundle: nil)
+        super.init(nibName: String(describing: Self.self), bundle: nil)
     }
     
     required init?(coder: NSCoder) {
