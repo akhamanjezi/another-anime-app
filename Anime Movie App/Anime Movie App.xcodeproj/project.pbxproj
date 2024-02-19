@@ -109,6 +109,8 @@
 		19B811E42AD96B0300F3DACE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811E32AD96B0300F3DACE /* HomeViewModel.swift */; };
 		19B811E52AD96D6900F3DACE /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B811DF2AD9602D00F3DACE /* Date+Extension.swift */; };
 		19BFF9CB2B7F74BC00FA96A2 /* NeedleFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 19BFF9CA2B7F74BC00FA96A2 /* NeedleFoundation */; };
+		19BFF9CE2B7F780700FA96A2 /* RootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BFF9CD2B7F780700FA96A2 /* RootComponent.swift */; };
+		19BFF9D72B832E4F00FA96A2 /* HomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BFF9D62B832E4F00FA96A2 /* HomeComponent.swift */; };
 		19D56AA32AE691A40025003B /* SavedAnimeToAnimeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AA22AE691A40025003B /* SavedAnimeToAnimeMapper.swift */; };
 		19D56AA42AE691A40025003B /* SavedAnimeToAnimeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AA22AE691A40025003B /* SavedAnimeToAnimeMapper.swift */; };
 		19D56AA82AE6931E0025003B /* DataStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D56AA72AE6931E0025003B /* DataStoring.swift */; };
@@ -225,6 +227,8 @@
 		19B811DF2AD9602D00F3DACE /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		19B811E12AD9677D00F3DACE /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		19B811E32AD96B0300F3DACE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		19BFF9CD2B7F780700FA96A2 /* RootComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootComponent.swift; sourceTree = "<group>"; };
+		19BFF9D62B832E4F00FA96A2 /* HomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponent.swift; sourceTree = "<group>"; };
 		19D56AA22AE691A40025003B /* SavedAnimeToAnimeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAnimeToAnimeMapper.swift; sourceTree = "<group>"; };
 		19D56AA72AE6931E0025003B /* DataStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoring.swift; sourceTree = "<group>"; };
 		19D56AAA2AE6934E0025003B /* FavouritesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesStorage.swift; sourceTree = "<group>"; };
@@ -381,10 +385,10 @@
 		198577832AD3E1890025F615 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				19B811D92AD93A4900F3DACE /* HomeView */,
+				19BFF9D52B832E2F00FA96A2 /* HomeComponent */,
 				1917741B2AD7CEAF00AF1FAD /* SearchTableView */,
 				198A270F2ADEAFDA00F5EFC5 /* DetailsView */,
-				198577892AD3EA2F0025F615 /* MainNavigationController.swift */,
+				19BFF9CC2B7F774000FA96A2 /* RootComponent */,
 				195FA1962AEBD998009FA88B /* Constants.swift */,
 			);
 			path = Views;
@@ -548,6 +552,24 @@
 				198577862AD3E3AA0025F615 /* HomeViewController.xib */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
+		19BFF9CC2B7F774000FA96A2 /* RootComponent */ = {
+			isa = PBXGroup;
+			children = (
+				198577892AD3EA2F0025F615 /* MainNavigationController.swift */,
+				19BFF9CD2B7F780700FA96A2 /* RootComponent.swift */,
+			);
+			path = RootComponent;
+			sourceTree = "<group>";
+		};
+		19BFF9D52B832E2F00FA96A2 /* HomeComponent */ = {
+			isa = PBXGroup;
+			children = (
+				19B811D92AD93A4900F3DACE /* HomeView */,
+				19BFF9D62B832E4F00FA96A2 /* HomeComponent.swift */,
+			);
+			path = HomeComponent;
 			sourceTree = "<group>";
 		};
 		19D56AA52AE692BC0025003B /* Images */ = {
@@ -763,6 +785,7 @@
 				1985778A2AD3EA2F0025F615 /* MainNavigationController.swift in Sources */,
 				19F01E832AEBD0FE0074E4DB /* UIImageView+Extension.swift in Sources */,
 				198A26FE2ADE6E2300F5EFC5 /* ImageStoring.swift in Sources */,
+				19BFF9D72B832E4F00FA96A2 /* HomeComponent.swift in Sources */,
 				19B811D72AD81CE400F3DACE /* DateFormatter+Extension.swift in Sources */,
 				198577872AD3E3AA0025F615 /* HomeViewController.swift in Sources */,
 				19ADAD632AD48C2A00663A6E /* KitsuAttributes.swift in Sources */,
