@@ -37,20 +37,18 @@ extension RootComponent: Registration {
         localTable["homeViewModel-HomeViewModel"] = { [unowned self] in self.homeViewModel as Any }
     }
 }
-extension DetailsComponent: Registration {
-    public func registerItems() {
-
-    }
-}
 extension HomeComponent: Registration {
     public func registerItems() {
         keyPathToName[\HomeDependency.homeViewModel] = "homeViewModel-HomeViewModel"
-
     }
 }
 
 
 #endif
+
+private func factoryEmptyDependencyProvider(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return EmptyDependencyProvider(component: component)
+}
 
 // MARK: - Registration
 private func registerProviderFactory(_ componentPath: String, _ factory: @escaping (NeedleFoundation.Scope) -> AnyObject) {
