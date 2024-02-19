@@ -11,13 +11,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setupWindow() {
+        registerProviderFactories()
+        
         let window = UIWindow(frame: UIScreen.main.bounds)
+        self.window = window
         
-        let navigationController = MainNavigationController(rootViewController: HomeViewController())
-        
-        window.rootViewController = navigationController
+        let rootComponent = RootComponent()
+                
+        window.rootViewController = rootComponent.rootView
         window.makeKeyAndVisible()
         
-        self.window = window
     }
 }
