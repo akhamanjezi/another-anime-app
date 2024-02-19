@@ -1,11 +1,11 @@
 import UIKit
 
 class ImageCache: ImageStoring {
-    public static let shared = ImageCache()
+    private let cache: NSCache<NSURL, UIImage>
     
-    private let cache = NSCache<NSURL, UIImage>()
-    
-    private init() { }
+    init(cache: NSCache<NSURL, UIImage>) {
+        self.cache = cache
+    }
     
     func object(forKey key: NSURL) -> UIImage? {
         return cache.object(forKey: key)

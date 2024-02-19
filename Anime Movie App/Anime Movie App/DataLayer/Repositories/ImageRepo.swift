@@ -4,7 +4,7 @@ class ImageRepo: ImageRepository {
     private let imageDownloader: ImageDownloading
     private let storage: any ImageStoring<NSURL, UIImage>
     
-    init(imageDownloader: ImageDownloading = ImageDownloader(), storage: any ImageStoring<NSURL, UIImage> = ImageCache.shared) {
+    init(imageDownloader: ImageDownloading = ImageDownloader(), storage: any ImageStoring<NSURL, UIImage> = ImageCache(cache: NSCache<NSURL, UIImage>())) {
         self.imageDownloader = imageDownloader
         self.storage = storage
     }

@@ -13,7 +13,7 @@ class FavouritesManager: FavouritesManaging {
         return convertToAnime(favourites)
     }
     
-    init(storage: any DataStoring<String, Data> = FavouritesStorage.shared, 
+    init(storage: any DataStoring<String, Data> = FavouritesStorage(storage: UserDefaults.standard), 
          mapper: any BidirectionalAnimeMapping<SavedAnime> = SavedAnimeToAnimeMapper()) {
         self.storage = storage
         self.mapper = mapper

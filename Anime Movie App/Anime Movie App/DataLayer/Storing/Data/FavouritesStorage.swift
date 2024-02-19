@@ -1,10 +1,11 @@
 import Foundation
 
 class FavouritesStorage: DataStoring {
-    static let shared = FavouritesStorage()
-    private let storage = UserDefaults.standard
+    private let storage: UserDefaults
     
-    private init() { }
+    init(storage: UserDefaults) {
+        self.storage = storage
+    }
     
     func object(forKey key: String) -> Data? {
         return storage.data(forKey: key)
