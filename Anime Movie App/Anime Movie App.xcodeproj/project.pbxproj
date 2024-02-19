@@ -584,6 +584,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 198577792AD3E0580025F615 /* Build configuration list for PBXNativeTarget "Anime Movie App" */;
 			buildPhases = (
+				19BFF9D02B7F7BCC00FA96A2 /* ShellScript */,
 				1985774B2AD3E0550025F615 /* Sources */,
 				1985774C2AD3E0550025F615 /* Frameworks */,
 				1985774D2AD3E0550025F615 /* Resources */,
@@ -691,11 +692,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		19BFF9D02B7F7BCC00FA96A2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#needle generate Anime\\ Movie\\ App/Anime\\ Movie\\ App/NeedleGenerated.swift Anime\\ Movie\\ App/Anime\\ Movie\\ App\nneedle generate \"$SRCROOT/$TARGETNAME/NeedleGenerated.swift\" \"$SRCROOT/$TARGETNAME\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1985774B2AD3E0550025F615 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19BFF9D22B7F7FE100FA96A2 /* NeedleGenerated.swift in Sources */,
 				19B811E02AD9602D00F3DACE /* Date+Extension.swift in Sources */,
 				19ADAD942AD56DE500663A6E /* Observable.swift in Sources */,
 				191773FE2AD6C92700AF1FAD /* KitsuResultToAnimeMapper.swift in Sources */,
@@ -703,6 +725,7 @@
 				19F01E852AEBD11C0074E4DB /* UIImageSymbolConfiguration+Extension.swift in Sources */,
 				19ADAD892AD5507300663A6E /* SearchViewModel.swift in Sources */,
 				198A26EF2ADD6E8900F5EFC5 /* UIImage+Extension.swift in Sources */,
+				19BFF9CE2B7F780700FA96A2 /* RootComponent.swift in Sources */,
 				191774172AD7C2C600AF1FAD /* SearchTableViewCell.swift in Sources */,
 				1917741A2AD7C4E900AF1FAD /* SearchTableViewController.swift in Sources */,
 				198A27002ADE72D900F5EFC5 /* ImageRepository.swift in Sources */,
