@@ -9,12 +9,15 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet private weak var featureAnimeView: UIView!
     private let viewModel: HomeViewModel
     private let detailBuilder: (Anime) -> DetailsBuilder
+    private let searchBuilder: SearchBuilder
     
     init(viewModel: HomeViewModel,
-         detailBuilder: @escaping (Anime) -> DetailsBuilder
+         detailBuilder: @escaping (Anime) -> DetailsBuilder,
+         searchBuilder: SearchBuilder
     ) {
         self.viewModel = viewModel
         self.detailBuilder = detailBuilder
+        self.searchBuilder = searchBuilder
         super.init(nibName: String(describing: Self.self), bundle: nil)
     }
     
@@ -69,7 +72,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
     
     private func setupSearchResultsController() {
-        let searchTableViewController = SearchTableViewController()
+        let searchTableViewController = searchBuilder.searchTableViewController
         let searchController = UISearchController(searchResultsController: searchTableViewController)
         
         searchController.delegate = searchTableViewController

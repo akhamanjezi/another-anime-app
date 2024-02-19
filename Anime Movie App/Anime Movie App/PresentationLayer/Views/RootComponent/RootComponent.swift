@@ -21,6 +21,10 @@ class RootComponent: BootstrapComponent {
                         favouritesManager: favouritesManager)
     }
     
+    public var searchViewModel: SearchViewModel {
+        SearchViewModel(animeRepository: animeRepository)
+    }
+    
     private var dataProvider: DataProviding {
         KitsuProvider()
     }
