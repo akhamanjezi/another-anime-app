@@ -391,7 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				19BFF9D52B832E2F00FA96A2 /* HomeComponent */,
-				1917741B2AD7CEAF00AF1FAD /* SearchTableView */,
+				19BFF9DC2B83475D00FA96A2 /* SearchComponent */,
 				19BFF9D82B8336C500FA96A2 /* DetailsComponent */,
 				19BFF9CC2B7F774000FA96A2 /* RootComponent */,
 				195FA1962AEBD998009FA88B /* Constants.swift */,
@@ -584,6 +584,14 @@
 				19BFF9D92B83386500FA96A2 /* DetailsComponent.swift */,
 			);
 			path = DetailsComponent;
+			sourceTree = "<group>";
+		};
+		19BFF9DC2B83475D00FA96A2 /* SearchComponent */ = {
+			isa = PBXGroup;
+			children = (
+				1917741B2AD7CEAF00AF1FAD /* SearchTableView */,
+			);
+			path = SearchComponent;
 			sourceTree = "<group>";
 		};
 		19D56AA52AE692BC0025003B /* Images */ = {
