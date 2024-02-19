@@ -8,9 +8,13 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet private weak var reloadButton: UIButton!
     @IBOutlet private weak var featureAnimeView: UIView!
     private let viewModel: HomeViewModel
+    private let detailBuilder: (Anime) -> DetailsBuilder
     
-    init(viewModel: HomeViewModel) {
+    init(viewModel: HomeViewModel,
+         detailBuilder: @escaping (Anime) -> DetailsBuilder
+    ) {
         self.viewModel = viewModel
+        self.detailBuilder = detailBuilder
         super.init(nibName: String(describing: Self.self), bundle: nil)
     }
     
@@ -130,10 +134,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
     
     private func pushDetailsView(for anime: Anime) {
-        let detailsViewModel = DetailsViewModel(anime: anime)
-        let detailsViewController = DetailsViewController(with: detailsViewModel)
-        
-        navigationController?.pushViewController(detailsViewController, animated: true)
+        navigationController?.pushViewController(detailBuilder(anime).detailsViewController, animated: true)
     }
 }
 

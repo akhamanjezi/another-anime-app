@@ -14,7 +14,7 @@ class RootComponent: BootstrapComponent {
         HomeViewModel(animeRepository: animeRepository)
     }
     
-    var animeRepository: AnimeRepository {
+    public var animeRepository: AnimeRepository {
         KitsuRepository(dataProvider: dataProvider,
                         toAnimeMapper: toAnimeMapper,
                         imageRepository: imageRepository,
