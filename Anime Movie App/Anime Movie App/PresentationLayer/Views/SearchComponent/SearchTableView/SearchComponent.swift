@@ -7,7 +7,11 @@ protocol SearchDependency: Dependency {
 
 class SearchComponent: Component<SearchDependency>, SearchBuilder {
     var searchTableViewController: SearchTableViewController {
-        SearchTableViewController(viewModel: dependency.searchViewModel)
+        SearchTableViewController(viewModel: dependency.searchViewModel, detailsBuilder: detailsComponent)
+    }
+    
+    func detailsComponent(for anime: Anime, searchTerm: String?) -> DetailsComponent {
+        DetailsComponent(parent: self, anime: anime, searchTerm: searchTerm)
     }
 }
 

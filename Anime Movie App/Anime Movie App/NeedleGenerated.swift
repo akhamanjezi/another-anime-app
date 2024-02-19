@@ -16,6 +16,10 @@ private func parent2(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Sc
     return component.parent.parent
 }
 
+private func parent3(_ component: NeedleFoundation.Scope) -> NeedleFoundation.Scope {
+    return component.parent.parent.parent
+}
+
 // MARK: - Providers
 
 #if !NEEDLE_DYNAMIC
@@ -59,6 +63,10 @@ private class DetailsDependencyba0153f2a5214384a8b6Provider: DetailsDependency {
 private func factoryc3ef8f560d34c88a0609a9403e3301bb54f80df0(_ component: NeedleFoundation.Scope) -> AnyObject {
     return DetailsDependencyba0153f2a5214384a8b6Provider(rootComponent: parent2(component) as! RootComponent)
 }
+/// ^->RootComponent->HomeComponent->SearchComponent->DetailsComponent
+private func factoryc3ef8f560d34c88a060942f5655bf2362a8495f6(_ component: NeedleFoundation.Scope) -> AnyObject {
+    return DetailsDependencyba0153f2a5214384a8b6Provider(rootComponent: parent3(component) as! RootComponent)
+}
 
 #else
 extension RootComponent: Registration {
@@ -78,6 +86,7 @@ extension HomeComponent: Registration {
 extension SearchComponent: Registration {
     public func registerItems() {
         keyPathToName[\SearchDependency.searchViewModel] = "searchViewModel-SearchViewModel"
+
     }
 }
 extension DetailsComponent: Registration {
@@ -105,6 +114,7 @@ private func registerProviderFactory(_ componentPath: String, _ factory: @escapi
     registerProviderFactory("^->RootComponent->HomeComponent", factory7cf6ef49229ffaf97a15b3a8f24c1d289f2c0f2e)
     registerProviderFactory("^->RootComponent->HomeComponent->SearchComponent", factoryffc6f7a94ad32d986012a9403e3301bb54f80df0)
     registerProviderFactory("^->RootComponent->HomeComponent->DetailsComponent", factoryc3ef8f560d34c88a0609a9403e3301bb54f80df0)
+    registerProviderFactory("^->RootComponent->HomeComponent->SearchComponent->DetailsComponent", factoryc3ef8f560d34c88a060942f5655bf2362a8495f6)
 }
 #endif
 

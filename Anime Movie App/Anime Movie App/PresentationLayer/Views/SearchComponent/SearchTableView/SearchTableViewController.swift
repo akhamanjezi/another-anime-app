@@ -2,10 +2,14 @@ import UIKit
 
 class SearchTableViewController: UITableViewController {
     private let viewModel: SearchViewModel
+    private let detailsBuilder: (Anime, String?) -> DetailsBuilder
     private var dataSource: UITableViewDiffableDataSource<Section, Anime>! = nil
     
-    init(viewModel: SearchViewModel) {
+    init(viewModel: SearchViewModel,
+         detailsBuilder: @escaping (Anime, String?) -> DetailsBuilder
+    ) {
         self.viewModel = viewModel
+        self.detailsBuilder = detailsBuilder
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -56,9 +60,8 @@ class SearchTableViewController: UITableViewController {
         guard let selectedAnime = viewModel.animeSearchResults.value[searchTermKey]?[indexPath.row] else {
             return
         }
-        let detailsViewModel = DetailsViewModel(anime: selectedAnime, searchTerm: viewModel.searchTerm)
-        let detailsViewController = DetailsViewController(with: detailsViewModel)
         
+        let detailsViewController = detailsBuilder(selectedAnime, viewModel.searchTerm).detailsViewController
         presentingViewController?.navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
